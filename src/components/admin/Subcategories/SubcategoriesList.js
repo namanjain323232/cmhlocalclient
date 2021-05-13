@@ -5,7 +5,7 @@ import AdminNav from "../../navigation/AdminNav";
 import {fetchCategories, fetchCategoriesName} from "../../../actions/category";
 import {fetchSubcategories} from "../../../actions/subcategory";
 import {EditOutlined, DeleteOutlined} from "@ant-design/icons";
-import SearchBar from "../../utils/SearchBar";
+import SearchBar from "../../utils/searchBar";
 import AdminMenu from "../AdminMenu";
 
 const  SubcategoriesList = () =>

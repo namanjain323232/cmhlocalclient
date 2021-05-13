@@ -47,17 +47,17 @@ export class PostcodeSearch extends Component {
             searchOptions={this.searchOptions}
           >
             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-              <Col>
+              <Col style={{ position: "static", display: "inline-block" }}>
                 <input
                   {...getInputProps({
                     placeholder: 'Search a Location ...',
                     className: 'location-search-input mt-3 mb-3 font-weight-bold h6',
-                    style: { height:"50px", width:"100%" }
+                    style: { height: "50px", width: "100%" }
                   })}
                 />
-                <Col span={32} className="autocomplete-dropdown-container">
+                <Col span={32} style={{ position: "absolute", zIndex: 1 }} className="autocomplete-dropdown-container">
                   {loading && <div>Loading...</div>}
-                  {suggestions.map(suggestion => {
+                  {suggestions.map((suggestion, i) => {
                     const className = suggestion.active
                       ? 'suggestion-item--active'
                       : 'suggestion-item';
@@ -67,7 +67,7 @@ export class PostcodeSearch extends Component {
                       : { backgroundColor: '#ffffff', cursor: 'pointer' };
                     return (
                       <Col span={32}
-                        key={suggestion.id}
+                        key={i + "_" + suggestion.id}
                         {...getSuggestionItemProps(suggestion, {
                           className,
                           style
@@ -88,7 +88,7 @@ export class PostcodeSearch extends Component {
           <GetSubcategories />
         </Col>
 
-        <Col span={1} 
+        <Col span={1}
           className="h3 mt-3" style={{marginLeft : '50px'}}  >
           <SearchOutlined />
         </Col>

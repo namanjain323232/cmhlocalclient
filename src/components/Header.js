@@ -91,17 +91,17 @@ const logout = () => {
             
         
         { !user && 
-          <Menu.Item  icon={<LoginOutlined /> } > 
+          <Menu.Item key="login" icon={<LoginOutlined /> } > 
          <Link to= "/login">Login</Link>
         </Menu.Item> }
 
         { !user && 
-          <Menu.Item  icon={<UserSwitchOutlined /> } > 
-         <Link to= "/vendorregister">Vendor Registration</Link>
-        </Menu.Item> }   
+          <Menu.Item key="vendorregistration" icon={<UserSwitchOutlined /> } > 
+            <Link to= "/vendorregister">Vendor Registration</Link>
+          </Menu.Item> }   
          
          { !user &&
-          <Menu.Item  icon={<UserAddOutlined />}>
+          <Menu.Item key="register" icon={<UserAddOutlined />}>
          <Link to= "/register">Register</Link>
         </Menu.Item> 
          }
@@ -112,29 +112,29 @@ const logout = () => {
                    title= {user.email && user.email.split("@")[0]}>
 
             { user && user.role ==="subscriber" &&  (
-            <Menu.Item>                
+            <Menu.Item key="userdashboard">                
                 <Link to= "/user/history">Dashboard</Link> 
             </Menu.Item>
             )}
             { user && user.role ==="vendor" &&  (
-            <Menu.Item>                
+            <Menu.Item key="vendordashboard">                
                 <Link to= "/vendor/dashboard">Dashboard</Link> 
             </Menu.Item>
             )}
             { user && user.role ==="admin" &&  (
-            <Menu.Item>                
+            <Menu.Item key="admindashbboard">                
                 <Link to= "/admin/dashboard">Dashboard</Link> 
             </Menu.Item>
             )}            
            
-            <Menu.Item icon={<LogoutOutlined />} onClick= {logout}>Logout</Menu.Item>
+            <Menu.Item key="logout" icon={<LogoutOutlined />} onClick= {logout}>Logout</Menu.Item>
                    
         </SubMenu>          
          }
          
-           <span className= "float-left p-1">
-           <SearchBar />
-         </span>  
+           <span key="searchbarSpan" className= "float-left p-1">
+            <SearchBar />
+          </span>  
       </Menu>
             
       

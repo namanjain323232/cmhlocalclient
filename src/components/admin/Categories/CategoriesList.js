@@ -4,7 +4,7 @@ import AdminNav from "../../navigation/AdminNav";
 import AdminMenu from "../AdminMenu";
 import {EditOutlined, DeleteOutlined} from "@ant-design/icons";
 import { fetchCategories } from "../../../actions/category";
-import SearchBar from "../../utils/SearchBar";
+import SearchBar from "../../utils/searchBar";
 
 
 const CategoriesList = () =>

@@ -12,7 +12,7 @@ export const getAllVendorCategories = async(page) => {
 }
 
 export const getVendorsByCount = async (count) => {
-  return await axios.get(`http://localhost:5000/api/vendors/count/:count`);
+  return await axios.get(`http://localhost:5000/api/vendors/count/${count}`);
 }
 
 export const getVendorCategoriesUser = async(userid,page) => {
