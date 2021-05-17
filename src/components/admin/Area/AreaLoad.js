@@ -25,8 +25,8 @@ const AreaLoad = () => {
            <button type="submit" 
                    className= "btn btn-primary  mt-5"
                    onClick= {submitAreas}
-           > { loading ? <h5>Loading....</h5>
-                       :<h5 className="font-0weight-bold">UPLOAD AREAS</h5>
+           > { loading ? <h5>Loading Areas....</h5>
+                       :<h5 className="font-weight-bold">UPLOAD AREAS</h5>
             }
            </button>
      </div>

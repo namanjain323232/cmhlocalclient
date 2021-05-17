@@ -6,13 +6,12 @@ import {fetchVendorInfo,editVendorInfo} from "../../../actions/vendorInfo";
 import VendorInfoForm from "./VendorInfoForm";
 
 
-
-
 const VendorInfoEdit = ({match}) => {
 
  const {user} = useSelector( state => ({...state}));   
  const [values, setValues] = useState([]); 
  const [loading,setLoading] = useState(false);
+ const [vcounty,setVcounty] = useState("");
  const email= match.params.email
 
  {console.log("MATCH",match)}
@@ -35,6 +34,7 @@ console.log("Authtoken:",user.token );
 
   const handleChange= (e) => {  
         setValues({ ...values, [e.target.name] : e.target.value});
+        setValues({...values, county: vcounty });
         console.log(e.target.name, ".....", e.target.value);
     }
 
@@ -46,7 +46,7 @@ console.log("Authtoken:",user.token );
      addressLine1,
      addressLine2,
      city,
-     county,  
+     county,
      country,
      website
    }  = values;
@@ -56,7 +56,7 @@ console.log("Authtoken:",user.token );
   const handleSubmit = (e) => {       
         e.preventDefault();
         setLoading(true);  
-        console.log("Values before EDIT",values);           
+        console.log("Values before EDIT",values, values.county);           
         editVendorInfo(email,values, user.token)
         .then ( (res) => {
             setLoading(false);
@@ -94,12 +94,16 @@ console.log("Authtoken:",user.token );
                  addressLine1= {addressLine1}
                  addressLine2= {addressLine2}
                  city= {city}
-                 county= {county}
-                 country= {country} 
+                 vcounty= {vcounty}
+                 setVcounty= {setVcounty}
+                 country= {country}                 
                  website= {website}                
                  values= {values}
                  setValues= {setValues}
               /> 
+
+              {console.log("Value of Vcounty",vcounty)};
+                         
              </div>
              </div>
              </section>

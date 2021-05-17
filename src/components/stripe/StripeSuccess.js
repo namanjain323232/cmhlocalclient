@@ -13,7 +13,8 @@ const StripeSuccess = ({match,history}) => {
     useEffect( () => {
        stripeSuccessRequest(user.token,match.params.vendor)
        .then( (res) => {
-           console.log("RES",res);
+           console.log("RES",res.data);
+           return res.data;
            if (res.data.ok) {
                //empty cart from local storage
                if ( typeof window !== "undefined") localStorage.removeItem("cart");
@@ -29,7 +30,7 @@ const StripeSuccess = ({match,history}) => {
               history.push("/stripe/cancel");
            }
        })
-    },[]);
+    },[match.params.vendor]);
 
     return (
 

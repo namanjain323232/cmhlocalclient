@@ -18,11 +18,13 @@ const [timeslots, setTimeslots] = useState([]);
 const [currentSlots, setCurrentSlots] = useState([]);
 
 const [clicked, setClicked] = useState([]);
-const [loading,setLoading] = useState("false");
+const [loading,setLoading] = useState('false');
 
 useEffect( () => {    
     fetchTimeslots().then( res => setTimeslots(res.data));
 },[]);
+
+{console.log("MATCH", match.params.id)}
 
 useEffect( () => {
    readVendorCalendar(match.params.id)
@@ -74,8 +76,8 @@ const handleSubmit= (e) => {
     .then ( (res) => {
       setLoading(false);
       setCaldata([]);
-      toast.success("Timeslots data is updated successfully");  
-           
+      toast.success("Timeslots data is updated successfully");           
+
     })
     .catch (err => {
       console.log(err);

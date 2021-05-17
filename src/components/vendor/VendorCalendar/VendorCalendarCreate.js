@@ -133,7 +133,7 @@ const VendorCalendar = ({ match }) => {
         <VendorNav />
       </div>
       <div className="col col-md-10">
-        {(!currentBooking)
+        {(loading)
           ? <h2>Loading.....</h2>
           : <h2 className="font-weight-bold">Add your Availability</h2>
         }
