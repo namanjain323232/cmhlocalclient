@@ -123,8 +123,7 @@ const renderFields= () => {
                 <label className= "admin-class">City</label>
                 <select className="form-control"  
                    name="city"
-                   onChange= {handleCityChange}   
-                   value={city} 
+                   onChange= {handleCityChange}    
                  >
                <option>Select a city</option>             
                {cities.length > 0 && cities.map(cityval => 
@@ -140,7 +139,6 @@ const renderFields= () => {
                <select className="form-control"  
                    name="county"
                    onChange= {handleCounty} 
-                   value={county}
               >
                <option>Select the county</option>             
                {counties.length > 0 && counties.map(countyval => 
@@ -192,3 +190,4 @@ const renderFields= () => {
 
 
  export default VendorForm;
+
