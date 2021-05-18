@@ -5,10 +5,7 @@ import {fetchCities, fetchCounties} from "../../../actions/area";
 
 const VendorForm = ( {handleSubmit, 
                      handleChange,                     
-                     values,
-                     setValues,
                      email,                    
-                     user,                                       
                      name, 
                      postcode,
                      houseNo,
@@ -17,28 +14,37 @@ const VendorForm = ( {handleSubmit,
                      city,
                      county,
                      country,
-                     vcounty,
-                     setVcounty,
+                     handleCounty,
+                     handleCity,
                     website
                     }) =>  {
 
 const [cities,setCities] = useState([]);
 const [counties,setCounties] = useState([]);
-const [vcity,setVcity] = useState("");
-
 
 useEffect( () => {
   fetchCities()
   .then ( res => {
     setCities(res.data)
     return res.data;
-  } );   
+  } );       
 },[]);
+
+useEffect(() => {
+  if(city){
+      fetchCounties(city)
+      .then ( res => {
+        setCounties(res.data)
+        return res.data;
+      })
+      .catch ( err => console.log(err));
+  }
+}, [city])
 
 
 const handleCityChange= (e) => {
   e.preventDefault();
-  setVcity(e.target.value);
+  handleCity(e);
   fetchCounties(e.target.value)
   .then ( res => {
     setCounties(res.data)
@@ -117,7 +123,7 @@ const renderFields= () => {
                 <label className= "admin-class">City</label>
                 <select className="form-control"  
                    name="city"
-                   onChange= {handleCityChange}                 
+                   onChange= {handleCityChange}    
                  >
                <option>Select a city</option>             
                {cities.length > 0 && cities.map(cityval => 
@@ -132,14 +138,15 @@ const renderFields= () => {
               <label className= "admin-class">County</label>
                <select className="form-control"  
                    name="county"
-                   onChange= {e => setVcounty(e.target.value)} >
+                   onChange= {handleCounty} 
+              >
                <option>Select the county</option>             
                {counties.length > 0 && counties.map(countyval => 
               (
                 // {console.log("COUNTY",countyval.county,county)}
                 <option key={countyval.county} 
                         value={countyval.county}
-                        selected={countyval.county===vcounty}
+                        selected={countyval.county===county}
                         > 
                     {countyval.county} </option> 
                ))}                  

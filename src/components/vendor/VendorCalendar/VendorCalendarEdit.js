@@ -18,7 +18,7 @@ const [timeslots, setTimeslots] = useState([]);
 const [currentSlots, setCurrentSlots] = useState([]);
 
 const [clicked, setClicked] = useState([]);
-const [loading,setLoading] = useState('false');
+const [loading,setLoading] = useState(false);
 
 useEffect( () => {    
     fetchTimeslots().then( res => setTimeslots(res.data));
@@ -37,6 +37,19 @@ useEffect( () => {
 
 console.log("Current slots",  currentSlots);
 
+const getDateForApiFormat = (dateStr) => {
+    let dtstr = "";
+    if (dateStr && dateStr.includes("/")) {
+      let dtArr = dateStr.split("/");
+      if (dtArr && dtArr.length) {
+        dtstr = dtArr[2] + "-" + dtArr[1] + "-" + dtArr[0];
+      }
+    }
+    else{
+      dtstr = moment(dateStr).format("YYYY-MM-DD");
+    }
+    return dtstr;
+  }
 
 const handleClick= (e,t,index) => {
     e.preventDefault();
@@ -71,13 +84,14 @@ const handleSubmit= (e) => {
     } else
     {
     setLoading(true);
-    editVendorCalendar(user._id, fromDate,{  availability: [ {timeslots:caldata }
+    let dtstr = getDateForApiFormat(fromDate);
+    editVendorCalendar(user._id, dtstr,{  availability: [ {timeslots:caldata }
                                                  ]}, user.token)
     .then ( (res) => {
-      setLoading(false);
+      setLoading(false); 
       setCaldata([]);
-      toast.success("Timeslots data is updated successfully");           
-
+      toast.success("Timeslots data is updated successfully");  
+           
     })
     .catch (err => {
       console.log(err);
@@ -105,12 +119,13 @@ const handleSubmit= (e) => {
               className="site-calendar-card  ml-4 h6"
               placeholder="From date"
               size= "large"   
-              defaultValue= {moment(fromDate, "YYYY-MM-DD")}              
+              defaultValue= {moment(fromDate, "YYYY-MM-DD")}  
+              format="DD/MM/YYYY"            
               onChange= {(date,dateString) => 
                         setFromDate(dateString)
                        }
               disabledDate= { (current => 
-                    current && current.valueOf() < moment().subtract( 1- "days"))}
+                current && current.valueOf() < moment().subtract( 1- "days"))}
              /> 
             }
             { toDate && <DatePicker
@@ -150,7 +165,6 @@ const handleSubmit= (e) => {
              ))
              }
              {/* </div> */}
-              )
               
              {/* )}  */}
           

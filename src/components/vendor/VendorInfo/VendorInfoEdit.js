@@ -11,7 +11,6 @@ const VendorInfoEdit = ({match}) => {
  const {user} = useSelector( state => ({...state}));   
  const [values, setValues] = useState([]); 
  const [loading,setLoading] = useState(false);
- const [vcounty,setVcounty] = useState("");
  const email= match.params.email
 
  {console.log("MATCH",match)}
@@ -34,8 +33,15 @@ console.log("Authtoken:",user.token );
 
   const handleChange= (e) => {  
         setValues({ ...values, [e.target.name] : e.target.value});
-        setValues({...values, county: vcounty });
         console.log(e.target.name, ".....", e.target.value);
+    }
+
+    const handleCity = (e) => {
+      setValues({ ...values, [e.target.name] : e.target.value});
+    }
+
+    const handleCounty = (e) => {
+      setValues({ ...values, [e.target.name] : e.target.value});
     }
 
     console.log("values from vendor edit",values);
@@ -87,6 +93,8 @@ console.log("Authtoken:",user.token );
               <VendorInfoForm 
                  handleSubmit= {handleSubmit}
                  handleChange= {handleChange}
+                 handleCity={handleCity}
+                 handleCounty= {handleCounty}
                  email= {user.email}                                            
                  name= {name}
                  postcode= {postcode}
@@ -94,15 +102,12 @@ console.log("Authtoken:",user.token );
                  addressLine1= {addressLine1}
                  addressLine2= {addressLine2}
                  city= {city}
-                 vcounty= {vcounty}
-                 setVcounty= {setVcounty}
+                 county={county}
                  country= {country}                 
                  website= {website}                
                  values= {values}
                  setValues= {setValues}
               /> 
-
-              {console.log("Value of Vcounty",vcounty)};
                          
              </div>
              </div>

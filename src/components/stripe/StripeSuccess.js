@@ -13,9 +13,9 @@ const StripeSuccess = ({match,history}) => {
     useEffect( () => {
        stripeSuccessRequest(user.token,match.params.vendor)
        .then( (res) => {
-           console.log("RES",res.data);
-           return res.data;
-           if (res.data.ok) {
+
+           if (res && res.data && res.data.ok) {
+               console.log("RES",res.data); 
                //empty cart from local storage
                if ( typeof window !== "undefined") localStorage.removeItem("cart");
                //empty cart from redux store

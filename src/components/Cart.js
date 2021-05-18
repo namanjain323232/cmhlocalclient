@@ -25,6 +25,7 @@ const Cart= ({history}) => {
       .catch ((err) => console.log(err));
       }
   const showCartItems= () => (
+    <div className="table-responsive">
       <table className= "table table-bordered">
         <thead className= "thead-light">
          <tr>
@@ -43,6 +44,7 @@ const Cart= ({history}) => {
             <VendorCardCheckout key={v._id} v = {v} />
         ))}
       </table>
+    </div>
   )
 
   return (

@@ -16,13 +16,13 @@ const VendorCalCard = ({cal}) => {
                       <EditOutlined  className= "text-warning" />
                     </Link>                   
                  ]} 
-      >        
-        <b className= "mb-2">Booking Date: {start}    </b>        
-        {cal.availability[0].timeslots && cal.availability[0].timeslots.map ( (ts) => (
-            <p key= {ts._id} className= "bg-info font-weight-bold ">{ts.startSlot}-{ts.endSlot}</p>
-        )
-        )}
-      </Card>
+      >    
+      <b className= "mb-2">Booking Date: {start}    </b>
+      {cal.availability[0].timeslots && cal.availability[0].timeslots.map((ts, i) => (
+        <p key= {ts._id + "_" + i} className="bg-info font-weight-bold ">{ts.startSlot}-{ts.endSlot}</p>
+      )
+      )}
+    </Card>
   )
 }
 
