@@ -4,7 +4,10 @@ const ShowVendorBookings = () => {
 
     return (
 
-        <div>
+        <div className= "row">
+            <div className= "col col-md-6">
+
+            </div>
             
         </div>
 

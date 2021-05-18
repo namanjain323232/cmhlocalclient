@@ -16,10 +16,14 @@ const Cart= ({history}) => {
       },0)
   }
 
+  // const cartval= cart[0].subcategories
+
+  {console.log("VALUE OF CART",cart)}
+
   const saveOrderToDB= () => {
       userCart(cart,user.token)
       .then ( res => {
-         console.log("Cart response",res)
+         console.log("Cart response ZZZ",res.data)
          if (res.data.ok) history.push("/checkout");
       })
       .catch ((err) => console.log(err));

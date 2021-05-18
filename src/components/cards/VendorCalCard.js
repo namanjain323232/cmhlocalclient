@@ -27,4 +27,3 @@ const VendorCalCard = ({cal}) => {
 }
 
 export default VendorCalCard;
-

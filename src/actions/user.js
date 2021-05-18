@@ -1,8 +1,10 @@
 import axios from "axios";
 
 export const userCart= async (cart,authtoken) => {
-    return await axios.post("http://localhost:5000/user/cart", {cart},
+    const cartval= await axios.post("http://localhost:5000/user/cart", {cart},
       {headers: {authtoken}});    
+     console.log("VALUE OF CART FROM ACTION USER CART",cartval);
+    return cartval;
 }
 
 export const getuserCart= async (authtoken) => {

@@ -27,7 +27,6 @@ const RenderTimeslot = ({timeslotval,index,day,currentslots}) => {
         timeslots.push({ ...timeslotval,
                          count: 1})
       } 
-      {console.log("TIMESLOTS", timeslots)} 
       let unique=_.uniqWith(timeslots,_.isEqual);  
       //add to redux store
       dispatch({
@@ -43,9 +42,8 @@ const RenderTimeslot = ({timeslotval,index,day,currentslots}) => {
                  tsday:day,
                  tstimeslot:unique
              }
-          });         
-           
-       console.log("redux store val", dayval.dayval, timeslotsval);     
+          });             
+        
      } 
      
      const disableButtons= (timeslots,key) => {
@@ -58,9 +56,9 @@ const RenderTimeslot = ({timeslotval,index,day,currentslots}) => {
         
   return (
              <div>    
-              {console.log("DAY",day)} 
+              {/* {console.log("DAY",day)} 
               {console.log(currentslots.map(slots => moment(slots?.availability[0].start).format('DD/MM/YYYY') == moment(day) 
-                                            &&  slots?.availability[0].timeslots?.some(slot => {return(slot._id == timeslotval._id)})))} 
+                                            &&  slots?.availability[0].timeslots?.some(slot => {return(slot._id == timeslotval._id)})))}  */}
               
               <button className= "btn btn-primary btn-sm font-weight-bold"
                       key={timeslotval._id}

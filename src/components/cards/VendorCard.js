@@ -9,6 +9,8 @@ import _ from "lodash";
 const {Meta} = Card;
 const VendorCard= ({vendor}) => {
 
+  {console.log("Value of VENDOR from VENDOR CARD", vendor)}
+
   const {user, cart} = useSelector((state) => ({...state}));
 
    const [subcats, setSubcats] = useState([]);   

@@ -40,7 +40,7 @@ const SelectCalendar= ({vendor}) => {
           message={`You selected date: ${selectedValue}`}
         />
         
-        <Calendar value={moment(value)} 
+        <Calendar value={value} 
                   onSelect={onSelect} 
                   onPanelChange={onPanelChange}   
                   disabledDate= { (current => 

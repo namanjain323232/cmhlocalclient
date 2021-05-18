@@ -5,6 +5,8 @@ import {CloseCircleOutlined} from "@ant-design/icons";
 
 const VendorCardCheckout= ({v}) => {
 
+    {console.log("VALUE OF V",v)}
+
 const dispatch= useDispatch();
 
  const handleQuantityChange= (e) => {
