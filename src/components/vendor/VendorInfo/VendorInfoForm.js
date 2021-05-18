@@ -123,14 +123,15 @@ const renderFields= () => {
                 <label className= "admin-class">City</label>
                 <select className="form-control"  
                    name="city"
-                   onChange= {handleCityChange}    
+                   onChange= {handleCityChange}   
+                   value={city} 
                  >
                <option>Select a city</option>             
                {cities.length > 0 && cities.map(cityval => 
               {
                  return (<option key={cityval} 
                         value={cityval}
-                        selected={cityval===city}
+                        // selected={cityval===city}
                         > 
                     {cityval} </option> 
                )})}	 
@@ -139,6 +140,7 @@ const renderFields= () => {
                <select className="form-control"  
                    name="county"
                    onChange= {handleCounty} 
+                   value={county}
               >
                <option>Select the county</option>             
                {counties.length > 0 && counties.map(countyval => 
@@ -146,7 +148,7 @@ const renderFields= () => {
                 // {console.log("COUNTY",countyval.county,county)}
                 <option key={countyval.county} 
                         value={countyval.county}
-                        selected={countyval.county===county}
+                        // selected={countyval.county===county}
                         > 
                     {countyval.county} </option> 
                ))}                  
