@@ -91,6 +91,7 @@ import StripeCancel from "./stripe/StripeCancel";
 
 import { LOGGED_IN_USER } from "../actions/types";
 import { currentUser, admintUser } from "../actions/auth";
+import axios from "axios";
 
 const App = () => {
 
@@ -124,6 +125,61 @@ const App = () => {
     //clean up
     return () => unsubscribe();
   }, []);
+
+  axios.interceptors.response.use(
+    (res) => res,
+    (err) => {
+      return new Promise(function (resolve, reject) {
+        if (err && err.response && err.response.status === 401) {
+          const unsubscribe = auth.onAuthStateChanged(async (user) => {
+            if (user) {
+              await user.getIdToken(true).
+                then((idtoken) => {
+                  currentUser(idtoken)
+                    .then((res) => {
+                      dispatch({
+                        type: LOGGED_IN_USER,
+                        payload: {
+                          name: res.data.name,
+                          email: res.data.email,
+                          token: idtoken,
+                          role: res.data.role,
+                          _id: res.data._id,
+                          address: res.data.address,
+                          createdAt: res.data.createdAt,
+                          stripe_account_id: res.data.stripe_account_id,
+                          stripe_seller: res.data.stripe_seller,
+                          stripeSession: res.data.stripeSession
+                        }
+                      });
+                      err.config.headers["authtoken"] = idtoken;
+                      axios.request(err.config).
+                        then((d) => {
+                          resolve(d);
+                        })
+                        .catch((ex) => {
+                          console.log(ex);
+                          reject(ex);
+                        });
+                    })
+                    .catch((err) => {
+                      console.log(err)
+                      reject(err);
+                    });
+                })
+                .catch((err) => {
+                  console.log(err)
+                  reject(err);
+                });
+            }
+          });
+          return () => unsubscribe();
+        }
+        throw err;
+      });
+    }
+
+  )
 
   return (
     <div className="App">
@@ -179,8 +235,8 @@ const App = () => {
               <AdminRoute path="/admin/subcatquestions/subcatquestionslist" exact component={SubcategoryQuestionsList} />
               <AdminRoute path="/admin/vendor" exact component={Vendor} />
 
-              <AdminRoute path= "/admin/timeslot/timeslotcreate" exact component= {TimeslotCreate} /> 
-              <AdminRoute path= "/admin/timeslot/listslots" exact component= {TimeslotList} /> 
+              <AdminRoute path= "/admin/timeslot/timeslotcreate" exact component= {TimeslotCreate} />
+              <AdminRoute path= "/admin/timeslot/listslots" exact component= {TimeslotList} />
               <AdminRoute path= "/admin/timeslot/editslot/:id" exact component= {TimeslotEdit} />
               <AdminRoute path= "/admin/timeslot/deleteslot/:id" exact component= {TimeslotDelete} />
 
@@ -210,7 +266,7 @@ const App = () => {
               <UserRoute path="/vendor/vendorcaledit/:id" exact component={VendorCalendarEdit} />
               <UserRoute path="/vendor/vendorcalbulk/:id" exact component={VendorCalendarBulk} />
               <UserRoute path="/vendor/bulktimeslots/:id/:fromDate/:toDate" exact component={BulkTimeslots} />
-           
+
               <UserRoute path="/checkout" exact component={Checkout} />
               <UserRoute path="/payment" exact component={Payment} />
               <UserRoute path="/bookvendor/:id" exact component={BookVendor} />
@@ -220,10 +276,10 @@ const App = () => {
               <UserRoute path="/stripe/callback" component={StripeCallback} />
               <UserRoute path="/stripesuccess/:vendor" component={StripeSuccess} />
               <UserRoute path="/stripecancel" component={StripeCancel} />
-             
+
               {/* <Footer /> */}
             </>}
-          </Switch>
+        </Switch>
 
       </Router>
 
