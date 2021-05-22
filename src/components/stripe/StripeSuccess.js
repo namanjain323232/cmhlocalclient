@@ -13,7 +13,6 @@ const StripeSuccess = ({match,history}) => {
     useEffect( () => {
        stripeSuccessRequest(user.token,match.params.vendor)
        .then( (res) => {
-
            if (res && res.data && res.data.ok) {
                console.log("RES",res.data); 
                //empty cart from local storage

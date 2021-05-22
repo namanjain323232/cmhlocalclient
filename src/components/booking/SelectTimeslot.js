@@ -54,6 +54,7 @@ const SelectTimeslot = ({match}) => {
        }
     };
 
+    
    
    {console.log("VENDOR FROM SELECT VENDOR", match.params)}
    {console.log("Vendor NNNN",vendata)} 
