@@ -130,7 +130,7 @@ const renderFields= () => {
               {
                  return (<option key={cityval} 
                         value={cityval}
-                        // selected={cityval===city}
+                         selected={cityval===city}
                         > 
                     {cityval} </option> 
                )})}	 
@@ -146,7 +146,7 @@ const renderFields= () => {
                 // {console.log("COUNTY",countyval.county,county)}
                 <option key={countyval.county} 
                         value={countyval.county}
-                        // selected={countyval.county===county}
+                        selected={countyval.county===county}
                         > 
                     {countyval.county} </option> 
                ))}                  
