@@ -6,6 +6,7 @@ import {ToolOutlined} from "@ant-design/icons";
 import {toast} from "react-toastify";
 import {createConnectAccount} from "../../actions/stripe";
 import { getVendorCategoriesUser } from "../../actions/vendor";
+import ShowVendorBookings from "../booking/ShowVendorBookings";
 import { Card } from 'antd';
 
 const { Meta } = Card;
@@ -47,7 +48,11 @@ const VendorDashboard = ({history}) => {
             <VendorNav />   
         </div>  
         <div className="col col-md-9 "> 
-        <div className="row d-flex justify-content-center">             
+        <div className="row d-flex justify-content-center">  
+          
+           < ShowVendorBookings
+              user = {user._id}  
+            />         
            <h2 className= "font-weight-bold mb-2 mt-2 "> Your Current Categories</h2>
            <br />
         </div>

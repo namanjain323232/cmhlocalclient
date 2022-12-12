@@ -8,6 +8,8 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import PostcodeSearch from "./utils/PostcodeSearch";
 import {Avatar,Card, Col,Row} from "antd";
 import Jumbotron from "./cards/Jumbotron";
+import { getAllVendorCategories } from "../actions/vendor";
+import { fetchVendorsInfo } from "../actions/vendorInfo";
 
 const {Meta} = Card;
 const gridStyle = {
@@ -20,10 +22,23 @@ const gridStyle = {
 const MainBody = () => {
 
   const [categories, setCategories] = useState([]);
+  const [vendors, setVendors] = useState([]);
+  const [vendorinfo,setVendorinfo] = useState([])
   
   useEffect( () => {
     getSubcat();
   },[]);
+
+  useEffect( () => {
+    getAllVendorCategories().then ( res => setVendors(res.data))
+  },[]);
+
+  useEffect( () => {
+    fetchVendorsInfo().then (res => setVendorinfo(res.data))
+  },[]);
+
+  console.log("ALL VENDORS",vendors);
+  console.log("ALL VENDOR INFO", vendorinfo);
 
   const getSubcat= () => {
     fetchCategories().then( res => setCategories(res.data));

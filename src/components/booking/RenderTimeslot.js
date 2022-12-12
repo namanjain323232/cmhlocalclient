@@ -32,7 +32,7 @@ const RenderTimeslot = ({timeslotval,index,day,currentslots}) => {
       dispatch({
         type: "SELECTED_DAY",
          payload:{ 
-             dayval: day
+             dayval:  day
          }
       });
 

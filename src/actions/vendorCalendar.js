@@ -63,3 +63,9 @@ export const addBulkAvail = async (userid, formvalues, authtoken) => {
   console.log(`Response from bulk avail`, res);
   return res;
 }
+
+export const upcomingBookings =  async (vendorid) =>  {
+  const res= await axios.get(`http://localhost:5000/api/vendorcalendar/booking/${vendorid}`);  
+   console.log("Vendorbookings",res) ;  
+   return res;
+ };

@@ -57,9 +57,9 @@ const SelectTimeslot = ({match}) => {
     
    
    {console.log("VENDOR FROM SELECT VENDOR", match.params)}
-   {console.log("Vendor NNNN",vendata)} 
+   {console.log("Vendor NNNN",dayval.dayval)} 
 
- 
+    const newdate= moment(dayval.dayval,"DD-MM-YYYY");
     const handleSubmit= (e,timeslot,index,day) => {
       e.preventDefault();
       {console.log("VALUES FROM SLOT",e,index,timeslot,day,match.params.vendor,match.params.selectedValue)}
@@ -71,7 +71,7 @@ const SelectTimeslot = ({match}) => {
         }
         cart.push({
           ...vendata,
-          bookingDate:dayval.dayval,
+          bookingDate: moment(newdate).format("YYYY-MM-DD"),
           bookingSlots:timeslotsval.timeslotsval,
           count: timeslotsval.timeslotsval.length
         })
