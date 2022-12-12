@@ -1,6 +1,9 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
-module.exports = function(app) {
-    app.use('/auth/google', createProxyMiddleware({ target: 'http://localhost:5000'}));
-    app.use('/auth/facebook',createProxyMiddleware({ target: 'http://localhost:5000'}));
-    app.use('/api/*', createProxyMiddleware({ target: 'http://localhost:5000' }));
+
+const ROOT_URL = 'http://localhost:5000';
+
+module.exports = function (app) {
+    app.use('/auth/google', createProxyMiddleware({ target: ROOT_URL }));
+    app.use('/auth/facebook', createProxyMiddleware({ target: ROOT_URL }));
+    app.use('/api/*', createProxyMiddleware({ target: ROOT_URL }));
 };

@@ -7,7 +7,6 @@ import {
        DELETE_CATEGORY } from "../actions/types";
 
 const categoryReducer= (state = [], action) => {
-    console.log("category reducer",state);
     switch (action.type) {
         case FETCH_CATEGORIES:            
            return {...state, ..._.mapKeys(action.payload, '_id')} ;          

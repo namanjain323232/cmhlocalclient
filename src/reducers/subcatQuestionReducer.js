@@ -7,7 +7,6 @@ import {
 } from "../actions/types";
 
  const subcatQuestionReducer= (state = [], action) => {
-    console.log("Action values from subcat question reducer:", state);
      switch (action.type) {
          case CREATE_SUBCAT_QUESTION:           
              return {...state, [action.payload.id] : action.payload};

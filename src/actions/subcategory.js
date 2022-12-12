@@ -1,36 +1,38 @@
 import axios from "axios";
 import history from "../history";
 
-//action creator for Subcategory Master
-export const addSubcategory =  async (values, authtoken) =>  {
-    const res = await axios.post("http://localhost:5000/api/subcategory",values,
-    {headers: {authtoken}});
-    history.push("/admin/subcategories/subcategorieslist");
-  };
- 
-  export const fetchSubcategories = async () =>  {
-     return await axios.get("http://localhost:5000/api/subcategories");
-  };
- 
-  export const fetchSubcategory = async (slug) =>  {
-     return await axios.get(`http://localhost:5000/api/subcategory/${slug}`);    
-  };
- 
-  export const editSubcategory = async (slug,formValues,authtoken) =>  {
-    console.log("Formvalues from edit subcategory",formValues);
-     const res = await axios.put(`http://localhost:5000/api/subcategory/${slug}`,formValues,
-      {headers: {authtoken}});  
-      console.log("Response from edit subcat",res); 
-      history.push("/admin/subcategories/subcategorieslist");
-  };
- 
- export const deleteSubcategory = async (slug, authtoken) => {
-     await axios.delete(`http://localhost:5000/api/subcategory/${slug}`,
-     { headers: {authtoken} });
-     history.push("/admin/subcategories/subcategorieslist");
-   };
+const ROOT_URL = 'http://localhost:5000';
 
-   export const fetchSubcatVendors= async (slug) => {
-    return await axios.get(`http://localhost:5000/api/subcategories/vendor/${slug}`);
-  }
-   
+//action creator for Subcategory Master
+export const addSubcategory = async (values, authtoken) => {
+  const res = await axios.post(`${ROOT_URL}/api/subcategory`, values,
+    { headers: { authtoken } });
+  history.push("/admin/subcategories/subcategorieslist");
+};
+
+export const fetchSubcategories = async () => {
+  return await axios.get(`${ROOT_URL}/api/subcategories`);
+};
+
+export const fetchSubcategory = async (slug) => {
+  return await axios.get(`${ROOT_URL}/api/subcategory/${slug}`);
+};
+
+export const editSubcategory = async (slug, formValues, authtoken) => {
+  console.log("Formvalues from edit subcategory", formValues);
+  const res = await axios.put(`${ROOT_URL}/api/subcategory/${slug}`, formValues,
+    { headers: { authtoken } });
+  console.log("Response from edit subcat", res);
+  history.push("/admin/subcategories/subcategorieslist");
+};
+
+export const deleteSubcategory = async (slug, authtoken) => {
+  await axios.delete(`${ROOT_URL}/api/subcategory/${slug}`,
+    { headers: { authtoken } });
+  history.push("/admin/subcategories/subcategorieslist");
+};
+
+export const fetchSubcatVendors = async (slug) => {
+  return await axios.get(`${ROOT_URL}/api/subcategories/vendor/${slug}`);
+}
+
