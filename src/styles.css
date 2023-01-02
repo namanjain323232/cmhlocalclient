@@ -1,0 +1,370 @@
+/****main page css */
+html,
+body {
+  font-family:Montserrat;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  height: 100%;
+  }
+h1,h2,h3,h4,h5,h6 {
+  font-family:Montserrat;
+  text-align: center;
+}
+
+.App{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* height: 100vh; */
+}
+
+sidenavbar {
+  position:absolute;
+  font-size: 28px;
+  line-height: 15px;
+  text-align:left;
+}
+
+/* Header section */
+.header-section {
+  background-color: #1d2d50;
+  margin-bottom: 2px;
+}
+
+.menu {
+  background-color:  #1d2d50 ;
+}
+
+.header-links {
+  background-color: #1d2d50;
+}
+.header-img {
+    top:-2;
+    width:10%;
+  }
+ .header-main {
+    position:relative;
+    width:10%;
+    height:80%;  
+    right:30%;
+  }
+  /*category section */
+  .content-section {
+      font-weight: 300;
+    }
+  .content-header {
+    padding-left:1%;
+    font-size:1rem;
+    color:whitesmoke;
+    }
+  .main-categories {
+    max-width:100%;
+  }
+  .main-class {
+    background-color:#EAD6CD;
+    min-height: 50px;
+    border:5px solid;  
+    color:#e8e8e8;
+    font-size: 20px;
+    padding-bottom: 2px;
+   }
+
+  .footer-area {
+    padding:10% 10%;
+  }
+
+  .login-btn {
+    padding:10px;
+    margin: auto 20px;
+    width:90%;
+
+  }
+  /*------features -----*/
+  #features {
+    position:relative;
+  }
+  .feature-class {
+      font-weight:400;
+  }
+  .feature-header {
+    padding-top: 5px;
+  }
+  .feature-text {
+     color:grey;
+     text-align:center;
+  }
+  .icon-class {
+    color: #ee6f57;
+    margin-bottom: 1rem;
+    font-size:1em;
+  }
+  /*----Category */
+  .category-header {
+    font-weight:900;
+    position: absolute;
+    bottom: 0;
+    }
+  .category-img {
+    height:100px !important;
+    width:100px !important;
+  }
+  /* testimonial-section */
+  .testimonial-section{
+    padding-top:20px;
+    padding-bottom: 100px;
+    font-weight: 900;
+    text-align: center;
+  }
+/* footer section */
+.footer-section {
+  background-color: #51adcf;
+  padding:3% 10%;
+  margin-bottom: 0;
+  position : relative;
+  left : 0;
+  bottom:0;
+  right: 0;
+  width:100%;
+  height:30px;
+  text-align: center;
+ }
+
+
+/***********  newletter CSS */
+
+.text-center {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  border:5px;
+  height: auto;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.top {
+  margin-bottom: 1px;
+  border: 1px solid;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.middle {
+  margin-bottom: 1px;
+  border: 1px solid;
+}
+.bottom {
+  margin-bottom: 1px;
+  border: 1px solid;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+
+/* vendor sign in form */
+
+.vendor-center {
+  margin:0 auto;
+  background-color:#dddddd;
+  width:600px;
+}
+
+.question-center {
+  margin: 0 auto; 
+  background-color: #dddddd;
+  width: 900px;
+}
+
+.vendor {
+  list-style-type: none;
+}
+
+
+.vendor-signin {
+  width: 70%;
+  padding: 5px;
+  margin: auto;
+  }
+
+.vendor-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.first-class {
+  background-color: #eeeeee;
+  margin-bottom: 2px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+ }
+
+
+#dropdownMenuButton {
+  padding:10px;
+  margin: 50px auto;
+}
+
+.category-center {
+   width: 300px;
+   background-color: #f8f1f1;
+   margin: 20px 20px;
+}
+
+.category {
+  font-size: 20px;
+  text-align:center; 
+}
+
+.question {
+  font-size: 20px;
+  margin-bottom:-25px; 
+}
+
+.options {
+   margin-bottom: -5px;
+   margin-top:-5px;
+   padding: 0px;   
+  }
+
+.category-head {
+      margin: 30px auto;
+    }
+
+.subcategory {
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  margin: 20px 10px;
+}
+
+.custom-centered{
+ margin:0 auto;
+ width:300px;
+}
+
+.displaySub
+{
+  border: none;
+  font-weight:bold;
+  font-size: 20px;
+  text-align: center
+}
+
+
+.cat-label
+{
+  border:2px;
+  font-weight:bold;
+  background-color: #01c5c4;
+  font-size: 20px;
+}
+
+.registerform {
+  margin-left: 30%;
+  margin-right: 8%;
+  margin-top:40px;
+  width:auto;
+}
+.admin-class {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.primary-button {
+  width:90px;
+  height: 40px; 
+  text-align: center; 
+  padding-top: 2px;
+}
+
+.question-button {
+  width: 150px;
+  height:40px;
+}
+
+.list-items {
+  list-style-type: none;
+  padding:0;
+  margin:0;
+}
+.delete-button {
+  font-size:20px;
+  margin-top: 30px !important;
+  margin-left: -15px;
+}
+
+.question-delete {
+  
+   margin-left: -15px;
+}
+
+#modal {
+  position: fixed;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+}
+
+.navlist {
+  font-size: 24px;
+  margin-bottom:10px;
+  font-weight:bold;
+}
+
+.fontname {
+  font-weight: 16px;
+}
+
+.subdropdown {
+  font-size: 24px;
+  padding-top:10px;
+  font-weight:bold;
+}
+
+.slider img {
+  height: 450px;
+  object-fit: cover;
+}
+
+.grid-class {
+  grid-row:unset;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.ant-select-multiple .ant-select-selection-item-content {
+  font-size:large;
+}
+
+.site-calendar-card {
+  width: 350px;
+  border: 2px solid #f0f0f0;
+  border-radius: 2px;
+}
+
