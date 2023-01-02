@@ -96,11 +96,11 @@ const Checkout = ({ history }) => {
         cellPadding={0}
         cellSpacing={10}
         className="body-table"
-        style={{ height: "120%", width: "100%" }}
+        style={{ height: "100%", width: "100%" }}
       >
         <tbody>
           <tr>
-            <td align="center" valign="center">
+            <td align="center" valign="center" style={{ padding: "2rem" }}>
               <table
                 bgcolor="white"
                 border={0}
@@ -624,6 +624,10 @@ const Checkout = ({ history }) => {
                           <tr>
                             <td align="center" valign="top">
                               <table
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "center",
+                                }}
                                 border={0}
                                 cellPadding={0}
                                 cellSpacing={0}
@@ -649,12 +653,13 @@ const Checkout = ({ history }) => {
                                           borderRadius: "3px",
                                           WebkitBorderRadius: "3px",
                                           MozBorderRadius: "3px",
-                                          backgroundColor: "#30ada5",
-                                          borderTop: "16px solid #30ada5",
-                                          borderBottom: "16px solid #30ada5",
-                                          borderRight: "22px solid #30ada5",
-                                          borderLeft: "22px solid #30ada5",
-                                          display: "inline-block",
+                                          backgroundColor: "#23A455",
+                                          borderTop: "16px solid #23A455",
+                                          borderBottom: "16px solid #23A455",
+                                          borderRight: "22px solid #23A455",
+                                          borderLeft: "22px solid #23A455",
+
+                                          display: "unset !important",
                                         }}
                                       >
                                         Place order
@@ -677,12 +682,12 @@ const Checkout = ({ history }) => {
                                           borderRadius: "3px",
                                           WebkitBorderRadius: "3px",
                                           MozBorderRadius: "3px",
-                                          backgroundColor: "#30ada5",
-                                          borderTop: "16px solid #30ada5",
-                                          borderBottom: "16px solid #30ada5",
-                                          borderRight: "22px solid #30ada5",
-                                          borderLeft: "22px solid #30ada5",
-                                          display: "inline-block",
+                                          backgroundColor: "red",
+                                          borderTop: "16px solid red",
+                                          borderBottom: "16px solid red",
+                                          borderRight: "22px solid red",
+                                          borderLeft: "22px solid red",
+                                          display: "unset !important",
                                         }}
                                       >
                                         Empty cart
