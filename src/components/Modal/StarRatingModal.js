@@ -4,15 +4,19 @@ import { useHistory, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { StarOutlined } from "@ant-design/icons";
+import { vendorReview } from "../../actions/vendor";
 
-const StarRatingModal = ({ children }) => {
+const StarRatingModal = (props) => {
   const { user } = useSelector((state) => ({ ...state }));
   const [modalVisible, setModalVisible] = useState(false);
-
+  const [review, setReview] = useState(props.review);
+  const handleReviewChange = (e) => {
+    setReview(e.target.value);
+  };
   let history = useHistory();
   let params = useParams();
 
-  console.log("children", { children });
+  // console.log("children", { children });
 
   const handleChange = () => {
     if (user && user.token) {
@@ -36,6 +40,7 @@ const StarRatingModal = ({ children }) => {
         centered
         visible={modalVisible}
         onOk={() => {
+          vendorReview(params.id, review, user.token);
           setModalVisible(false);
           toast.success(
             "Thank you for your review. It will appear on our website shortly"
@@ -45,7 +50,8 @@ const StarRatingModal = ({ children }) => {
           setModalVisible(false);
         }}
       >
-        {children}
+        {props.children}
+        <textarea value={review} onChange={handleReviewChange} />
       </Modal>
     </>
   );
