@@ -5,53 +5,66 @@ import { emptyUserCart, getuserCart } from "../../actions/user";
 import { loadStripe } from "@stripe/stripe-js";
 import keys from "../../config/keys";
 import { getSessionId } from "../../actions/stripe";
+import { assign } from "lodash";
 
 const Checkout = ({ history }) => {
-  // const [vendors, setVendors] = useState([]);
-  // const [total, setTotal] = useState(0);
-  // const [name, setName] = useState([]);
+  const [vendors, setVendors] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [name, setName] = useState([]);
 
-  // const dispatch = useDispatch();
+  const { user, cart } = useSelector((state) => ({ ...state }));
+  const dispatch = useDispatch();
 
-  // const { user } = useSelector((state) => ({ ...state }));
+  const getCartTotal = () => {
+    return cart.reduce((currentValue, nextValue) => {
+      return currentValue + nextValue.count * nextValue.price;
+    }, 0);
+  };
 
-  // useEffect(() => {
-  //   getuserCart(user.token).then((res) => {
-  //     setVendors(res.data.vendors);
-  //     setTotal(res.data.cartTotal);
-  //   });
-  // }, []);
+  // const cartval= cart[0].subcategories
 
-  // const emptyCart = () => {
-  //   //remove from local storage
-  //   if (typeof window !== "undefined") {
-  //     localStorage.removeItem("cart");
-  //   }
-  //   //remove from redux
-  //   dispatch({
-  //     type: "ADD_TO_CART",
-  //     payload: [],
-  //   });
-  //   // remove from backend
-  //   emptyUserCart(user.token).then((res) => {
-  //     setVendors([]);
-  //     setTotal(0);
-  //     toast.success("Cart is empty. Continue shopping...");
-  //   });
-  // };
+  console.log("VALUE OF CART", cart);
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   console.log("FROM CHECKOUT", user.token, vendors[0].vendor.userId);
-  //   const res = await getSessionId(user.token, vendors[0].vendor.userId);
-  //   console.log("SESSION ID", res.data.sessionId);
-  //   const stripe = await loadStripe(keys.REACT_APP_STRIPE_KEY);
-  //   stripe
-  //     .redirectToCheckout({
-  //       sessionId: res.data.sessionId,
-  //     })
-  //     .then((result) => console.log("RESULT", result));
-  // };
+  useEffect(() => {
+    getuserCart(user.token).then((res) => {
+      setVendors(res.data.vendors);
+      setTotal(res.data.cartTotal);
+    });
+  }, []);
+
+  const emptyCart = () => {
+    //remove from local storage
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("cart");
+    }
+    //remove from redux
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: [],
+    });
+    // remove from backend
+    emptyUserCart(user.token).then((res) => {
+      setVendors([]);
+      setTotal(0);
+      toast.success("Cart is empty. Continue shopping...");
+      window.setTimeout(function () {
+        window.location.assign("/cart");
+      }, 1000);
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("FROM CHECKOUT", user.token, vendors[0].vendor.userId);
+    const res = await getSessionId(user.token, vendors[0].vendor.userId);
+    console.log("SESSION ID", res.data.sessionId);
+    const stripe = await loadStripe(keys.REACT_APP_STRIPE_KEY);
+    stripe
+      .redirectToCheckout({
+        sessionId: res.data.sessionId,
+      })
+      .then((result) => console.log("RESULT", result));
+  };
 
   return (
     // <div classNameName="row d-flex justify-content-center">
@@ -120,105 +133,6 @@ const Checkout = ({ history }) => {
                 width={600}
               >
                 <tbody>
-                  {/* <tr>
-                    <td align="center" valign="top">
-                      <table
-                        border={0}
-                        cellPadding={0}
-                        cellSpacing={0}
-                        className="header"
-                        width="100%"
-                      >
-                        <tbody> */}
-                  {/* <tr>
-                            <td align="center" valign="top">
-                              <table
-                                border={0}
-                                cellPadding={10}
-                                cellSpacing={0}
-                                className="row-blank"
-                                width="100%"
-                              >
-                                <tbody>
-                                  <tr>
-                                    <td />
-                                  </tr>
-                                </tbody>
-                              </table>
-                              <table
-                                border={0}
-                                cellPadding={0}
-                                cellSpacing={0}
-                                className="logo"
-                                width="100%"
-                              >
-                                <tbody>
-                                  <tr>
-                                    <td align="center" valign="top">
-                                      <img
-                                        src="https://gallery.mailchimp.com/48ab94c0e9f0753bc6532ca71/images/bbd16fd9-107c-4d6d-a9c7-b09417c01c63.png"
-                                        width={108}
-                                      />
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                              <table
-                                border={0}
-                                cellPadding={6}
-                                cellSpacing={0}
-                                className="row-blank"
-                                width="100%"
-                              >
-                                <tbody>
-                                  <tr>
-                                    <td />
-                                  </tr>
-                                </tbody>
-                              </table>
-                              <table
-                                border={0}
-                                cellPadding={0}
-                                cellSpacing={0}
-                                className="content"
-                                width="92%"
-                              >
-                                <tbody>
-                                  <tr>
-                                    <td
-                                      align="center"
-                                      style={{
-                                        color: "#595959",
-                                        fontFamily:
-                                          "Open Sans, Helvetica, sans-serif",
-                                        fontSize: "16px",
-                                      }}
-                                      valign="center"
-                                    >
-                                      Thank you for living your Passion
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                              <table
-                                border={0}
-                                cellPadding={10}
-                                cellSpacing={0}
-                                className="row-blank"
-                                width="100%"
-                              >
-                                <tbody>
-                                  <tr>
-                                    <td />
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr> */}
                   <tr>
                     <td
                       align="center"
@@ -271,7 +185,7 @@ const Checkout = ({ history }) => {
                                 <tbody>
                                   <tr>
                                     <td align="center" valign="top">
-                                      Order Summary
+                                      Order Summary - &pound;{total}
                                     </td>
                                   </tr>
                                 </tbody>
@@ -291,6 +205,7 @@ const Checkout = ({ history }) => {
                               </table>
                             </td>
                           </tr>
+
                           <tr>
                             <td align="center" valign="top">
                               <table
@@ -304,48 +219,54 @@ const Checkout = ({ history }) => {
                                 <tbody>
                                   <tr>
                                     <td align="center" valign="top">
-                                      Order Ref.
+                                      Vendor
                                     </td>
                                     <td align="center" valign="top">
-                                      Paid with
+                                      Category
                                     </td>
                                     <td align="center" valign="top">
-                                      Order Date
+                                      Booking Date
                                     </td>
                                     <td align="center" valign="top">
-                                      No. of Items
+                                      Time Slot
                                     </td>
                                     <td align="center" valign="top">
-                                      Grand Total
+                                      Price
                                     </td>
                                   </tr>
-                                  <tr
-                                    style={{
-                                      textTransform: "uppercase",
-                                      fontWeight: "bold",
-                                      color: "#888888",
-                                    }}
-                                  >
-                                    <td
-                                      align="center"
-                                      style={{ color: "#30ada5" }}
-                                      valign="top"
-                                    >
-                                      qwer1234
-                                    </td>
-                                    <td align="center" valign="top">
-                                      qwer1234
-                                    </td>
-                                    <td align="center" valign="top">
-                                      qwer1234.
-                                    </td>
-                                    <td align="center" valign="top">
-                                      qwer1234
-                                    </td>
-                                    <td align="center" valign="top">
-                                      qwer1234
-                                    </td>
-                                  </tr>
+                                  {cart.map((cartItem, l) =>
+                                    cartItem.bookingSlots.map((c, i) => (
+                                      <tr
+                                        key={i}
+                                        style={{
+                                          textTransform: "uppercase",
+                                          fontWeight: "bold",
+                                          color: "#888888",
+                                        }}
+                                      >
+                                        <td
+                                          align="center"
+                                          style={{ color: "#30ada5" }}
+                                          valign="top"
+                                        >
+                                          {cartItem.vendorInfoId.name}
+                                        </td>
+                                        <td align="center" valign="top">
+                                          {cartItem.subcategories[0].name}
+                                        </td>
+                                        <td align="center" valign="top">
+                                          {c.tsday}
+                                        </td>
+                                        <td align="center" valign="top">
+                                          {c.tstimeslot[0].startSlot} -{" "}
+                                          {c.tstimeslot[0].endSlot}
+                                        </td>
+                                        <td align="center" valign="top">
+                                          {cartItem.price}
+                                        </td>
+                                      </tr>
+                                    ))
+                                  )}
                                 </tbody>
                               </table>
                             </td>
@@ -403,6 +324,7 @@ const Checkout = ({ history }) => {
                               </table>
                             </td>
                           </tr>
+
                           <tr>
                             <td align="center" valign="top">
                               <table
@@ -429,7 +351,6 @@ const Checkout = ({ history }) => {
                                               colSpan={4}
                                               style={{
                                                 fontWeight: "bold",
-                                                border: "2px solid #f3f3f3",
                                               }}
                                               valign="center"
                                               width="100%"
@@ -438,134 +359,165 @@ const Checkout = ({ history }) => {
                                         </thead>
                                         <tbody>
                                           {/* /artwork item start */}
-                                          <tr>
-                                            <td>
-                                              <table
-                                                border={0}
-                                                cellPadding={8}
-                                                cellSpacing={0}
-                                                className="row-blank"
-                                                width="100%"
-                                              >
-                                                <tbody>
-                                                  <tr>
-                                                    <td />
-                                                  </tr>
-                                                </tbody>
-                                              </table>
-                                            </td>
-                                          </tr>
-                                          <tr>
-                                            <td align="center" valign="top">
-                                              <img
-                                                height={120}
-                                                src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d8/Capacities_%28album%29.jpg/220px-Capacities_%28album%29.jpg"
-                                                style={{ marginRight: "8px" }}
-                                                width={120}
-                                              />
-                                            </td>
-                                            <td align="center" valign="top">
-                                              <table>
-                                                <tbody>
-                                                  <tr>
-                                                    <td
-                                                      align="left"
+                                          {cart.map((cartItem, l) =>
+                                            cartItem.bookingSlots.map(
+                                              (c, i) => (
+                                                <tr>
+                                                  <td
+                                                    align="center"
+                                                    valign="top"
+                                                  >
+                                                    <img
+                                                      height={120}
+                                                      src={
+                                                        cartItem.images[0].url
+                                                      }
                                                       style={{
-                                                        fontWeight: "bold",
-                                                        fontSize: "16px",
+                                                        marginRight: "8px",
+                                                        marginBottom: "0.6rem",
                                                       }}
-                                                      valign="top"
-                                                    >
-                                                      <span>
-                                                        The Coffee shop
-                                                      </span>
-                                                    </td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td>
-                                                      <span>By</span>
-                                                      <span>Rody Duterte</span>
-                                                    </td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td>
-                                                      <span>
-                                                        Oil Painting on Canvas
-                                                      </span>
-                                                    </td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td
-                                                      align="left"
-                                                      style={{
-                                                        color: "#30ada5",
-                                                        fontWeight: "bold",
-                                                      }}
-                                                      valign="top"
-                                                    >
-                                                      <span>$102</span>
-                                                    </td>
-                                                  </tr>
-                                                </tbody>
-                                              </table>
-                                            </td>
-                                            <td align="center" valign="top">
-                                              <table>
-                                                <tbody>
-                                                  <tr>
-                                                    <td
-                                                      align="left"
-                                                      style={{
-                                                        fontWeight: "bold",
-                                                        fontSize: "16px",
-                                                      }}
-                                                      valign="top"
-                                                    >
-                                                      <span>Total Items</span>
-                                                    </td>
-                                                  </tr>
-                                                  <tr>
-                                                    <td
-                                                      align="center"
-                                                      rowSpan={4}
-                                                      valign="center"
-                                                    >
-                                                      <table>
-                                                        <tbody>
-                                                          <tr>
-                                                            <td
-                                                              align="center"
-                                                              height={80}
-                                                              style={{
-                                                                backgroundColor:
-                                                                  "#30ada5",
-                                                                color:
-                                                                  "#ffffff",
-                                                                borderRadius:
-                                                                  "50%",
-                                                                fontWeight:
-                                                                  "bold",
-                                                                fontSize:
-                                                                  "16px",
-                                                                minWidth:
-                                                                  "80px",
-                                                                minHeight:
-                                                                  "80px",
-                                                              }}
-                                                              valign="center"
-                                                              width={80}
-                                                            >
-                                                              <span>$122</span>
-                                                            </td>
-                                                          </tr>
-                                                        </tbody>
-                                                      </table>
-                                                    </td>
-                                                  </tr>
-                                                </tbody>
-                                              </table>
-                                            </td>
-                                          </tr>
+                                                      width={120}
+                                                    />
+                                                  </td>
+                                                  <td
+                                                    align="center"
+                                                    valign="top"
+                                                  >
+                                                    <table>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td
+                                                            align="left"
+                                                            style={{
+                                                              fontWeight:
+                                                                "bold",
+                                                              fontSize: "16px",
+                                                            }}
+                                                            valign="top"
+                                                          >
+                                                            <span>
+                                                              {
+                                                                cartItem
+                                                                  .subcategories[0]
+                                                                  .name
+                                                              }
+                                                            </span>
+                                                          </td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>
+                                                            <span>By </span>
+                                                            <span>
+                                                              {
+                                                                cartItem
+                                                                  .vendorInfoId
+                                                                  .name
+                                                              }
+                                                            </span>
+                                                          </td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td>
+                                                            <span>
+                                                              {c.tsday}
+                                                            </span>
+                                                          </td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td
+                                                            align="left"
+                                                            style={{
+                                                              color: "#30ada5",
+                                                              fontWeight:
+                                                                "bold",
+                                                            }}
+                                                            valign="top"
+                                                          >
+                                                            <span>
+                                                              {
+                                                                c.tstimeslot[0]
+                                                                  .startSlot
+                                                              }{" "}
+                                                              -{" "}
+                                                              {
+                                                                c.tstimeslot[0]
+                                                                  .endSlot
+                                                              }
+                                                            </span>
+                                                          </td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </td>
+                                                  <td
+                                                    align="center"
+                                                    valign="top"
+                                                  >
+                                                    <table>
+                                                      <tbody>
+                                                        <tr>
+                                                          <td
+                                                            align="left"
+                                                            style={{
+                                                              fontWeight:
+                                                                "bold",
+                                                              fontSize: "16px",
+                                                            }}
+                                                            valign="top"
+                                                          >
+                                                            <span></span>
+                                                          </td>
+                                                        </tr>
+                                                        <tr>
+                                                          <td
+                                                            align="center"
+                                                            rowSpan={4}
+                                                            valign="center"
+                                                          >
+                                                            <table>
+                                                              <tbody>
+                                                                <tr>
+                                                                  <td
+                                                                    align="center"
+                                                                    height={80}
+                                                                    style={{
+                                                                      backgroundColor:
+                                                                        "#30ada5",
+                                                                      color:
+                                                                        "#ffffff",
+                                                                      borderRadius:
+                                                                        "50%",
+                                                                      fontWeight:
+                                                                        "bold",
+                                                                      fontSize:
+                                                                        "16px",
+                                                                      minWidth:
+                                                                        "80px",
+                                                                      minHeight:
+                                                                        "80px",
+                                                                    }}
+                                                                    valign="center"
+                                                                    width={80}
+                                                                  >
+                                                                    <span>
+                                                                      &pound;
+                                                                      {
+                                                                        cartItem.price
+                                                                      }
+                                                                    </span>
+                                                                  </td>
+                                                                </tr>
+                                                              </tbody>
+                                                            </table>
+                                                          </td>
+                                                        </tr>
+                                                      </tbody>
+                                                    </table>
+                                                  </td>
+                                                </tr>
+                                              )
+                                            )
+                                          )}
                                           <tr>
                                             <td>
                                               <table
@@ -640,6 +592,8 @@ const Checkout = ({ history }) => {
                                       align="center"
                                       className="btn"
                                       valign="center"
+                                      disabled={!vendors.length}
+                                      onClick={handleSubmit}
                                     >
                                       <a
                                         className="link btn"
@@ -669,6 +623,8 @@ const Checkout = ({ history }) => {
                                       align="center"
                                       className="btn"
                                       valign="center"
+                                      disabled={!vendors.length}
+                                      onClick={emptyCart}
                                     >
                                       <a
                                         className="link btn"
