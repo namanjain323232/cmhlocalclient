@@ -15,7 +15,7 @@ server\config\keys.js
 
 # production
 /build
-
+/.eslintcache
 # misc
 .DS_Store
 .env.local
