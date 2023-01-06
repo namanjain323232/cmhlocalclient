@@ -109,13 +109,13 @@ const SingleVendor = ({ vendor, onRatingClick, rating, review }) => {
                           alignItems: "center",
                         }}
                       >
-                        <strong>Liam Mendes</strong>
+                        <strong>{r.name}</strong>
                         <div className="reviews">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="far fa-star" />
+                          {r.star > 0 ? <i className="fas fa-star" /> : <i />}
+                          {r.star > 1 ? <i className="fas fa-star" /> : <i />}
+                          {r.star > 2 ? <i className="fas fa-star" /> : <i />}
+                          {r.star > 3 ? <i className="fas fa-star" /> : <i />}
+                          {r.star > 4 ? <i className="fas fa-star" /> : <i />}
                         </div>
                       </div>
                     </div>
@@ -125,10 +125,7 @@ const SingleVendor = ({ vendor, onRatingClick, rating, review }) => {
                     className="client-comment"
                     style={{ textAlign: "center" }}
                   >
-                    <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Exercitationem, quaerat quis? Provident
-                    </p>
+                    <p>{r.review}</p>
                   </div>
                 </div>
               ))

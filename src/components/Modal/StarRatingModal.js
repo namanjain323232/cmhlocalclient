@@ -51,7 +51,12 @@ const StarRatingModal = (props) => {
         }}
       >
         {props.children}
-        <textarea value={review} onChange={handleReviewChange} />
+        <textarea
+          value={review}
+          className="textarea-review"
+          placeholder="Please leave a review"
+          onChange={handleReviewChange}
+        />
       </Modal>
     </>
   );

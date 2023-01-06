@@ -34,7 +34,6 @@ export const deleteVendor = async (id, authtoken) => {
   const res = await axios.delete(`${ROOT_URL}/api/vendor/${id}`, {
     headers: { authtoken },
   });
-  console.log(`value of RES`, res);
   history.push(`/vendor/vendorcatlist`);
 };
 

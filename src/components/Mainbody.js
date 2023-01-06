@@ -36,8 +36,8 @@ const MainBody = () => {
     fetchVendorsInfo().then((res) => setVendorinfo(res.data));
   }, []);
 
-  console.log("ALL VENDORS", vendors);
-  console.log("ALL VENDOR INFO", vendorinfo);
+  // console.log("ALL VENDORS", vendors);
+  // console.log("ALL VENDOR INFO", vendorinfo);
 
   const getSubcat = () => {
     fetchCategories().then((res) => setCategories(res.data));
