@@ -83,6 +83,61 @@ const SingleVendor = ({ vendor, onRatingClick, rating, review }) => {
           </TabPane>
         </Tabs>
       </div>
+      <section id="testimonials">
+        {/*heading-*/}
+        <div className="testimonial-heading">
+          <span>Reviews</span>
+        </div>
+        {/*testimonials-box-container----*/}
+        <div className="testimonial-box-container">
+          {vendor ? (
+            vendor.ratings
+              .slice(0)
+              .reverse()
+              .map((r, i) => (
+                <div className="testimonial-box">
+                  <div
+                    className="box-top"
+                    style={{ display: "flex", justifyContent: "center" }}
+                  >
+                    <div className="profile">
+                      <div
+                        className="name-user"
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
+                        }}
+                      >
+                        <strong>Liam Mendes</strong>
+                        <div className="reviews">
+                          <i className="fas fa-star" />
+                          <i className="fas fa-star" />
+                          <i className="fas fa-star" />
+                          <i className="fas fa-star" />
+                          <i className="far fa-star" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/*Comments--------------------------------------*/}
+                  <div
+                    className="client-comment"
+                    style={{ textAlign: "center" }}
+                  >
+                    <p>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Exercitationem, quaerat quis? Provident
+                    </p>
+                  </div>
+                </div>
+              ))
+          ) : (
+            <h1>Loading...</h1>
+          )}
+          {}
+        </div>
+      </section>
     </div>
   );
 };
