@@ -21,8 +21,13 @@ import SearchBar from "./utils/Search";
 const { SubMenu } = Menu;
 
 const Header = () => {
-
-  const [current, setCurrent] = useState('home');
+  const location = window.location.pathname;
+  const locations = new Map([
+    ["/", "home"],
+    ["/cart", "cart"],
+    ["/shop", "shop"]
+  ]);
+  const [current, setCurrent] = useState(locations.get(location));
 
   const dispatch = useDispatch();
   const history = useHistory();
