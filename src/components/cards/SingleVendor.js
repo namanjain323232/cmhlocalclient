@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Tabs, Tooltip } from "antd";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -14,8 +14,16 @@ import BookVendor from "../pages/BookVendor";
 
 const { TabPane } = Tabs;
 
-const SingleVendor = ({ vendor, onRatingClick, rating, review }) => {
+const SingleVendor = ({
+  vendor,
+  onRatingClick,
+  rating,
+  review,
+  // loadVendorDetails,
+}) => {
   const { user, cart } = useSelector((state) => ({ ...state }));
+
+  const [abc, setAbc] = useState();
 
   const dispatch = useDispatch();
 
@@ -24,6 +32,11 @@ const SingleVendor = ({ vendor, onRatingClick, rating, review }) => {
   {
     console.log("vendor from single vendor XXXX", vendor);
   }
+
+  const loadVendorDetails = () => {
+    setAbc("123");
+    console.log(review + " " + abc);
+  };
 
   const handleAddToCart = ({ vendor }) => {
     <BookVendor vendor={vendor} />;
@@ -61,7 +74,10 @@ const SingleVendor = ({ vendor, onRatingClick, rating, review }) => {
               <br />
               Select Vendor
             </Link>,
-            <StarRatingModal review={review}>
+            <StarRatingModal
+              review={review}
+              rerenderParentCallback={loadVendorDetails}
+            >
               <StarRatings
                 starRatedColor="red"
                 noOfStars={5}
