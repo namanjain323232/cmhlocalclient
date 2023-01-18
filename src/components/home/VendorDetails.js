@@ -65,6 +65,7 @@ const VendorDetails = ({ match }) => {
             onRatingClick={onRatingClick}
             rating={star}
             review={review}
+            // loadVendorDetails={loadVendorDetails1}
           />
         )}
       </div>
