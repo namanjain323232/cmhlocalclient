@@ -218,19 +218,54 @@ const Checkout = ({ history }) => {
                               >
                                 <tbody>
                                   <tr>
-                                    <td align="center" valign="top">
+                                    <td
+                                      align="center"
+                                      valign="top"
+                                      style={{
+                                        fontWeight: "700",
+                                        fontSize: "0.7rem",
+                                      }}
+                                    >
                                       Vendor
                                     </td>
-                                    <td align="center" valign="top">
+                                    <td
+                                      align="center"
+                                      valign="top"
+                                      style={{
+                                        fontWeight: "700",
+                                        fontSize: "0.7rem",
+                                      }}
+                                    >
                                       Category
                                     </td>
-                                    <td align="center" valign="top">
+                                    <td
+                                      align="center"
+                                      valign="top"
+                                      style={{
+                                        fontWeight: "700",
+                                        fontSize: "0.7rem",
+                                      }}
+                                    >
                                       Booking Date
                                     </td>
-                                    <td align="center" valign="top">
+                                    <td
+                                      align="center"
+                                      valign="top"
+                                      style={{
+                                        fontWeight: "700",
+                                        fontSize: "0.7rem",
+                                      }}
+                                    >
                                       Time Slot
                                     </td>
-                                    <td align="center" valign="top">
+                                    <td
+                                      align="center"
+                                      valign="top"
+                                      style={{
+                                        fontWeight: "700",
+                                        fontSize: "0.7rem",
+                                      }}
+                                    >
                                       Price
                                     </td>
                                   </tr>
@@ -599,12 +634,13 @@ const Checkout = ({ history }) => {
                                         className="link btn"
                                         href="#"
                                         style={{
-                                          fontSize: "13px",
+                                          fontSize: "18px",
+                                          padding: "0 5px",
                                           fontWeight: "bold",
                                           fontFamily: "Open Sans, sans-serif",
                                           color: "#ffffff",
                                           textDecoration: "none",
-                                          borderRadius: "3px",
+                                          borderRadius: "6px",
                                           WebkitBorderRadius: "3px",
                                           MozBorderRadius: "3px",
                                           backgroundColor: "#23A455",
@@ -630,8 +666,9 @@ const Checkout = ({ history }) => {
                                         className="link btn"
                                         href="#"
                                         style={{
-                                          fontSize: "13px",
+                                          fontSize: "18px",
                                           fontWeight: "bold",
+                                          padding: "0 5px",
                                           fontFamily: "Open Sans, sans-serif",
                                           color: "#ffffff",
                                           textDecoration: "none",
