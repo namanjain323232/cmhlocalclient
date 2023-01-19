@@ -40,12 +40,11 @@ const StarRatingModal = (props) => {
         centered
         visible={modalVisible}
         onOk={() => {
-          vendorReview(params.id, review, user.token);
-          setModalVisible(false);
-          function reviewLoad() {
+          vendorReview(params.id, review, user.token).then(() => {
             props.rerenderParentCallback();
-          }
-          setTimeout(reviewLoad, 3000);
+          });
+          setModalVisible(false);
+
           toast.success(
             "Thank you for your review. It will appear on our website shortly"
           );

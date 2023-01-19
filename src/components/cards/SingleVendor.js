@@ -11,19 +11,14 @@ import StarRatingModal from "../Modal/StarRatingModal";
 import { showAverageRating } from "../../actions/rating";
 import _ from "lodash";
 import BookVendor from "../pages/BookVendor";
+import { getVendorCategory } from "../../actions/vendor";
 
 const { TabPane } = Tabs;
 
-const SingleVendor = ({
-  vendor,
-  onRatingClick,
-  rating,
-  review,
-  // loadVendorDetails,
-}) => {
+const SingleVendor = ({ vendorProp, onRatingClick, rating, review, id }) => {
   const { user, cart } = useSelector((state) => ({ ...state }));
-
-  const [abc, setAbc] = useState();
+  const [loading, setLoading] = useState(false);
+  const [vendor, setVendor] = useState(vendorProp);
 
   const dispatch = useDispatch();
 
@@ -33,9 +28,16 @@ const SingleVendor = ({
     console.log("vendor from single vendor XXXX", vendor);
   }
 
-  const loadVendorDetails = () => {
-    setAbc("123");
-    console.log(review + " " + abc);
+  const rerenderParentCallback = () => {
+    setLoading(true);
+    getVendorCategory(id)
+      .then((res) => {
+        setVendor(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleAddToCart = ({ vendor }) => {
@@ -76,7 +78,7 @@ const SingleVendor = ({
             </Link>,
             <StarRatingModal
               review={review}
-              rerenderParentCallback={loadVendorDetails}
+              rerenderParentCallback={rerenderParentCallback}
             >
               <StarRatings
                 starRatedColor="red"
