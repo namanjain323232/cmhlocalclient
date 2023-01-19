@@ -280,7 +280,24 @@ const Shop = () => {
                 </div>
               </div>
             </SubMenu>
-            <SubMenu key="2" title={<span className="h6">Price</span>}>
+            <Button
+              size="small"
+              shape="circle"
+              type="dashed"
+              style={{ float: "right", margin: "11px 5px 0px 0px" }}
+              onClick={clearSliderFilter}
+              icon={
+                <CloseOutlined
+                  className="d-block"
+                  style={{ fontSize: "medium" }}
+                />
+              }
+            />
+            <SubMenu
+              key="2"
+              title={<span className="h6">Price</span>}
+              style={{ width: "87%" }}
+            >
               <div className="row">
                 <div className="col col-md-9">
                   <Slider
@@ -292,22 +309,11 @@ const Shop = () => {
                     max="500"
                   />
                 </div>
+
                 <div className="col col-md-2">
-                  <Tooltip title="Clear Price">
-                    <Button
-                      size="small"
-                      shape="circle"
-                      type="dashed"
-                      onClick={clearSliderFilter}
-                      icon={
-                        <CloseOutlined
-                          className="d-block"
-                          style={{ fontSize: "medium" }}
-                        />
-                      }
-                    />
-                  </Tooltip>
+                  <Tooltip title="Clear Price"></Tooltip>
                 </div>
+
                 <div className="col-md-12 mt-1 mb-1">
                   <b className="text-primary ml-4">
                     {" "}
@@ -316,6 +322,7 @@ const Shop = () => {
                 </div>
               </div>
             </SubMenu>
+
             <SubMenu
               key="3"
               title={
@@ -344,59 +351,52 @@ const Shop = () => {
                   ))}
               </div>
             </SubMenu>
+            <Button
+              size="small"
+              shape="circle"
+              type="dashed"
+              style={{ float: "right", margin: "11px 5px 0px 0px" }}
+              onClick={clearRatingFilter}
+              icon={
+                <CloseOutlined
+                  className="d-block"
+                  style={{ fontSize: "medium" }}
+                />
+              }
+            />
             <SubMenu
               key="4"
+              style={{ width: "87%" }}
               title={
                 <span className="h6 mt-2">
                   <StarOutlined style={{ marginTop: "-2px" }} /> Rating
-                  <Tooltip title="Clear Ratings">
-                    <Button
-                      size="small"
-                      shape="circle"
-                      type="dashed"
-                      onClick={clearRatingFilter}
-                      style={{
-                        float: "right",
-                        top: "10px",
-                        paddingLeft: "3px",
-                      }}
-                      icon={
-                        <CloseOutlined
-                          className="d-block"
-                          style={{ fontSize: "medium" }}
-                        />
-                      }
-                    />
-                  </Tooltip>
+                  <Tooltip title="Clear Ratings"></Tooltip>
                 </span>
               }
             >
               <div style={{ marginTop: "-10px" }}>{showStars()}</div>
             </SubMenu>
+            <Button
+              size="small"
+              shape="circle"
+              type="dashed"
+              onClick={clearSubCategoryFilter}
+              style={{ float: "right", margin: "11px 5px 0px 0px" }}
+              icon={
+                <CloseOutlined
+                  className="d-block"
+                  style={{ fontSize: "medium" }}
+                />
+              }
+            />
+
             <SubMenu
               key="5"
+              style={{ width: "87%" }}
               title={
                 <span className="h6 mt-2">
                   <DownSquareOutlined /> Sub Category
-                  <Tooltip title="Clear Sub Category">
-                    <Button
-                      size="small"
-                      shape="circle"
-                      type="dashed"
-                      onClick={clearSubCategoryFilter}
-                      style={{
-                        float: "right",
-                        top: "10px",
-                        paddingLeft: "3px",
-                      }}
-                      icon={
-                        <CloseOutlined
-                          className="d-block"
-                          style={{ fontSize: "medium" }}
-                        />
-                      }
-                    />
-                  </Tooltip>
+                  <Tooltip title="Clear Sub Category"></Tooltip>
                 </span>
               }
             >
