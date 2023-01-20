@@ -28,6 +28,7 @@ const Shop = () => {
   const [ok, setOk] = useState(false);
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState([]);
+  const [formattedAreas, setFormattedAreas] = useState([]);
   const [star, setStar] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
   const [sub, setSub] = useState("");
@@ -81,7 +82,9 @@ const Shop = () => {
 
   // load vendors based on price range selected
   useEffect(() => {
+    console.log("AAABBBCCC");
     if (didMountRef.current) {
+      console.log("AAABBBCCCNOYES");
       handleFilters();
       window.scrollTo({
         top: 0,
@@ -166,6 +169,8 @@ const Shop = () => {
       payload: { text: "" },
     });
     var selectedStars = [...star];
+    console.log(num, selectedStars, "ismein hun");
+
     const alreadySelectedStars = selectedStars.indexOf(num);
     if (alreadySelectedStars === -1) {
       selectedStars.push(num);
@@ -175,17 +180,41 @@ const Shop = () => {
 
     setStar(selectedStars);
     setTimeout(() => {
+      console.log(ok);
       setOk(!ok);
+      console.log(ok);
     }, 300);
   };
 
   const handleAreas = (area) => {
-    console.log("call handlearea");
+    console.log(formattedAreas);
     setSelectedArea(area);
     console.log(area, "areaaaa");
     setAreas((result) => [...result, area]);
 
     // setAreas(areas.filter(a => a.place_id != area.place_id));
+  };
+
+  const searchByArea = () => {
+    console.log(areas);
+    var areaState = [];
+
+    areas.map((area) => {
+      var currArea = {
+        place_id: area.place_id,
+        place_add: area.formatted_address,
+      };
+      areaState.push(currArea);
+    });
+
+    setFormattedAreas(areaState);
+    console.log(areaState);
+
+    setTimeout(() => {
+      console.log(ok);
+      setOk(!ok);
+      console.log(ok);
+    }, 300);
   };
 
   //handle selection of star ratings
@@ -251,6 +280,7 @@ const Shop = () => {
       category: category,
       stars: star,
       sub: sub,
+      areas: formattedAreas,
     });
   };
 
@@ -261,6 +291,19 @@ const Shop = () => {
           <h4>Search/Filter</h4>
           <hr />
           <Menu defaultOpenKeys={["1", "2", "3", "4", "5"]} mode="inline">
+            <Button
+              size="small"
+              shape="circle"
+              type="dashed"
+              style={{ float: "right", margin: "11px 5px 0px 0px" }}
+              onClick={searchByArea}
+              icon={
+                <CloseOutlined
+                  className="d-block"
+                  style={{ fontSize: "medium" }}
+                />
+              }
+            />
             <SubMenu key="1" title={<span className="h6">Area</span>}>
               <div className="row">
                 <div className="col col-md-10">
