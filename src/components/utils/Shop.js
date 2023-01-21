@@ -17,7 +17,7 @@ import Autocomplete from "react-google-autocomplete";
 
 const { SubMenu, ItemGroup } = Menu;
 
-const Shop = () => {
+const Shop = (props) => {
   const dispatch = useDispatch();
   const { search } = useSelector((state) => ({ ...state }));
   const didMountRef = useRef(false);
@@ -35,11 +35,25 @@ const Shop = () => {
   const [areas, setAreas] = useState([]);
   const [selectedArea, setSelectedArea] = useState(null);
   const { text } = search;
+  useEffect(() => {
+    searchByArea();
+  }, [areas]);
 
   useEffect(() => {
     loadVendors();
     loadCategories();
     loadSubcategories();
+    if (props.location.state && props.location.state.place_id != "undefined") {
+      var currArea = {
+        place_id: props.location.state.place_id,
+        formatted_address: props.location.state.place_add,
+      };
+      handleAreas(currArea);
+    }
+
+    if (props.location.state && props.location.state.subCat != "") {
+      handleSubCategory(props.location.state.subCat);
+    }
   }, []);
 
   // load vendors by count when the page loads for the first time
@@ -141,6 +155,19 @@ const Shop = () => {
     e.preventDefault();
   };
 
+  const clearAreaFilter = (e) => {
+    dispatch({
+      type: "SEARCH_QUERY",
+      payload: { text: "" },
+    });
+    setAreas([]);
+    setFormattedAreas([]);
+    setTimeout(() => {
+      setOk(!ok);
+    }, 300);
+    e.preventDefault();
+  };
+
   //handle change for categories
   const handleCategoryChange = (e) => {
     dispatch({
@@ -191,7 +218,7 @@ const Shop = () => {
     setSelectedArea(area);
     console.log(area, "areaaaa");
     setAreas((result) => [...result, area]);
-
+    console.log(areas, "handle");
     // setAreas(areas.filter(a => a.place_id != area.place_id));
   };
 
@@ -273,7 +300,7 @@ const Shop = () => {
   };
 
   const handleFilters = () => {
-    console.log(price);
+    console.log(sub);
     loadVendorsByFilter({
       query: text,
       price: price,
@@ -283,7 +310,9 @@ const Shop = () => {
       areas: formattedAreas,
     });
   };
-
+  {
+    console.log(props.location.state, "from home page");
+  }
   return (
     <div className="container-fluid">
       <div className="row mt-2">
@@ -296,7 +325,7 @@ const Shop = () => {
               shape="circle"
               type="dashed"
               style={{ float: "right", margin: "11px 5px 0px 0px" }}
-              onClick={searchByArea}
+              onClick={clearAreaFilter}
               icon={
                 <CloseOutlined
                   className="d-block"
@@ -304,9 +333,13 @@ const Shop = () => {
                 />
               }
             />
-            <SubMenu key="1" title={<span className="h6">Area</span>}>
+            <SubMenu
+              key="1"
+              title={<span className="h6">Area</span>}
+              style={{ width: "87%" }}
+            >
               <div className="row">
-                <div className="col col-md-10">
+                <div className="col col-md-10" style={{ display: "flex" }}>
                   <Autocomplete
                     apiKey="AIzaSyAG4N6GONCjaMkk-QnJw1eHeConkKFrzGY" //"AIzaSyBnYVkxZoAHzYSlNAq167HjQ3seFcUPa7Q" //--AIzaSyAG4N6GONCjaMkk-QnJw1eHeConkKFrzGY
                     options={{
@@ -317,6 +350,13 @@ const Shop = () => {
                     }}
                     className="ml-3 w-100"
                   />
+                  {/* <Button
+                    onClick={searchByArea}
+                    id="applyId"
+                    style={{ backgroundColor: "#2496ff", color: "white" }}
+                  >
+                    Apply
+                  </Button> */}
                 </div>
                 <div className="col col-md-10">
                   <div className="pl-4 pr-4">{showAreas()}</div>
@@ -447,8 +487,8 @@ const Shop = () => {
                 {subcategories &&
                   subcategories.map((s) => (
                     <Tag
-                      color={`${s._id == sub._id ? "#1d2d50" : ""}`} //#108ee9
-                      onClick={() => handleSubCategory(s)}
+                      color={`${s._id == sub ? "#1d2d50" : ""}`} //#108ee9
+                      onClick={() => handleSubCategory(s._id)}
                       className="p-1 m-1"
                       key={s._id}
                       style={{ cursor: "pointer" }}

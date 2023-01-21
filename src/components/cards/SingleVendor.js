@@ -135,6 +135,13 @@ const SingleVendor = ({ vendorProp, onRatingClick, rating, review, id }) => {
                           {r.star > 3 ? <i className="fas fa-star" /> : <i />}
                           {r.star > 4 ? <i className="fas fa-star" /> : <i />}
                         </div>
+                        <div>
+                          {new Date(r.createdAt).toLocaleDateString([], {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })}
+                        </div>
                       </div>
                     </div>
                   </div>
