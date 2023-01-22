@@ -12,6 +12,17 @@ export const userCart = async (cart, authtoken) => {
   return cartval;
 };
 
+export const contact = async (name, email, query) => {
+  const contactVal = await axios.post(`${ROOT_URL}/user/contact`, {
+    name,
+    email,
+    query,
+  });
+  console.log(contactVal);
+
+  return contactVal;
+};
+
 export const getuserCart = async (authtoken) => {
   const cart = await axios.get(`${ROOT_URL}/user/cart`, {
     headers: { authtoken },

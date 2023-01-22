@@ -16,7 +16,7 @@ const VendorDetails = ({ match }) => {
   const [review, setReview] = useState("");
   const [related, setRelated] = useState([]);
   const { id } = match.params;
-
+  console.log("vendor details rerender not come");
   useEffect(() => {
     loadVendorDetails();
   }, [id]);
@@ -61,10 +61,11 @@ const VendorDetails = ({ match }) => {
           <h1>Loading...</h1>
         ) : (
           <SingleVendor
-            vendor={vendor}
+            vendorProp={vendor}
             onRatingClick={onRatingClick}
             rating={star}
             review={review}
+            id={id}
           />
         )}
       </div>

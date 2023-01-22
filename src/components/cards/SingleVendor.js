@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Tabs, Tooltip } from "antd";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,11 +11,14 @@ import StarRatingModal from "../Modal/StarRatingModal";
 import { showAverageRating } from "../../actions/rating";
 import _ from "lodash";
 import BookVendor from "../pages/BookVendor";
+import { getVendorCategory } from "../../actions/vendor";
 
 const { TabPane } = Tabs;
 
-const SingleVendor = ({ vendor, onRatingClick, rating, review }) => {
+const SingleVendor = ({ vendorProp, onRatingClick, rating, review, id }) => {
   const { user, cart } = useSelector((state) => ({ ...state }));
+  const [loading, setLoading] = useState(false);
+  const [vendor, setVendor] = useState(vendorProp);
 
   const dispatch = useDispatch();
 
@@ -24,6 +27,18 @@ const SingleVendor = ({ vendor, onRatingClick, rating, review }) => {
   {
     console.log("vendor from single vendor XXXX", vendor);
   }
+
+  const rerenderParentCallback = () => {
+    setLoading(true);
+    getVendorCategory(id)
+      .then((res) => {
+        setVendor(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const handleAddToCart = ({ vendor }) => {
     <BookVendor vendor={vendor} />;
@@ -61,7 +76,10 @@ const SingleVendor = ({ vendor, onRatingClick, rating, review }) => {
               <br />
               Select Vendor
             </Link>,
-            <StarRatingModal review={review}>
+            <StarRatingModal
+              review={review}
+              rerenderParentCallback={rerenderParentCallback}
+            >
               <StarRatings
                 starRatedColor="red"
                 noOfStars={5}
@@ -116,6 +134,13 @@ const SingleVendor = ({ vendor, onRatingClick, rating, review }) => {
                           {r.star > 2 ? <i className="fas fa-star" /> : <i />}
                           {r.star > 3 ? <i className="fas fa-star" /> : <i />}
                           {r.star > 4 ? <i className="fas fa-star" /> : <i />}
+                        </div>
+                        <div>
+                          {new Date(r.createdAt).toLocaleDateString([], {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          })}
                         </div>
                       </div>
                     </div>
