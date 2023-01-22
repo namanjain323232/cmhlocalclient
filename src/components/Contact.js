@@ -769,7 +769,7 @@ const Contact = () => {
       {/* // FORM
     -------------------------------------------------------------
     ----------------------------------------------------------*/}
-      <form>
+      <form className="contactForm">
         <h1
           className="mb-4"
           style={{
@@ -836,7 +836,7 @@ const Contact = () => {
         <div style={{ textAlign: "center" }}>
           <button
             type="submit"
-            className="btn btn-primary"
+            className="common_btn_primary"
             tabIndex={-1}
             onClick={(e) => {
               e.preventDefault();
