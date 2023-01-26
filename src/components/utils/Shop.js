@@ -217,7 +217,7 @@ const Shop = (props) => {
     console.log(formattedAreas);
     setSelectedArea(area);
     console.log(area, "areaaaa");
-    setAreas((result) => [...result, area]);
+    setAreas([area]);
     console.log(areas, "handle");
     // setAreas(areas.filter(a => a.place_id != area.place_id));
   };
@@ -249,27 +249,32 @@ const Shop = (props) => {
     <div className="pr-4 pl-4 pb-2">
       <Star
         starClicked={handleStarClicked}
+        className="star-hover"
         numberOfStars={5}
         selected={[...star].indexOf(5) > -1}
       />
       <Star
         starClicked={handleStarClicked}
         numberOfStars={4}
+        className="star-hover"
         selected={[...star].indexOf(4) > -1}
       />
       <Star
         starClicked={handleStarClicked}
         numberOfStars={3}
+        className="star-hover"
         selected={[...star].indexOf(3) > -1}
       />
       <Star
         starClicked={handleStarClicked}
         numberOfStars={2}
+        className="star-hover"
         selected={[...star].indexOf(2) > -1}
       />
       <Star
         starClicked={handleStarClicked}
         numberOfStars={1}
+        className="star-hover"
         selected={[...star].indexOf(1) > -1}
       />
     </div>
@@ -287,13 +292,16 @@ const Shop = (props) => {
       </Tag>
     ));
 
-  const handleSubCategory = (sub) => {
-    console.log(sub);
+  const handleSubCategory = (s) => {
+    console.log(s);
     dispatch({
       type: "SEARCH_QUERY",
       payload: { text: "" },
     });
-    setSub(sub);
+    setSub(s);
+    if (s == sub) {
+      setSub("");
+    }
     setTimeout(() => {
       setOk(!ok);
     }, 300);
