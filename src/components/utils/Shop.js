@@ -357,6 +357,7 @@ const Shop = (props) => {
                       handleAreas(place);
                     }}
                     className="ml-3 w-100"
+                    style={{ padding: "0.3rem 0.5rem" }}
                   />
                   {/* <Button
                     onClick={searchByArea}
