@@ -35,6 +35,7 @@ import TimeslotList from "./admin/Timeslot/TimeSlotList";
 import TimeslotEdit from "./admin/Timeslot/TimeslotEdit";
 import TimeslotDelete from "./admin/Timeslot/TimeslotDelete";
 import AreaLoad from "./admin/Area/AreaLoad";
+import QueriesList from "./admin/Queries";
 import ListAreas from "./admin/Area/ListAreas";
 
 import Header from "./Header";
@@ -290,6 +291,10 @@ const App = () => {
                 path="/vendor/vendorsinfolist"
                 exact
                 component={VendorsInfoList}
+              />
+              <AdminRoute
+                path="/admin/queries/querieslist"
+                component={QueriesList}
               />
               <AdminRoute
                 path="/vendor/vendorcatlist"
