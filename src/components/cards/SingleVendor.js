@@ -19,14 +19,26 @@ const SingleVendor = ({ vendorProp, onRatingClick, rating, review, id }) => {
   const { user, cart } = useSelector((state) => ({ ...state }));
   const [loading, setLoading] = useState(false);
   const [vendor, setVendor] = useState(vendorProp);
-
+  const [vendorReviews, setVendorReviews] = useState([]);
+  const [ok, setOk] = useState(false);
+  const [revCount, setRevCount] = useState(4);
   const dispatch = useDispatch();
 
-  const { _id, vendorInfoId, images } = vendor;
+  const { _id, vendorInfoId, images, ratings } = vendor;
 
   {
+    console.log(ratings);
+    console.log(vendorReviews);
     console.log("vendor from single vendor XXXX", vendor);
   }
+  useEffect(() => {
+    setVendorReviews(vendorProp.ratings?.slice(revCount * -1));
+  }, [ok]);
+  useEffect(() => {
+    setTimeout(() => {
+      setOk(!ok);
+    }, 200);
+  }, []);
 
   const rerenderParentCallback = () => {
     setLoading(true);
@@ -42,6 +54,13 @@ const SingleVendor = ({ vendorProp, onRatingClick, rating, review, id }) => {
 
   const handleAddToCart = ({ vendor }) => {
     <BookVendor vendor={vendor} />;
+  };
+  const showmoreRev = () => {
+    setRevCount((cnt) => cnt + 4);
+
+    setTimeout(() => {
+      setOk(!ok);
+    }, 200);
   };
   return (
     <div className="row">
@@ -109,7 +128,7 @@ const SingleVendor = ({ vendorProp, onRatingClick, rating, review, id }) => {
         {/*testimonials-box-container----*/}
         <div className="testimonial-box-container">
           {vendor ? (
-            vendor.ratings
+            vendorReviews
               .slice(0)
               .reverse()
               .map((r, i) => (
@@ -158,6 +177,11 @@ const SingleVendor = ({ vendorProp, onRatingClick, rating, review, id }) => {
             <h1>Loading...</h1>
           )}
           {}
+        </div>
+        <div>
+          <button style={{ cursor: "pointer" }} onClick={showmoreRev}>
+            <h4>Show more Reviews</h4>
+          </button>
         </div>
       </section>
     </div>

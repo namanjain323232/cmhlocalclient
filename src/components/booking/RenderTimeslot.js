@@ -14,6 +14,8 @@ const RenderTimeslot = ({
   const { timeslotsval } = useSelector((state) => ({ ...state }));
   const [caldata, setCaldata] = useState([]);
   const [color, setColor] = useState(false);
+  const [dummy, setDummy] = useState(false);
+  const [ok, setOk] = useState(false);
 
   const dispatch = useDispatch();
   const timeslots = [];
@@ -47,6 +49,29 @@ const RenderTimeslot = ({
       },
     });
   };
+  useEffect(() => {
+    blockedSlots.map((slots) => {
+      // console.log(slots.timeslotsSE);
+      slots.timeslotsSE.map((slot, index) => {
+        if (
+          index == 0 &&
+          slot.start == timeslotval.startSlot &&
+          moment(slots.bookingDate).format("DD/MM/YYYY") == day
+        ) {
+          setDummy(true);
+          index = index + 1;
+        }
+      });
+    });
+  }, [ok]);
+  useEffect(() => {
+    // console.log(timeslotval);
+
+    setTimeout(() => {
+      setOk(true);
+    }, 200);
+    // console.log(kuchbhi);
+  }, []);
 
   const disableButtons = (timeslots, key) => {
     let newslots = new Set();
@@ -74,26 +99,28 @@ const RenderTimeslot = ({
         //       })
         //   )
         //   .includes(true)}
-        disabled={blockedSlots
-          .map(
-            (slots) =>
-              slots.bookingDate.format("DD/MM/YYYY") == day &&
-              slots.timeslotsSE.map((slot) => {
-                return slot.start == timeslotval.startSlot;
-              })
-          )
-          .includes(true)}
+        disabled={
+          dummy
+          // slots.timeslotsSE.map((slot) => {
+          // return (
+          //   moment(slots.bookingDate).format("DD/MM/YYYY") == day &&
+          //   slot.start == timeslotval.startSlot
+          // );
+          // })
+        }
         className={
-          currentslots
-            .map(
-              (slots) =>
-                moment(slots?.availability[0].start).format("DD/MM/YYYY") ==
-                  day &&
-                slots?.availability[0].timeslots?.some((slot) => {
-                  return slot._id == timeslotval._id;
-                })
-            )
-            .includes(true)
+          dummy
+            ? "btn btn-danger mb-1 btn-sm font-weight-bold"
+            : currentslots
+                .map(
+                  (slots) =>
+                    moment(slots?.availability[0].start).format("DD/MM/YYYY") ==
+                      day &&
+                    slots?.availability[0].timeslots?.some((slot) => {
+                      return slot._id == timeslotval._id;
+                    })
+                )
+                .includes(true)
             ? "btn btn-secondary mb-1 btn-sm font-weight-bold"
             : day == dayval.dayval &&
               timeslotsval.timeslotsval.some((slot) => {

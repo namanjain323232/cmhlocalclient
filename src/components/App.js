@@ -212,7 +212,12 @@ const App = () => {
           <Route path="/contact" exact component={Contact} />
           <Route path="/shop" exact component={Shop} />
           <Route path="/cart" exact component={Cart} />
-
+          <Route path="/bookvendor/:id" exact component={BookVendor} />
+          <Route
+            path="/selectslot/:vendor/:selectedvalue"
+            exact
+            component={SelectTimeslot}
+          />
           {/* if {user && user.role==="admin"}
         ( */}
           {/* admin routes   */}
@@ -431,12 +436,6 @@ const App = () => {
 
               <UserRoute path="/checkout" exact component={Checkout} />
               <UserRoute path="/payment" exact component={Payment} />
-              <UserRoute path="/bookvendor/:id" exact component={BookVendor} />
-              <UserRoute
-                path="/selectslot/:vendor/:selectedvalue"
-                exact
-                component={SelectTimeslot}
-              />
 
               {/* Route for vendor stripe callback */}
               <UserRoute path="/stripe/callback" component={StripeCallback} />
