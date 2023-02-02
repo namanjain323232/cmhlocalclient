@@ -56,9 +56,9 @@ const SelectTimeslot = ({ match }) => {
     getVendorCategory(match.params.vendor).then((res) => setVendata(res.data));
   }, []);
 
-  console.log(timeslots);
-  console.log(blockedTimeslots, "asajdbkdnk");
-  console.log(vendata);
+  // console.log(timeslots);
+  // console.log(blockedTimeslots, "asajdbkdnk");
+  // console.log(vendata);
 
   const fetchDates = () => {
     for (let i = 0; i < noOfDays; i++) {
