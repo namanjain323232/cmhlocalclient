@@ -179,8 +179,20 @@ const SingleVendor = ({ vendorProp, onRatingClick, rating, review, id }) => {
           {}
         </div>
         <div>
-          <button style={{ cursor: "pointer" }} onClick={showmoreRev}>
-            <h4>Show more Reviews</h4>
+          <button
+            style={{
+              cursor: "pointer",
+              backgroundColor: "#396fd2",
+              height: "2rem",
+              width: "8rem",
+              borderRadius: "0.2rem",
+              paddingTop: "0.38rem",
+              border: "none",
+              marginTop: "1rem",
+            }}
+            onClick={showmoreRev}
+          >
+            <h6 style={{ color: "white" }}>Show More</h6>
           </button>
         </div>
       </section>
