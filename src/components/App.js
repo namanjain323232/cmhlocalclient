@@ -54,6 +54,7 @@ import Contact from "./Contact";
 //login and registration
 import Login from "./login/Login";
 import Register from "./login/Register";
+import GuestLogin from "./login/GuestLogin";
 import RegisterComplete from "./login/RegisterComplete";
 import ForgotPassword from "./login/ForgotPassword";
 import VendorRegister from "./login/VendorRegister";
@@ -207,6 +208,7 @@ const App = () => {
           <Route path="/vendor" exact component={VendorDashboard} />
           <Route path="/allvendors" exact component={GetAllVendors} />
           <Route path="/vendorcat/:slug" exact component={GetVendorsSubcat} />
+          <Route path="/guestdata" exact component={GuestLogin} />
 
           <Route path="/vendordetails/:id" exact component={VendorDetails} />
           <Route path="/contact" exact component={Contact} />
