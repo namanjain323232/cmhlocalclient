@@ -83,16 +83,38 @@ const Cart = ({ history }) => {
               Proceed to Checkout
             </button>
           ) : (
-            <button className="btn btn-sm btn-secondary font-weight-bold mt-2">
-              <Link
-                to={{
-                  pathname: "/login",
-                  state: { from: "cart" },
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <button
+                className="btn btn-sm btn-secondary font-weight-bold mt-2"
+                style={{ width: "60%" }}
+              >
+                <Link
+                  to={{
+                    pathname: "/login",
+                    state: { from: "cart" },
+                  }}
+                >
+                  Login to Checkout
+                </Link>
+              </button>
+              <button
+                className="btn btn-sm btn-secondary font-weight-bold mt-2"
+                style={{
+                  width: "60%",
+                  backgroundColor: "#396fd2",
                 }}
               >
-                Login to Checkout
-              </Link>
-            </button>
+                <Link
+                  className="whiteBtn"
+                  to={{
+                    pathname: "/guestdata",
+                    state: { from: "cart" },
+                  }}
+                >
+                  Checkout as Guest
+                </Link>
+              </button>
+            </div>
           )}
         </div>
       </div>

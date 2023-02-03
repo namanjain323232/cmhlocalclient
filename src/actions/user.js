@@ -23,6 +23,20 @@ export const contact = async (name, email, query) => {
   return contactVal;
 };
 
+export const fetchQueries = async () => {
+  const querieslist = await axios.get(`${ROOT_URL}/user/querieslist`);
+  console.log(querieslist);
+
+  return querieslist;
+};
+
+export const markAsRead = async (id) => {
+  const querieslist = await axios.put(`${ROOT_URL}/user/markasread/${id}`);
+  console.log(querieslist);
+
+  return querieslist;
+};
+
 export const getuserCart = async (authtoken) => {
   const cart = await axios.get(`${ROOT_URL}/user/cart`, {
     headers: { authtoken },

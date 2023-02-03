@@ -35,6 +35,7 @@ import TimeslotList from "./admin/Timeslot/TimeSlotList";
 import TimeslotEdit from "./admin/Timeslot/TimeslotEdit";
 import TimeslotDelete from "./admin/Timeslot/TimeslotDelete";
 import AreaLoad from "./admin/Area/AreaLoad";
+import QueriesList from "./admin/Queries";
 import ListAreas from "./admin/Area/ListAreas";
 
 import Header from "./Header";
@@ -54,6 +55,7 @@ import Contact from "./Contact";
 //login and registration
 import Login from "./login/Login";
 import Register from "./login/Register";
+import GuestLogin from "./login/GuestLogin";
 import RegisterComplete from "./login/RegisterComplete";
 import ForgotPassword from "./login/ForgotPassword";
 import VendorRegister from "./login/VendorRegister";
@@ -207,12 +209,18 @@ const App = () => {
           <Route path="/vendor" exact component={VendorDashboard} />
           <Route path="/allvendors" exact component={GetAllVendors} />
           <Route path="/vendorcat/:slug" exact component={GetVendorsSubcat} />
+          <Route path="/guestdata" exact component={GuestLogin} />
 
           <Route path="/vendordetails/:id" exact component={VendorDetails} />
           <Route path="/contact" exact component={Contact} />
           <Route path="/shop" exact component={Shop} />
           <Route path="/cart" exact component={Cart} />
-
+          <Route path="/bookvendor/:id" exact component={BookVendor} />
+          <Route
+            path="/selectslot/:vendor/:selectedvalue"
+            exact
+            component={SelectTimeslot}
+          />
           {/* if {user && user.role==="admin"}
         ( */}
           {/* admin routes   */}
@@ -283,6 +291,10 @@ const App = () => {
                 path="/vendor/vendorsinfolist"
                 exact
                 component={VendorsInfoList}
+              />
+              <AdminRoute
+                path="/admin/queries/querieslist"
+                component={QueriesList}
               />
               <AdminRoute
                 path="/vendor/vendorcatlist"
@@ -431,12 +443,6 @@ const App = () => {
 
               <UserRoute path="/checkout" exact component={Checkout} />
               <UserRoute path="/payment" exact component={Payment} />
-              <UserRoute path="/bookvendor/:id" exact component={BookVendor} />
-              <UserRoute
-                path="/selectslot/:vendor/:selectedvalue"
-                exact
-                component={SelectTimeslot}
-              />
 
               {/* Route for vendor stripe callback */}
               <UserRoute path="/stripe/callback" component={StripeCallback} />
