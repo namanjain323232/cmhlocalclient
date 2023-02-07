@@ -32,7 +32,7 @@ const SingleVendor = ({ vendorProp, onRatingClick, rating, review, id }) => {
     console.log("vendor from single vendor XXXX", vendor);
   }
   useEffect(() => {
-    setVendorReviews(vendorProp.ratings?.slice(revCount * -1));
+    setVendorReviews(vendor.ratings?.slice(revCount * -1));
   }, [ok]);
   useEffect(() => {
     setTimeout(() => {
@@ -45,6 +45,8 @@ const SingleVendor = ({ vendorProp, onRatingClick, rating, review, id }) => {
     getVendorCategory(id)
       .then((res) => {
         setVendor(res.data);
+        setVendorReviews(res.data.ratings?.slice(-4));
+        console.log(vendorReviews);
         setLoading(false);
       })
       .catch((err) => {

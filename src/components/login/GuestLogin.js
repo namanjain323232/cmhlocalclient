@@ -5,7 +5,7 @@ import { auth, googleAuthProvider, facebookAuthProvider } from "../../firebase";
 import { toast, ToastContainer } from "react-toastify";
 import { Button } from "antd";
 import { MailOutlined } from "@ant-design/icons";
-import { LOGOUT } from "../../actions/types";
+import { LOGGED_IN_USER } from "../../actions/types";
 import { createOrUpdateUser } from "../../actions/auth";
 import { saveUserAddress } from "../../actions/user";
 
@@ -59,13 +59,35 @@ const GuestLogin = ({ history }) => {
       createOrUpdateUser(idTokenResult.token)
         .then((res) => {
           saveUserAddress(password, idTokenResult.token);
-          auth.signOut();
           dispatch({
-            type: LOGOUT,
-            payload: null,
+            type: LOGGED_IN_USER,
+            payload: {
+              name: res.data.name,
+              email: res.data.email,
+              token: idTokenResult.token,
+              role: res.data.role,
+              _id: res.data._id,
+              address: res.data.address,
+              createdAt: res.data.createdAt,
+              stripe_account_id: res.data.stripe_account_id,
+              stripe_seller: res.data.stripe_seller,
+              stripeSession: res.data.stripeSession,
+            },
           });
-          window.localStorage.removeItem("user");
-          history.push("/");
+          var userval = {
+            name: res.data.name,
+            email: res.data.email,
+            token: idTokenResult.token,
+            _id: res.data._id,
+            role: res.data.role,
+            address: res.data.address,
+            createdAt: res.data.createdAt,
+            stripe_account_id: res.data.stripe_account_id,
+            stripe_seller: res.data.stripe_seller,
+            stripeSession: res.data.stripeSession,
+          };
+          window.localStorage.setItem("user", JSON.stringify(userval));
+          roleBasedRedirect(res);
         })
         .catch((err) => console.log(err));
     } catch (err) {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import { contact } from "../actions/user";
 
 const Contact = () => {
@@ -840,7 +841,13 @@ const Contact = () => {
             tabIndex={-1}
             onClick={(e) => {
               e.preventDefault();
+              toast.success(
+                "Your query has been successfully submitted. We will respond at the earliest"
+              );
               contact(name, email, query);
+              setName("");
+              setEmail("");
+              setQuery("");
             }}
           >
             Submit

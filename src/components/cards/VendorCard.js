@@ -85,11 +85,11 @@ const VendorCard = ({ vendor }) => {
             View Vendor Details
           </Link>,
           <Tooltip title={tooltip}>
-            <a onClick={handleAddToCart}>
+            <Link to={`/bookvendor/${_id}`}>
               <ShoppingCartOutlined className="text-info" />
               <br />
               Select Vendor
-            </a>
+            </Link>
           </Tooltip>,
         ]}
       >

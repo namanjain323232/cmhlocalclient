@@ -52,14 +52,12 @@ const RenderTimeslot = ({
   useEffect(() => {
     blockedSlots.map((slots) => {
       // console.log(slots.timeslotsSE);
-      slots.timeslotsSE.map((slot, index) => {
+      slots.timeslotsSE.map((slot) => {
         if (
-          index == 0 &&
           slot.start == timeslotval.startSlot &&
           moment(slots.bookingDate).format("DD/MM/YYYY") == day
         ) {
           setDummy(true);
-          index = index + 1;
         }
       });
     });
