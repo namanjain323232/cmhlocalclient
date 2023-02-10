@@ -13,6 +13,7 @@ const  CategoriesEdit = ({history, match}) =>
   const [loading,setLoading] = useState(false);
   const [name, setName] = useState("");
   const [imgURL, setImgURL] = useState("");
+  const [hide, setHide]  = useState("");  
 
   const slug= match.params.slug;
 
@@ -25,6 +26,7 @@ const  CategoriesEdit = ({history, match}) =>
           {
           setName(res.data.name)
           setImgURL(res.data.imgURL)
+          setHide(res.data.hide)
           });
      }
 
@@ -36,11 +38,12 @@ const  CategoriesEdit = ({history, match}) =>
   const handleSubmit = (e) => {
       e.preventDefault();
       setLoading(true);
-      editCategory(slug,{name: name, imgURL: imgURL}, user.token)
+      editCategory(slug,{name: name, imgURL: imgURL, hide: hide}, user.token)
       .then ( (res) => {
         setLoading(false);
         setName("");
         setImgURL("");
+        setHide("");  
         toast.success(`${res.data.name} is updated successfully`);  
              
       })
@@ -75,6 +78,8 @@ const  CategoriesEdit = ({history, match}) =>
         setName= {setName}
         imgURL= {imgURL}
         setImgURL= {setImgURL}
+        hide= {hide}
+        setHide= {setHide}
       />
               
         </div>

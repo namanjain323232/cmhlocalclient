@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import {useSelector} from "react-redux";
 import AdminNav from "../../navigation/AdminNav";
@@ -12,6 +12,7 @@ const CategoriesCreate = () =>
   const {user} = useSelector( state => ({...state}));
   const [name,setName] = useState("");
   const [imgURL, setImgURL] = useState("");
+  const [hide,setHide]= useState("");
   const [loading,setLoading] = useState(false);
   
 
@@ -23,11 +24,12 @@ const CategoriesCreate = () =>
    const handleSubmit= (e) => {
             e.preventDefault();
             setLoading(true);
-            addCategory({name: name, imgURL: imgURL}, user.token)
+            addCategory({name: name, imgURL: imgURL, hide: hide}, user.token)
             .then ( (res) => {
              setLoading(false);
              setName("");
              setImgURL("");
+             setHide("false")    
              toast.success(`Successfully created ${res.data.name}`);
             })
             .catch (err => {
@@ -44,10 +46,10 @@ const CategoriesCreate = () =>
    return(
     <div className= "row"> 
   
-     <div className= "col col-md-3" >
+     <div className= "col col-md-2" >
         <AdminNav />
      </div> 
-     <div className= "col col-md-6">
+     <div className= "col col-md-10">
        <AdminMenu 
         addRoute= {addRoute()} />  
       <section className= "vendor-center">  
@@ -63,6 +65,8 @@ const CategoriesCreate = () =>
         setName= {setName}
         imgURL= {imgURL}
         setImgURL= {setImgURL}
+        hide= {hide}
+        setHide= {setHide}
       />
     </div>
     </div>
