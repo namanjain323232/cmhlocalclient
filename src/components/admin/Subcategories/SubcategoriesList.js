@@ -43,13 +43,19 @@ const  SubcategoriesList = () =>
         { if (subcategory._id)  
             return (
                 <div className= "row" key= {subcategory._id}>                  
-                 <div className= "col col-md-4 category">                  
+                 <div className= "col col-md-3 category">                  
                       {subcategory.category.name} 
                  </div>
-                  <div className= "col col-md-4 text-align-right category">
+                  <div className= "col col-md-3 text-align-right category">
                       {subcategory.name}
-                  </div>                  
-                  <div className= "col-md-4 mb-1">
+                  </div>     
+                  <div className= "col col-md-2 text-align-right category">
+                      {subcategory.type}
+                  </div>     
+                  <div className= "col col-md-2 text-align-right category">
+                      {subcategory.hide}
+                  </div>            
+                  <div className= "col-md-2 mb-1">
                       <Link to= {`/admin/subcategories/subcategoriesedit/${subcategory.slug}`} 
                                    className= "btn btn-primary  mr-1 ">
                                    <EditOutlined /></Link>
@@ -84,11 +90,17 @@ const  SubcategoriesList = () =>
          />
         <div className= "container category-center"> 
         <div className= "row mb-2">
-        <div className = "col col-md-4">
+        <div className = "col col-md-3">
             <h5 className= "font-weight-bold"> Category </h5>
         </div>
-         <div className = "col col-md-4 ">
+        <div className = "col col-md-3 ">
              <h5 className= "font-weight-bold">  Sub Category </h5>
+       </div>
+       <div className = "col col-md-2 ">
+             <h5 className= "font-weight-bold">  Type </h5>
+       </div>
+       <div className = "col col-md-2 ">
+             <h5 className= "font-weight-bold">  Hide </h5>
        </div>
        </div> 
        <form>   

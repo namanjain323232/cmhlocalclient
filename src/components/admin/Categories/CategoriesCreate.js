@@ -49,9 +49,9 @@ const CategoriesCreate = () =>
      <div className= "col col-md-2" >
         <AdminNav />
      </div> 
-     <div className= "col col-md-10">
-       <AdminMenu 
-        addRoute= {addRoute()} />  
+     <div className= "col col-md-9">
+        <AdminMenu 
+        addRoute= {addRoute()} />   
       <section className= "vendor-center">  
 
       { loading ? <h2>Loading....</h2> 

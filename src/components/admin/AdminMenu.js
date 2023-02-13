@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 const AdminMenu= (props) => {
      
     return (
-    <div className= "container">
+    // <div className= "container">
     <div className="row" >
       <div className = "col d-flex justify-content-center admin-class">
         <div className= "ml-3">
@@ -16,7 +16,7 @@ const AdminMenu= (props) => {
          
       </div>
     </div>
-    </div>
+    // </div>
 
     )
 }

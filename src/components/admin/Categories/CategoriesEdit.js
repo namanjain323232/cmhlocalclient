@@ -41,9 +41,6 @@ const  CategoriesEdit = ({history, match}) =>
       editCategory(slug,{name: name, imgURL: imgURL, hide: hide}, user.token)
       .then ( (res) => {
         setLoading(false);
-        setName("");
-        setImgURL("");
-        setHide("");  
         toast.success(`${res.data.name} is updated successfully`);  
              
       })

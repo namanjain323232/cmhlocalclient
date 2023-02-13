@@ -20,7 +20,7 @@ const renderError = ({touched, error}) => {
     <form onSubmit= {handleSubmit}>   
      <div className= "form-group">
      <div className= "row mt-2">         
-         <div className= "col col-md-9">
+         <div className= "col col-md-12">
          <label className= " admin-class">Name</label>
          <input 
                 type = "text"
@@ -40,8 +40,9 @@ const renderError = ({touched, error}) => {
                  onChange= {(e) => setImgURL(e.target.value)}
                  value= {imgURL}              
           />
-         <p className= "admin-class mt-2">Hide Category</p>            
+         <p className= "admin-class ml-4 mt-2">Hide Category</p>            
          <select
+                 value= {hide === "Yes" ? "Yes":"No"}
                  name= "hide"
                  className= "form-control"
                  onChange= {(e) => setHide(e.target.value)}
