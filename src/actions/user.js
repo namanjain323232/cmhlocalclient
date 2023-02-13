@@ -32,9 +32,15 @@ export const fetchQueries = async () => {
 
 export const markAsRead = async (id) => {
   const querieslist = await axios.put(`${ROOT_URL}/user/markasread/${id}`);
-  console.log(querieslist);
+  // console.log(querieslist);
 
   return querieslist;
+};
+export const markAsComplete = async (id) => {
+  const orderlist = await axios.put(`${ROOT_URL}/user/markascomplete/${id}`);
+  console.log(orderlist);
+
+  return orderlist;
 };
 
 export const getuserCart = async (authtoken) => {
