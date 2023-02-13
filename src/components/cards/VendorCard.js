@@ -22,8 +22,8 @@ const VendorCard = ({ vendor }) => {
     pricetype,
     areasCovered,
   } = vendor;
-  console.log(vendor);
-  console.log(vendorInfoId);
+  // console.log(vendor);
+  // console.log(vendorInfoId);
   const dispatch = useDispatch();
 
   useEffect(() => {

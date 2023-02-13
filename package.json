@@ -6,6 +6,7 @@
     "@ant-design/icons": "^4.4.0",
     "@atomap/use-places-autocomplete": "^1.0.4",
     "@david.kucsai/react-pdf-table": "^0.3.0",
+    "@emailjs/browser": "^3.10.0",
     "@react-pdf/renderer": "^1.6.13",
     "@stripe/react-stripe-js": "^1.4.0",
     "@stripe/stripe-js": "^1.13.2",
