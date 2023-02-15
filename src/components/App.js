@@ -270,7 +270,6 @@ const App = () => {
                 path="/admin/subcategories/subcategoriesedit/:slug"
                 component={SubcategoriesEdit}
               />
-
               <AdminRoute
                 path="/admin/questions/questionscreate"
                 exact

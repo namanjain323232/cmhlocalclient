@@ -64,7 +64,7 @@ const  SubcategoriesList = () =>
                             <DeleteOutlined /></Link>    
                    </div>
                  </div>
-                 )        }       
+                 ) }       
         })    
     )}
 
