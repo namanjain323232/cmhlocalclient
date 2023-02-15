@@ -18,6 +18,7 @@ const SubcategoriesEdit = ({ match, history }) => {
   const [hide, setHide] = useState("");
   const [type,setType] = useState("");
   const [loading, setLoading] = useState(false);
+  // const [types,setTypes] = useState["Face to Face", "Online","Both"];
   const slug = match.params.slug;
 
   useEffect(() => {
@@ -29,6 +30,8 @@ const SubcategoriesEdit = ({ match, history }) => {
       console.log("value from res", res.data);
       setCategory(res.data.category);
       setName(res.data.name);
+      setHide(res.data.hide);
+      setType(res.data.type);
     });
   };
 
@@ -39,7 +42,7 @@ const SubcategoriesEdit = ({ match, history }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log("VALUES from subcat", slug, category, name);
+    console.log("VALUES from subcat", slug, category, name,hide,type);
     editSubcategory(slug, { name: name, category: category, hide:hide, type:type }, user.token)
       .then((res) => {
         setLoading(false);

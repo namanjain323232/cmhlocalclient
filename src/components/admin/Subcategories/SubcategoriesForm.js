@@ -54,7 +54,6 @@ const SubcategoriesForm = ({handleSubmit, category, setCategory, name, setName, 
                  className= "form-control"
                  onChange= {(e) => setHide(e.target.value)}                          
           > 
-          <option> Please Select</option>
           <option value="No">No</option>
           <option  value="Yes">Yes</option>
          </select> 
@@ -62,11 +61,10 @@ const SubcategoriesForm = ({handleSubmit, category, setCategory, name, setName, 
        <div className= "col col-md-4">
           <p className= "admin-class ml-4 mt-2">Sub Category Type</p>            
          <select
-                value= {type === "Face to Face" ? "Face to Face":"Online"}
+                 value= {type}
                  name= "type"
                  className= "form-control"
-                 onChange= {(e) => setType(e.target.value)}
-                          
+                 onChange= {(e) => setType(e.target.value)}                          
           > 
           <option value="Face to Face">Face to Face</option>
           <option  value="Online">Online</option>
