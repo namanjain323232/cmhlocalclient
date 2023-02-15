@@ -26,16 +26,16 @@ const Cart = ({ history }) => {
   const showCartItems = () => (
     <div className="table-responsive">
       <table className="table table-bordered">
-        <thead className="thead-light">
+        <thead className="thead-light" style={{ fontSize: "0.8rem" }}>
           <tr>
             <th scope="col">Image</th>
             <th scope="col">Name</th>
-            <th scope="col">Sub Catgeory</th>
+            <th scope="col">Category</th>
             <th scope="col">Area</th>
             <th scope="col">Price</th>
-            <th scope="col">Booking Date</th>
-            <th scope="col"> Booked Timeslots</th>
-            <th scope="col">Count</th>
+            <th scope="col">Date</th>
+            <th scope="col">Timeslots</th>
+            {/* <th scope="col">Count</th> */}
             <th scope="col"> Remove</th>
           </tr>
         </thead>
@@ -49,8 +49,8 @@ const Cart = ({ history }) => {
   return (
     <div className="container-fluid">
       <div className="row mt-2">
-        <div className="col col-md-8">
-          <h4>Cart / {cart.length} Vendors</h4>
+        <div className="col col-md-9">
+          <h4>Cart</h4>
           {!cart.length ? (
             <p className="h6">
               No helper selected. <Link to="/shop">Find a helper</Link>
@@ -59,7 +59,7 @@ const Cart = ({ history }) => {
             showCartItems()
           )}
         </div>
-        <div className="col col-md-4">
+        <div className="col col-md-3">
           <h4>Order Summary</h4>
           <hr />
           <p className="font-weight-bold">Selected Helper</p>
