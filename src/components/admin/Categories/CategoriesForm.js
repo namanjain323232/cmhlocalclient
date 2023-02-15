@@ -2,7 +2,7 @@ import React from "react";
 import {reduxForm,Field} from "redux-form";
 import VendorField from "../../vendor/VendorField";
 
-const CategoriesForm = ({handleSubmit, name, setName, imgURL, setImgURL}) =>
+const CategoriesForm = ({handleSubmit, name, setName, imgURL, setImgURL, hide, setHide, unhide,setUnhide}) =>
 {
 
 const renderError = ({touched, error}) => {
@@ -40,7 +40,19 @@ const renderError = ({touched, error}) => {
                  onChange= {(e) => setImgURL(e.target.value)}
                  value= {imgURL}              
           />
-         </div> 
+         <p className= "admin-class ml-4 mt-2">Hide Category</p>            
+         <select
+                 value= {hide === "Yes" ? "Yes":"No"}
+                 name= "hide"
+                 className= "form-control"
+                 onChange= {(e) => setHide(e.target.value)}
+                          
+          > 
+          <option value="No">No</option>
+          <option  value="Yes">Yes</option>
+          </select>         
+         </div>  
+         
      </div>
     </div>
      <div className= "d-flex justify-content-center mt-2  ">

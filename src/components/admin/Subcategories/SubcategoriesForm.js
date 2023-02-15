@@ -3,7 +3,7 @@
 import React, {useState, useEffect} from "react";
 import { fetchCategories } from "../../../actions/category";
 
-const SubcategoriesForm = ({handleSubmit, category, setCategory, name, setName}) => {
+const SubcategoriesForm = ({handleSubmit, category, setCategory, name, setName, hide, setHide, type, setType}) => {
 
    const [categories, setCategories] = useState([]);
 
@@ -36,7 +36,7 @@ const SubcategoriesForm = ({handleSubmit, category, setCategory, name, setName})
              </select>
             </div>       
       <div className= "col col-md-12">
-       <label className= " admin-class mt-2">Name</label>
+       <label className= " admin-class mt-2">Sub Category</label>
        <input 
               type = "text"
               name= "name"
@@ -46,6 +46,31 @@ const SubcategoriesForm = ({handleSubmit, category, setCategory, name, setName})
               value= {name}                    
         />       
     </div>
+    <div className= "col col-md-4">
+    <p className= "admin-class ml-4 mt-2">Hide Sub Category</p>            
+         <select
+                 value= {hide === "Yes" ? "Yes":"No"}
+                 name= "hide"
+                 className= "form-control"
+                 onChange= {(e) => setHide(e.target.value)}                          
+          > 
+          <option value="No">No</option>
+          <option  value="Yes">Yes</option>
+         </select> 
+       </div>  
+       <div className= "col col-md-4">
+          <p className= "admin-class ml-4 mt-2">Sub Category Type</p>            
+         <select
+                 value= {type}
+                 name= "type"
+                 className= "form-control"
+                 onChange= {(e) => setType(e.target.value)}                          
+          > 
+          <option value="Face to Face">Face to Face</option>
+          <option  value="Online">Online</option>
+          <option  value="Both">Both</option>
+          </select> 
+       </div>        
     </div>
     <div className= "d-flex justify-content-center mt-2  ">
       <button type="submit" className = "btn btn-primary font-weight-bold " name="category">Save</button>  

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
+<<<<<<< HEAD
 import { toast } from "react-toastify";
+=======
+>>>>>>> 860e36188544797632255d51eda6cccf04bc6b22
 import { contact } from "../actions/user";
 
 const Contact = () => {

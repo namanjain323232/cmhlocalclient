@@ -11,6 +11,8 @@ const  SubcategoriesCreate = () =>
   const {user} = useSelector( state => ({...state})); 
   const [category, setCategory] = useState("");
   const [name, setName] = useState("");
+  const [hide, setHide] = useState("No");
+  const [type, setType] = useState("Face to Face","Online","Both");
   const [loading, setLoading] = useState(false);
 
   const addRoute = () => {
@@ -20,7 +22,7 @@ const  SubcategoriesCreate = () =>
    const handleSubmit= (e) => {
       e.preventDefault();
       setLoading(true);
-      addSubcategory({category: category, name: name}, user.token)
+      addSubcategory({category: category, name: name, hide: hide,type: type}, user.token)
       .then ( (res) => {
          setLoading(false);
          setCategory("");
@@ -57,6 +59,10 @@ const  SubcategoriesCreate = () =>
                      setCategory= {setCategory}
                      name= {name}
                      setName= {setName}
+                     hide= {hide}
+                     setHide= {setHide}  
+                     type = {type}    
+                     setType = {setType}               
                   />
                 </div>
               </div> 

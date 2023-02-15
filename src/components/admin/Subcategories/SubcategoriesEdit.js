@@ -15,7 +15,10 @@ const SubcategoriesEdit = ({ match, history }) => {
   const { user } = useSelector((state) => ({ ...state }));
   const [category, setCategory] = useState("");
   const [name, setName] = useState("");
+  const [hide, setHide] = useState("");
+  const [type,setType] = useState("");
   const [loading, setLoading] = useState(false);
+  // const [types,setTypes] = useState["Face to Face", "Online","Both"];
   const slug = match.params.slug;
 
   useEffect(() => {
@@ -27,6 +30,8 @@ const SubcategoriesEdit = ({ match, history }) => {
       console.log("value from res", res.data);
       setCategory(res.data.category);
       setName(res.data.name);
+      setHide(res.data.hide);
+      setType(res.data.type);
     });
   };
 
@@ -37,8 +42,8 @@ const SubcategoriesEdit = ({ match, history }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    console.log("VALUES from subcat", slug, category, name);
-    editSubcategory(slug, { name: name, category: category }, user.token)
+    console.log("VALUES from subcat", slug, category, name,hide,type);
+    editSubcategory(slug, { name: name, category: category, hide:hide, type:type }, user.token)
       .then((res) => {
         setLoading(false);
         setName("");
@@ -67,7 +72,7 @@ const SubcategoriesEdit = ({ match, history }) => {
             Edit Sub Categories{" "}
           </h1>
         )}
-        {console.log("category from subcat", category, name)}
+        {console.log("category from subcat", category, name,hide,type)}
         <div className="card  mb-2">
           <div className=" card-body mb-1 ">
             <SubcategoriesForm
@@ -76,6 +81,10 @@ const SubcategoriesEdit = ({ match, history }) => {
               setCategory={setCategory}
               name={name}
               setName={setName}
+              hide={hide}
+              setHide={setHide}
+              type={type}
+              setType={setType}
             />
           </div>
         </div>

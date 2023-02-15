@@ -17,6 +17,7 @@
     "availability-calendar-react": "^1.0.10",
     "axios": "^0.21.4",
     "bootstrap": "^4.5.3",
+    "eslint": "^7.32.0",
     "firebase": "^8.2.4",
     "google-map-react": "^2.1.9",
     "google-maps-react": "^2.0.6",
@@ -38,7 +39,7 @@
     "react-redux-firebase": "^2.1.8",
     "react-responsive-carousel": "^3.2.12",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.1",
+    "react-scripts": "^4.0.1",
     "react-star-ratings": "^2.3.0",
     "react-toastify": "^6.2.0",
     "redux": "^4.0.5",
@@ -51,7 +52,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "@react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

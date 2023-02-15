@@ -68,7 +68,7 @@ const Queries = () => {
           {loading ? (
             <h2>Loading....</h2>
           ) : (
-            <h2 className="font-weight-bold">Queries</h2>
+            <h2 className="font-weight-bold">Customer Queries</h2>
           )}
           <div className="container mt-2">
             <div className="row p-3 bg-light ">
