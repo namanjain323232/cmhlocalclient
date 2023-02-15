@@ -90,7 +90,7 @@ const StripeSuccess = ({ match, history }) => {
         emptyUserCart(user.token);
         sendEmail(stringOrder);
         console.log("RES from stripe success", res.data);
-        // history.push("/user/history");
+        history.push("/user/history");
       } else {
         history.push("/stripe/cancel");
       }
