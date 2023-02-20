@@ -30,8 +30,9 @@ const UserHistory = () => {
 
   const showEachOrder = () =>
     orders.map((order, i) => (
-      <div className="card m-5 p-3" key={i}>
-        <ShowPaymentInfo order={order} />
+      <div className="card m-2" key={i}>
+        <h4 style={{ fontWeight: "600" }}>Order {i + 1}</h4>
+        {/* <ShowPaymentInfo order={order} /> */}
         {showOrdersInTable(order)}
         <div className="row">
           {/* <div className="col">
@@ -45,11 +46,36 @@ const UserHistory = () => {
     <table className="table table-bordered  h6">
       <thead className="thead-light">
         <tr>
-          <th scope="col">Helper Name </th>
-          <th scope="col">Sub Category </th>
-          <th scope="col">Price </th>
-          <th scope="col">PriceType </th>
-          <th scope="col">Count </th>
+          <th
+            scope="col"
+            style={{ backgroundColor: "#1890FF", color: "white" }}
+          >
+            Helper Name{" "}
+          </th>
+          <th
+            scope="col"
+            style={{ backgroundColor: "#1890FF", color: "white" }}
+          >
+            Sub Category{" "}
+          </th>
+          <th
+            scope="col"
+            style={{ backgroundColor: "#1890FF", color: "white" }}
+          >
+            Amount
+          </th>
+          <th
+            scope="col"
+            style={{ backgroundColor: "#1890FF", color: "white" }}
+          >
+            Payment Status
+          </th>
+          <th
+            scope="col"
+            style={{ backgroundColor: "#1890FF", color: "white" }}
+          >
+            Payment Method
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -62,13 +88,13 @@ const UserHistory = () => {
               <b>{v.vendor.subcategories[0].name}</b>
             </td>
             <td>
-              <b>{v.vendor.price}</b>
+              <b>${v.vendor.price * v.count}</b>
             </td>
             <td>
-              <b>{v.vendor.pricetype}</b>
+              <b>{order.session.payment_status.toUpperCase()}</b>
             </td>
             <td>
-              <b>{v.count}</b>
+              <b>{order.session.payment_method_types[0].toUpperCase()}</b>
             </td>
           </tr>
         ))}
