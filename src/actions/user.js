@@ -98,3 +98,10 @@ export const createOrder = async (stripeResponse, authtoken) => {
 export const getUserOrders = async (authtoken) => {
   return await axios.get(`${ROOT_URL}/user/order`, { headers: { authtoken } });
 };
+
+export const fetchRegVendors = async () => {
+  console.log("IN VENDOR LIST EXPORT");
+  const vendorlist = await axios.get(`${ROOT_URL}/user/regvendors`);
+  console.log(vendorlist);
+  return vendorlist;
+};

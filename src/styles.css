@@ -636,3 +636,7 @@ sidenavbar {
 .whiteBtn:hover {
   color: white !important;
 }
+
+ul {
+  list-style-type: none;
+}

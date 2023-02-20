@@ -13,7 +13,6 @@ if (window.localStorage.getItem("user")) {
 }
 
 
-
 const userReducer= (state = userState, action) => {
 switch(action.type) {
     case LOGGED_IN_USER:

@@ -35,3 +35,10 @@ export const fetchVendorInfoById = async (id) => {
   return await axios.get(`${ROOT_URL}/api/vendorinfo/${id}`);
 }
 
+export const fetchRegVendors = async () => {
+  console.log("IN VENDOR LIST EXPORT");
+  const vendorlist = await axios.get(`${ROOT_URL}/api/regvendors`);
+  console.log(vendorlist);
+  return vendorlist;
+};
+
