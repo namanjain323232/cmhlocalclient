@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Link} from "react-router-dom";
 import AdminNav from "../../navigation/AdminNav";
-import {fetchRegVendors} from "../../../actions/vendorInfo";
+import {fetchRegVendors,fetchRegVendorSlug} from "../../../actions/vendorInfo";
 import {EditOutlined, DeleteOutlined} from "@ant-design/icons";
 import SearchBar from "../../utils/searchBar";
 import AdminMenu from "../AdminMenu";
@@ -65,7 +65,7 @@ const  VendorAdminList = () =>
                        {regvendor.userId.stripe_account_id}
                     </div>           
             <div className= "col-md-2 mb-1">
-              <Link to= {`/admin/vendoradmin/vendoredit`} 
+              <Link to= {`/admin/vendoradmin/vendoradminedit/${regvendor.slug}`} 
                             className= "btn btn-primary  mr-1 ">
                            <EditOutlined /></Link>
                <Link to= { `/admin/vendoradmin/vendordelete`}

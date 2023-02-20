@@ -42,3 +42,9 @@ export const fetchRegVendors = async () => {
   return vendorlist;
 };
 
+export const fetchRegVendorSlug = async(slug) => {
+  console.log("Vendor info by slug");
+  const vendor = await axios.get(`${ROOT_URL}/api/vendorinfo/${slug}`);
+  return vendor;
+}
+

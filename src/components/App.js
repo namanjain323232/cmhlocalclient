@@ -32,6 +32,7 @@ import SubcategoryQuestionsDelete from "./admin/SubcategoryQuestions/Subcategory
 import SubcategoryQuestionsList from "./admin/SubcategoryQuestions/SubcategoryQuestionsList";
 import VendorAdminList from "./admin/VendorAdmin/VendorAdminList";
 import VendorAdminCreate from "./admin/VendorAdmin/VendorAdminCreate";
+import VendorAdminEdit from "./admin/VendorAdmin/VendorAdminEdit";
 import TimeslotCreate from "./admin/Timeslot/TimeslotCreate";
 import TimeslotList from "./admin/Timeslot/TimeSlotList";
 import TimeslotEdit from "./admin/Timeslot/TimeslotEdit";
@@ -295,6 +296,10 @@ const App = () => {
               <AdminRoute
                 path="/admin/vendoradmin/vendoradmincreate"
                 component={VendorAdminCreate}
+              />
+              <AdminRoute
+                path="/admin/vendoradmin/vendoradminedit"
+                component={VendorAdminEdit}
               />
               <AdminRoute
                 path="/admin/queries/querieslist"

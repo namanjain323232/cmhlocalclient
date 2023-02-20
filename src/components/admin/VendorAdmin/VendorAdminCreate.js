@@ -2,8 +2,7 @@ import React, {useState, useEffect} from "react";
 import { toast } from "react-toastify";
 import {useSelector} from "react-redux";
 import AdminNav from "../../navigation/AdminNav";
-import {addVendorInfo} from "../../../actions/vendorInfo";
-import {fetchRegVendors} from "../../../actions/user";
+import {addVendorInfo,fetchRegVendors} from "../../../actions/vendorInfo";
 import VendorAdminForm from "../VendorAdmin/VendorAdminForm";
 
 const VendorAdminCreate = () => {
@@ -25,7 +24,17 @@ const VendorAdminCreate = () => {
  }
  const [values, setValues] = useState(initialState); 
  const [loading,setLoading] = useState(false);
+ const [vendors,setVendors] = useState();
 
+ useEffect(() => {
+   getRegVendors();    
+}, []);
+
+ const getRegVendors = () => {
+   setLoading(true);
+   fetchRegVendors().then( (res) => setVendors(res.data));
+   setLoading(false);
+  }
    
  const {
   email, 
