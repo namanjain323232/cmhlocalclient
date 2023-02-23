@@ -63,7 +63,7 @@ const MainBody = () => {
               >
                 <Link
                   to={`/vendordetails/${categoryval.slug}`}
-                  className="font-weight-bold h6 text-dark ml-2"
+                  className="font-weight-bold h5 text-dark ml-2"
                 >
                   {categoryval.name}
                 </Link>
