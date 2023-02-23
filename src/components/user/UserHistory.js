@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import Invoice from "../order/Invoice";
+import moment from "moment";
 
 const UserHistory = () => {
   const { user } = useSelector((state) => ({ ...state }));
@@ -30,8 +31,8 @@ const UserHistory = () => {
 
   const showEachOrder = () =>
     orders.map((order, i) => (
-      <div className="card m-2" key={i}>
-        <h4 style={{ fontWeight: "600" }}>Order {i + 1}</h4>
+      <div className="card m-2" key={i} style={{ border: "none" }}>
+        <h6 style={{ fontWeight: "600" }}>Order #{order._id}</h6>
         {/* <ShowPaymentInfo order={order} /> */}
         {showOrdersInTable(order)}
         <div className="row">
@@ -62,19 +63,25 @@ const UserHistory = () => {
             scope="col"
             style={{ backgroundColor: "#1890FF", color: "white" }}
           >
+            Hourly Price
+          </th>
+          <th
+            scope="col"
+            style={{ backgroundColor: "#1890FF", color: "white" }}
+          >
+            Booking Date
+          </th>
+          <th
+            scope="col"
+            style={{ backgroundColor: "#1890FF", color: "white" }}
+          >
+            Timeslot
+          </th>
+          <th
+            scope="col"
+            style={{ backgroundColor: "#1890FF", color: "white" }}
+          >
             Amount
-          </th>
-          <th
-            scope="col"
-            style={{ backgroundColor: "#1890FF", color: "white" }}
-          >
-            Payment Status
-          </th>
-          <th
-            scope="col"
-            style={{ backgroundColor: "#1890FF", color: "white" }}
-          >
-            Payment Method
           </th>
         </tr>
       </thead>
@@ -88,13 +95,19 @@ const UserHistory = () => {
               <b>{v.vendor.subcategories[0].name}</b>
             </td>
             <td>
-              <b>${v.vendor.price * v.count}</b>
+              <b>£{v.vendor.price}</b>
             </td>
             <td>
-              <b>{order.session.payment_status.toUpperCase()}</b>
+              <b>{moment(order.bookingDate).format("DD/MM/YYYY")}</b>
             </td>
             <td>
-              <b>{order.session.payment_method_types[0].toUpperCase()}</b>
+              <b>
+                {order.timeslotsSE[0].start} -{" "}
+                {order.timeslotsSE[order.timeslotsSE.length - 1].end}
+              </b>
+            </td>
+            <td>
+              <b>£{v.vendor.price * v.count}</b>
             </td>
           </tr>
         ))}
