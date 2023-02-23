@@ -63,7 +63,7 @@ const MainBody = () => {
               >
                 <Link
                   to={`/vendordetails/${categoryval.slug}`}
-                  className="font-weight-bold h5 text-dark ml-2"
+                  className="font-weight-bold h6 text-dark ml-2"
                 >
                   {categoryval.name}
                 </Link>
@@ -72,11 +72,7 @@ const MainBody = () => {
                 {/* </Col> */}
               </div>
               {/* <Col span={8} className="ml-4"> */}
-              <Avatar
-                src={categoryval.imgURL}
-                size={100}
-                className="category-img"
-              />
+              <Avatar src={categoryval.imgURL} size={60} />
               {/* </Col> */}
             </Col>
             //  </div>
