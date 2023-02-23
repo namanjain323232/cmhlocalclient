@@ -6,12 +6,13 @@ import { Carousel } from "react-responsive-carousel";
 class DemoCarousel extends Component {
   render() {
     return (
-      <div style={{ width: "30%" }}>
+      <div style={{ width: "30%", marginLeft: "1rem" }}>
         <Carousel
-        // showArrows={true}
-        // onChange={onChange}
-        // onClickItem={onClickItem}
-        // onClickThumb={onClickThumb}
+          //   showArrows={true}
+          autoPlay={true}
+          // onChange={onChange}
+          // onClickItem={onClickItem}
+          // onClickThumb={onClickThumb}
         >
           <div>
             <img src="images/gardener.jpg" />
