@@ -10,6 +10,7 @@ import { Avatar, Card, Col, Row } from "antd";
 import Jumbotron from "./cards/Jumbotron";
 import { getAllVendorCategories } from "../actions/vendor";
 import { fetchVendorsInfo } from "../actions/vendorInfo";
+import DemoCarousel from "./Promoted";
 
 const { Meta } = Card;
 const gridStyle = {
@@ -86,11 +87,13 @@ const MainBody = () => {
           <PostcodeSearch />
         </Col>
       </section>
-
-      <section className="content-section">
-        <Row>{renderFields()}</Row>
-      </section>
-
+      <div style={{ display: "flex" }}>
+        <section className="content-section">
+          <Row>{renderFields()}</Row>
+        </section>
+        <DemoCarousel />
+        {/* <h1>hiiiiiiiiiiii</h1> */}
+      </div>
       <section className="testimonial-section">
         <Row align="middle">
           <Col
