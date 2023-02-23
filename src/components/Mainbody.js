@@ -53,24 +53,30 @@ const MainBody = () => {
               key={categoryval._id}
               className="main-class font-weight-bold p-1 d-flex"
             >
-              <Col span={8} push={1}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "80%",
+                }}
+              >
                 <Link
                   to={`/vendordetails/${categoryval.slug}`}
-                  className="font-weight-bold h4  text-dark ml-2"
+                  className="font-weight-bold h5 text-dark ml-2"
                 >
                   {categoryval.name}
                 </Link>
-              </Col>
-              <Col span={12} className="btn btn-raised font-weight-bold mt-2">
+                {/* <Col span={12} className="btn btn-raised font-weight-bold mt-2"> */}
                 <ListSubcategories categoryValue={categoryval._id} />
-              </Col>
-              <Col span={8} className="ml-4">
-                <Avatar
-                  src={categoryval.imgURL}
-                  size={100}
-                  className="category-img"
-                />
-              </Col>
+                {/* </Col> */}
+              </div>
+              {/* <Col span={8} className="ml-4"> */}
+              <Avatar
+                src={categoryval.imgURL}
+                size={100}
+                className="category-img"
+              />
+              {/* </Col> */}
             </Col>
             //  </div>
           );
@@ -87,7 +93,7 @@ const MainBody = () => {
         </Col>
       </section>
 
-      <section className="content-section">
+      <section className="content-section" style={{ width: "70%" }}>
         <Row>{renderFields()}</Row>
       </section>
 
