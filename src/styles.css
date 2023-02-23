@@ -59,7 +59,7 @@ sidenavbar {
   font-weight: 200;
 }
 .content-header {
-  padding-left: .5%;
+  padding-left: 0.5%;
   font-size: 1rem;
   color: whitesmoke;
 }
@@ -287,7 +287,7 @@ sidenavbar {
   width: auto;
 }
 .admin-class {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
 }
 
