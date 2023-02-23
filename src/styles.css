@@ -636,3 +636,7 @@ sidenavbar {
 .whiteBtn:hover {
   color: white !important;
 }
+.thead-light th {
+  background-color: #1890ff !important;
+  color: white !important;
+}

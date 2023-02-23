@@ -26,9 +26,14 @@ const Cart = ({ history }) => {
   const showCartItems = () => (
     <div className="table-responsive">
       <table className="table table-bordered">
-        <thead className="thead-light" style={{ fontSize: "0.8rem" }}>
-          <tr>
-            <th scope="col">Image</th>
+        <thead
+          className="thead-light"
+          style={{ fontSize: "0.8rem", backgroundColor: "aqua !important" }}
+        >
+          <tr style={{ backgroundColor: "aqua !important" }}>
+            <th scope="col" style={{ backgroundColor: "aqua !important" }}>
+              Image
+            </th>
             <th scope="col">Name</th>
             <th scope="col">Category</th>
             <th scope="col">Area</th>
@@ -50,7 +55,7 @@ const Cart = ({ history }) => {
     <div className="container-fluid">
       <div className="row mt-2">
         <div className="col col-md-9">
-          <h4>Cart</h4>
+          <h4>Your Cart</h4>
           {!cart.length ? (
             <p className="h6">
               No helper selected. <Link to="/shop">Find a helper</Link>

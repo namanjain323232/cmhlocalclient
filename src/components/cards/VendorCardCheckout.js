@@ -1,7 +1,7 @@
 import React from "react";
 import ModalImage from "react-modal-image";
 import { useDispatch } from "react-redux";
-import { CloseCircleOutlined } from "@ant-design/icons";
+import { CloseCircleOutlined, DeleteFilled } from "@ant-design/icons";
 import moment from "moment";
 
 const VendorCardCheckout = ({ v }) => {
@@ -65,7 +65,7 @@ const VendorCardCheckout = ({ v }) => {
         <td>{v.vendorInfoId.name} </td>
         <td>{v.subcategories[0].name} </td>
         <td>{v.vendorInfoId.city}</td>
-        <td>
+        <td className="font-weight-bold">
           {" "}
           £{v.price}
           {"/hr"}
@@ -94,8 +94,9 @@ const VendorCardCheckout = ({ v }) => {
               />  
              </td> */}
         <td className="font-weight-bold">
-          <CloseCircleOutlined
-            className="text-danger pointer mt-3 ml-3"
+          <DeleteFilled
+            className="pointer mt-3 ml-3"
+            style={{ color: "red", textAlign: "center", alignItems: "center" }}
             onClick={handleRemove}
           />
         </td>
