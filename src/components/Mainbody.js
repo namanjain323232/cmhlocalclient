@@ -13,7 +13,6 @@ import { fetchVendorsInfo } from "../actions/vendorInfo";
 
 const { Meta } = Card;
 const gridStyle = {
-  width: "50%",
   height: "200px",
   textAlign: "left",
   border: "none",
@@ -48,7 +47,7 @@ const MainBody = () => {
       categories.map((categoryval) => {
         if (categoryval._id) {
           return (
-            // <div className= "col col-md-4 main-class font-weight-bold p-1 d-flex justify-content-right "
+            // <div className= "col col-md-3 main-class font-weight-bold p-1 d-flex justify-content-right "
             <Col
               span={8}
               key={categoryval._id}
@@ -57,7 +56,7 @@ const MainBody = () => {
               <Col span={8} push={1}>
                 <Link
                   to={`/vendordetails/${categoryval.slug}`}
-                  className="font-weight-bold h5  text-dark ml-2"
+                  className="font-weight-bold h4  text-dark ml-2"
                 >
                   {categoryval.name}
                 </Link>
@@ -100,7 +99,7 @@ const MainBody = () => {
           >
             <Jumbotron
               text={[
-                "We will find the best helper for your needs",
+                "We will find the best helper for your needs in your area",
                 "Compare the price to find the most affordable helper",
                 "So easy to use that you will have your help sorted in minutes",
               ]}

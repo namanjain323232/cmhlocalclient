@@ -30,8 +30,8 @@ const StripeSuccess = ({ match, history }) => {
       );
   };
 
-  const sendVendorEmail = (vendorEmail) => {
-    let templateParams = {};
+  const sendVendorEmail = (vendorEmail, vendorEmailId) => {
+    let templateParams = { toEmail: vendorEmailId, emailBody: vendorEmail };
 
     emailjs
       .send(
@@ -58,6 +58,7 @@ const StripeSuccess = ({ match, history }) => {
   useEffect(() => {
     stripeSuccessRequest(user.token, match.params.vendor).then((res) => {
       let cartList = JSON.parse(localStorage.getItem("cart"));
+      console.log(cartList);
 
       let stringOrder = "";
       let address = user.address;
@@ -70,8 +71,8 @@ const StripeSuccess = ({ match, history }) => {
 
       let vendorEmail = "";
       cartList.forEach((cart) => {
-        vendorEmail += `Customer Details:\n\nName: ${user.name}\nAddress: ${address}\nContact No: ${user.phone}\n\nBooking Details:\n\n${cart.subcategories[0].name}\nBooking on: ${cart.bookingDate}\n\nTimeslot: ${cart.bookingSlots[0].tstimeslot[0].startSlot}\n\n`;
-        // sendVendorEmail(vendorEmail);
+        vendorEmail = `Customer Details:\n\nName: ${user.name}\nAddress: ${address}\nContact No: ${user.phone}\n\nBooking Details:\n\n${cart.subcategories[0].name}\nBooking on: ${cart.bookingDate}\n\nAppointment Time: ${cart.bookingSlots[0].tstimeslot[0].startSlot}\n\n`;
+        sendVendorEmail(vendorEmail, cart.vendorInfoId.email);
         console.log(vendorEmail);
       });
 
@@ -90,7 +91,7 @@ const StripeSuccess = ({ match, history }) => {
         emptyUserCart(user.token);
         sendEmail(stringOrder);
         console.log("RES from stripe success", res.data);
-        // history.push("/user/history");
+        history.push("/user/history");
       } else {
         history.push("/stripe/cancel");
       }

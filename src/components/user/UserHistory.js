@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import Invoice from "../order/Invoice";
+import moment from "moment";
 
 const UserHistory = () => {
   const { user } = useSelector((state) => ({ ...state }));
@@ -30,8 +31,9 @@ const UserHistory = () => {
 
   const showEachOrder = () =>
     orders.map((order, i) => (
-      <div className="card m-5 p-3" key={i}>
-        <ShowPaymentInfo order={order} />
+      <div className="card m-2" key={i} style={{ border: "none" }}>
+        <h6 style={{ fontWeight: "600" }}>Order #{order._id}</h6>
+        {/* <ShowPaymentInfo order={order} /> */}
         {showOrdersInTable(order)}
         <div className="row">
           {/* <div className="col">
@@ -45,11 +47,42 @@ const UserHistory = () => {
     <table className="table table-bordered  h6">
       <thead className="thead-light">
         <tr>
-          <th scope="col">Helper Name </th>
-          <th scope="col">Sub Category </th>
-          <th scope="col">Price </th>
-          <th scope="col">PriceType </th>
-          <th scope="col">Count </th>
+          <th
+            scope="col"
+            style={{ backgroundColor: "#1890FF", color: "white" }}
+          >
+            Helper Name{" "}
+          </th>
+          <th
+            scope="col"
+            style={{ backgroundColor: "#1890FF", color: "white" }}
+          >
+            Sub Category{" "}
+          </th>
+          <th
+            scope="col"
+            style={{ backgroundColor: "#1890FF", color: "white" }}
+          >
+            Hourly Price
+          </th>
+          <th
+            scope="col"
+            style={{ backgroundColor: "#1890FF", color: "white" }}
+          >
+            Booking Date
+          </th>
+          <th
+            scope="col"
+            style={{ backgroundColor: "#1890FF", color: "white" }}
+          >
+            Timeslot
+          </th>
+          <th
+            scope="col"
+            style={{ backgroundColor: "#1890FF", color: "white" }}
+          >
+            Amount
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -62,13 +95,19 @@ const UserHistory = () => {
               <b>{v.vendor.subcategories[0].name}</b>
             </td>
             <td>
-              <b>{v.vendor.price}</b>
+              <b>£{v.vendor.price}</b>
             </td>
             <td>
-              <b>{v.vendor.pricetype}</b>
+              <b>{moment(order.bookingDate).format("DD/MM/YYYY")}</b>
             </td>
             <td>
-              <b>{v.count}</b>
+              <b>
+                {order.timeslotsSE[0].start} -{" "}
+                {order.timeslotsSE[order.timeslotsSE.length - 1].end}
+              </b>
+            </td>
+            <td>
+              <b>£{v.vendor.price * v.count}</b>
             </td>
           </tr>
         ))}

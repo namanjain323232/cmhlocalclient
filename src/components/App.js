@@ -30,6 +30,7 @@ import SubcategoryQuestionsCreate from "./admin/SubcategoryQuestions/Subcategory
 import SubcategoryQuestionsEdit from "./admin/SubcategoryQuestions/SubcategoryQuestionsEdit";
 import SubcategoryQuestionsDelete from "./admin/SubcategoryQuestions/SubcategoryQuestionsDelete";
 import SubcategoryQuestionsList from "./admin/SubcategoryQuestions/SubcategoryQuestionsList";
+import VendorAdminList from "./admin/VendorAdmin/VendorAdminList";
 import TimeslotCreate from "./admin/Timeslot/TimeslotCreate";
 import TimeslotList from "./admin/Timeslot/TimeSlotList";
 import TimeslotEdit from "./admin/Timeslot/TimeslotEdit";
@@ -269,7 +270,6 @@ const App = () => {
                 path="/admin/subcategories/subcategoriesedit/:slug"
                 component={SubcategoriesEdit}
               />
-
               <AdminRoute
                 path="/admin/questions/questionscreate"
                 exact
@@ -288,9 +288,8 @@ const App = () => {
                 component={QuestionsDelete}
               />
               <AdminRoute
-                path="/vendor/vendorsinfolist"
-                exact
-                component={VendorsInfoList}
+                path="/admin/vendoradmin/vendoradminlist"
+                component={VendorAdminList}
               />
               <AdminRoute
                 path="/admin/queries/querieslist"
@@ -301,7 +300,6 @@ const App = () => {
                 exact
                 component={VendorCatList}
               />
-
               <AdminRoute
                 path="/admin/subcatquestions/subcatquestionscreate"
                 component={SubcategoryQuestionsCreate}
