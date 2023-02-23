@@ -127,7 +127,7 @@ class PostcodeSearch extends Component {
             onPlaceSelected={(place) => {
               this.handleAreas(place);
             }}
-            className="ml-3 w-100"
+            className="ml-3 w-100 font-weight-bold h6"
           />
         </Col>
         <Col span={5}>
