@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AdminNav from "../../navigation/AdminNav";
-import {  fetchRegVendors} from "../../../actions/vendorInfo";
+import { fetchRegVendors } from "../../../actions/vendorInfo";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import SearchBar from "../../utils/searchBar";
 import AdminMenu from "../AdminMenu";
@@ -51,15 +51,14 @@ const VendorAdminList = () => {
                   <li>{regvendor.city}</li>
                   <li>{regvendor.county}</li>
                   <li>{regvendor.postcode}</li>
-                  <li>{regvendor.country}</li>                  
+                  <li>{regvendor.country}</li>
                 </ul>
               </div>
               <div className="col col-md-2 text-align-right category">
                 <ul>
                   <li>(Mob-){regvendor.mobileNo}</li>
-                  <li>(Alt-){regvendor.altContactNo}</li>                                    
+                  <li>(Alt-){regvendor.altContactNo}</li>
                 </ul>
-                
               </div>
               <div className="col col-md-2 text-align-right category">
                 {regvendor.website}
@@ -74,11 +73,29 @@ const VendorAdminList = () => {
                 >
                   <EditOutlined />
                 </Link>
+                {regvendor.active == true ? (
+                  <Link
+                    to={`/admin/vendoradmin/vendoradmindel/${regvendor.slug}`}
+                    className="btn btn-danger mr-1"
+                  >
+                    {" "}
+                    Deactivate
+                  </Link>
+                ) : (
+                  <Link
+                    to={`/admin/vendoradmin/vendoradmindel/${regvendor.slug}`}
+                    className="btn btn-danger mr-1"
+                  >
+                    {" "}
+                    Activate
+                  </Link>
+                )}
+
                 <Link
-                  to={`/admin/vendoradmin/vendoradmindel/${regvendor.slug}`}
-                  className="btn btn-danger mr-1"
+                  to={`/admin/vendoradmin/vendoradmincatlist/${regvendor.slug}`}
+                  className="btn btn-primary float-right "
                 >
-                  Deactivate
+                  Vendor Current Categories
                 </Link>
               </div>
             </div>
@@ -113,7 +130,7 @@ const VendorAdminList = () => {
             </div>
             <div className="col col-md-2 ">
               <h5 className="font-weight-bold"> Address </h5>
-            </div>            
+            </div>
             <div className="col col-md-2 ">
               <h5 className="font-weight-bold"> Phone No </h5>
             </div>

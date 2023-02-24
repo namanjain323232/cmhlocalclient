@@ -34,6 +34,7 @@ import VendorAdminList from "./admin/VendorAdmin/VendorAdminList";
 import VendorAdminCreate from "./admin/VendorAdmin/VendorAdminCreate";
 import VendorAdminEdit from "./admin/VendorAdmin/VendorAdminEdit";
 import VendorAdminDel from "./admin/VendorAdmin/VendorAdminDel";
+import VendorAdminCatList from "./admin/VendorAdmin/VendorAdminCatList";
 import TimeslotCreate from "./admin/Timeslot/TimeslotCreate";
 import TimeslotList from "./admin/Timeslot/TimeSlotList";
 import TimeslotEdit from "./admin/Timeslot/TimeslotEdit";
@@ -305,6 +306,10 @@ const App = () => {
               <AdminRoute
                 path="/admin/vendoradmin/vendoradmindel/:slug"
                 component={VendorAdminDel}
+              />
+              <AdminRoute
+                path="/admin/vendoradmin/vendoradmincatList/:slug"
+                component={VendorAdminCatList}
               />
               <AdminRoute
                 path="/admin/queries/querieslist"

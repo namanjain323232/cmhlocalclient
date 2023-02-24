@@ -57,12 +57,16 @@ const VendorAdminDel = (props) =>
     }
 
     const renderContent= () => {
-       
+       if (vendors.active == true)
+       {
        if(!slug) {
           return ("Are you sure you want to deactivate this vendor?");
        }
           return(`Are you sure you want to deactivate the vendor: ${slug}`);
       }
+      else 
+         return (`Are you sure you want to activate the vendor: ${slug}`)
+    }
    
    return(
    <div>
