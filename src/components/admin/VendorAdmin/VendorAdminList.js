@@ -116,7 +116,7 @@ const VendorAdminList = () => {
         {!ven ? (
           <h2>Loading.....</h2>
         ) : (
-          <h2 className="card-header font-weight-bold mt-2">Vendor Details</h2>
+          <h2 className="card-header font-weight-bold mt-2">Vendor Details </h2>
         )}
 
         <SearchBar keyword={keyword} setKeyword={setKeyword} />

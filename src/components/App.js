@@ -35,6 +35,8 @@ import VendorAdminCreate from "./admin/VendorAdmin/VendorAdminCreate";
 import VendorAdminEdit from "./admin/VendorAdmin/VendorAdminEdit";
 import VendorAdminDel from "./admin/VendorAdmin/VendorAdminDel";
 import VendorAdminCatList from "./admin/VendorAdmin/VendorAdminCatList";
+import VendorAdminCatEdit from "./admin/VendorAdmin/VendorAdminCatEdit";
+import VendorAdminCatDel from "./admin/VendorAdmin/VendorAdminCatDel";
 import TimeslotCreate from "./admin/Timeslot/TimeslotCreate";
 import TimeslotList from "./admin/Timeslot/TimeSlotList";
 import TimeslotEdit from "./admin/Timeslot/TimeslotEdit";
@@ -312,6 +314,14 @@ const App = () => {
                 component={VendorAdminCatList}
               />
               <AdminRoute
+                path="/admin/vendoradmin/vendoradmincatedit/:id"
+                component={VendorAdminCatEdit}
+              />
+              <AdminRoute
+                path= "/admin/vendoradmin/vendoradmincatdel/:id"
+                component= {VendorAdminCatDel}
+              />
+              <AdminRoute
                 path="/admin/queries/querieslist"
                 component={QueriesList}
               />
@@ -403,7 +413,7 @@ const App = () => {
                 component={VendorPassword}
               />
               <UserRoute
-                path="/vendor/vendordetails"
+                path="/vendor/vendordetails/:id"
                 exact
                 component={VendorNew}
               />

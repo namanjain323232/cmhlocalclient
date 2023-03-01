@@ -8,7 +8,7 @@ import _ from "lodash";
 
 const { Meta } = Card;
 const VendorCard = ({ vendor }) => {
-  const { user, cart } = useSelector((state) => ({ ...state }));
+const { user, cart } = useSelector((state) => ({ ...state }));
 
   const [subcats, setSubcats] = useState([]);
   const [tooltip, setTooltip] = useState("Click to add");
@@ -99,7 +99,7 @@ const VendorCard = ({ vendor }) => {
         />
         <Meta
           title={`Areas Covered : ${areasCovered.map((area) => {
-            return " " + area.place_add.split(",")[0];
+            // return " " + area.place_add.split(",")[0];
           })}`}
         />
       </Card>

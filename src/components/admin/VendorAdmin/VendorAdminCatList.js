@@ -33,8 +33,9 @@ const VendorAdminCatList = ({match}) => {
            </div>  
            <div className= "col col-md-10">
             { loading ? <h4>Loading....</h4>
-                      :  <h4 className= "font-weight-bold"> Vendor Categories</h4>
+                      :  <h4 className= "font-weight-bold"> Vendor Categories </h4>
             }
+           {/* {JSON.stringify(categories[0].vendorInfoId.name)} */}
             <div className= "row pb-3">
             { categories.map( (cat) => {
              return (

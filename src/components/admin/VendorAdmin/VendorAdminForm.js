@@ -1,6 +1,11 @@
 //changes for vendoradmin form
 import React, { useState, useEffect } from "react";
 import PostcodeSearch from "../../utils/PostcodeSearch";
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng,
+} from "react-places-autocomplete";
+import Autocomplete from "react-google-autocomplete";
 import { fetchCities, fetchCounties } from "../../../actions/area";
 
 const VendorAdminForm = ({

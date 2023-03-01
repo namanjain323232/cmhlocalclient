@@ -39,6 +39,7 @@ const AdminDashboard = () => {
             <div className= "row">
             { categories.map( (cat) => {
              return (
+              
               <div className= "col col-md-4"  key= {cat._id}>                              
                <AdminVendorCard  cat= {cat}                                
                />

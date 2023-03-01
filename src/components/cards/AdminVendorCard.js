@@ -1,7 +1,11 @@
 import React from "react";
 import { Card } from "antd";
 import { Link } from "react-router-dom";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import {
+  AreaChartOutlined,
+  DeleteOutlined,
+  EditOutlined,
+} from "@ant-design/icons";
 
 const { Meta } = Card;
 
@@ -24,20 +28,25 @@ const AdminVendorCard = ({ cat }) => {
         />
       }
       actions={[
-        <Link to={`/vendor/vendoredit/${_id}`}>
+        <Link to={`/admin/vendoradmin/vendoradmincatedit/${_id}`}>
           <EditOutlined className="text-warning" />
         </Link>,
-        <Link to={`/vendor/vendorcatdelete/${_id}`}>
+        <Link to={`/admin/vendoradmin/vendoradmincatdel/${_id}`}>
           <DeleteOutlined className="text-danger" />
         </Link>,
       ]}
     >
-      <Meta
-        title={subcategories[0].name}
+      <p className="font-weight-bold">{vendorInfoId.name}</p>
+      {subcategories.length && subcategories.map((sc) => <p>{sc.name}</p>)}
+
+      <p>{description && description.substring(0, 50)}....</p>
+      <div>
         
-        description={`${description && description.substring(0, 50)}....`}
-        areasCovered
-      />
+        {areasCovered.length && areasCovered.map((ac) => 
+          <p>{ac.place_add}</p>)
+         
+          }
+      </div>
     </Card>
   );
 };
