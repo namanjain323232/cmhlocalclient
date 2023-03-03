@@ -35,8 +35,10 @@ import VendorAdminCreate from "./admin/VendorAdmin/VendorAdminCreate";
 import VendorAdminEdit from "./admin/VendorAdmin/VendorAdminEdit";
 import VendorAdminDel from "./admin/VendorAdmin/VendorAdminDel";
 import VendorAdminCatList from "./admin/VendorAdmin/VendorAdminCatList";
+import VendorAdminCatAdd from "./admin/VendorAdmin/VendorAdminCatAdd";
 import VendorAdminCatEdit from "./admin/VendorAdmin/VendorAdminCatEdit";
 import VendorAdminCatDel from "./admin/VendorAdmin/VendorAdminCatDel";
+import OpenOrders from "./admin/Orders/OpenOrders";
 import TimeslotCreate from "./admin/Timeslot/TimeslotCreate";
 import TimeslotList from "./admin/Timeslot/TimeSlotList";
 import TimeslotEdit from "./admin/Timeslot/TimeslotEdit";
@@ -310,6 +312,10 @@ const App = () => {
                 component={VendorAdminDel}
               />
               <AdminRoute
+                path="/admin/vendoradmin/vendoradmincatadd/:id"
+                component={VendorAdminCatAdd}
+              />
+              <AdminRoute
                 path="/admin/vendoradmin/vendoradmincatList/:slug"
                 component={VendorAdminCatList}
               />
@@ -324,6 +330,11 @@ const App = () => {
               <AdminRoute
                 path="/admin/queries/querieslist"
                 component={QueriesList}
+              />
+
+              <AdminRoute
+                path="/admin/orders/openorders"
+                component={OpenOrders}
               />
               <AdminRoute
                 path="/vendor/vendorcatlist"

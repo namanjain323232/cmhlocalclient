@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import {
-   getVendorCategory,
-   vendorRating,
-    getRelatedVendors,
+  getVendorCategory,
+  vendorRating,
+  getRelatedVendors,
 } from "../../actions/vendor";
 import SingleVendor from "../cards/SingleVendor";
 import VendorCard from "../cards/VendorCard";
@@ -16,7 +16,7 @@ const VendorDetails = ({ match }) => {
   const [review, setReview] = useState("");
   const [related, setRelated] = useState([]);
   const { id } = match.params;
- 
+
   useEffect(() => {
     loadVendorDetails();
   }, [id]);
@@ -49,7 +49,7 @@ const VendorDetails = ({ match }) => {
     console.log("rating VALUE before update", star, name, user.token);
     vendorRating(name, newRating, user.token).then((res) => {
       console.log("Rating after Update", res);
-        setStar(newRating);
+      setStar(newRating);
       loadVendorDetails();
     });
   };
@@ -60,12 +60,11 @@ const VendorDetails = ({ match }) => {
         {loading ? (
           <h1>Loading...</h1>
         ) : (
-        
           <SingleVendor
-              vendorProp={vendor}
-              onRatingClick={onRatingClick}
-              rating={star}
-              review={review}
+            vendorProp={vendor}
+            onRatingClick={onRatingClick}
+            rating={star}
+            review={review}
             id={id}
           />
         )}

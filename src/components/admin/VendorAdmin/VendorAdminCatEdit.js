@@ -49,9 +49,9 @@ const VendorEdit = ({ match, history }) => {
           setSubOptions(res.data)
         );
         let arr = [];
-        cat.data.subcategories.map((s) => {
-          arr.push(s._id);
-        });
+        cat.data.subcategories.map((s) => (
+          arr.push(s._id)
+        ));
         console.log("ARR", arr);
         setArrOfSubIds((prev) => arr);
       })

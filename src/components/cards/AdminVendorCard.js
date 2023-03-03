@@ -3,6 +3,7 @@ import { Card } from "antd";
 import { Link } from "react-router-dom";
 import {
   AreaChartOutlined,
+  PlusCircleOutlined,
   DeleteOutlined,
   EditOutlined,
 } from "@ant-design/icons";
@@ -28,6 +29,9 @@ const AdminVendorCard = ({ cat }) => {
         />
       }
       actions={[
+        <Link to={`/admin/vendoradmin/vendoradmincatadd/${_id}`}>
+        <PlusCircleOutlined className="text-warning" />
+        </Link>,
         <Link to={`/admin/vendoradmin/vendoradmincatedit/${_id}`}>
           <EditOutlined className="text-warning" />
         </Link>,
