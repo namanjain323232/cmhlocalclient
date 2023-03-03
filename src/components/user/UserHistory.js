@@ -4,14 +4,18 @@ import ConnectNav from "../navigation/ConnectNav";
 import { getUserOrders } from "../../actions/user";
 import ShowPaymentInfo from "../cards/ShowPaymentInfo";
 import { useSelector, useDispatch } from "react-redux";
+import { Modal } from "antd";
 import { toast } from "react-toastify";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import Invoice from "../order/Invoice";
 import moment from "moment";
+import { CloseOutlined, EditOutlined } from "@ant-design/icons";
 
 const UserHistory = () => {
   const { user } = useSelector((state) => ({ ...state }));
   const [orders, setOrders] = useState([]);
+  const [cancelModal, setCancelModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
 
   useEffect(() => {
     loadUserOrders();
@@ -83,6 +87,12 @@ const UserHistory = () => {
           >
             Amount
           </th>
+          <th
+            scope="col"
+            style={{ backgroundColor: "#1890FF", color: "white" }}
+          >
+            Cancel | Rebook
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -109,6 +119,62 @@ const UserHistory = () => {
             <td>
               <b>£{v.vendor.price * v.count}</b>
             </td>
+            <td>
+              <b>
+                <div
+                  style={{ display: "flex", justifyContent: "space-around" }}
+                >
+                  <CloseOutlined
+                    onClick={() => {
+                      setCancelModal(true);
+                    }}
+                  />
+
+                  <EditOutlined
+                    onClick={() => {
+                      setEditModal(true);
+                    }}
+                  />
+                </div>
+              </b>
+            </td>
+            <Modal
+              title="Cancel Booking"
+              centered
+              visible={cancelModal}
+              onOk={() => {
+                // vendorReview(params.id, review, user.token).then(() => {
+                //   props.rerenderParentCallback();
+                // });
+
+                setCancelModal(false);
+                toast.success("Your Order has been successfully cancelled...");
+              }}
+              onCancel={() => {
+                setCancelModal(false);
+              }}
+            >
+              Are you sure you wish to cancel booking?
+            </Modal>
+
+            <Modal
+              title="Re-book Order"
+              centered
+              visible={editModal}
+              onOk={() => {
+                // vendorReview(params.id, review, user.token).then(() => {
+                //   props.rerenderParentCallback();
+                // });
+
+                setEditModal(false);
+                // toast.success("Your Order has been successfully cancelled...");
+              }}
+              onCancel={() => {
+                setEditModal(false);
+              }}
+            >
+              Are you sure you wish to re-book your booking?
+            </Modal>
           </tr>
         ))}
       </tbody>

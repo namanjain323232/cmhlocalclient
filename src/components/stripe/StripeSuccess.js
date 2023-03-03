@@ -10,7 +10,11 @@ const StripeSuccess = ({ match, history }) => {
   const dispatch = useDispatch();
 
   const sendEmail = (cartList) => {
-    let templateParams = { toEmail: user.email, emailBody: cartList };
+    let templateParams = {
+      subject: "Order Confirmation by Compare my Helper",
+      toEmail: user.email,
+      emailBody: cartList,
+    };
 
     emailjs
       .send(
@@ -68,7 +72,10 @@ const StripeSuccess = ({ match, history }) => {
       });
 
       stringOrder += `Your vendor will arrive at: ${address}`;
-
+      stringOrder =
+        "Hello\nYou have a new Booking confirmation.\n\n" +
+        stringOrder +
+        "\n\nThanks\nCompare my helper team";
       let vendorEmail = "";
       cartList.forEach((cart) => {
         vendorEmail = `Customer Details:\n\nName: ${user.name}\nAddress: ${address}\nContact No: ${user.phone}\n\nBooking Details:\n\n${cart.subcategories[0].name}\nBooking on: ${cart.bookingDate}\n\nAppointment Time: ${cart.bookingSlots[0].tstimeslot[0].startSlot}\n\n`;

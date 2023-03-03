@@ -99,7 +99,7 @@ const VendorCard = ({ vendor }) => {
         />
         <Meta
           title={`Areas Covered : ${areasCovered.map((area) => {
-            return " " + area.place_add.split(",")[0];
+            return " " + area.place_add?.split(",")[0];
           })}`}
         />
       </Card>
