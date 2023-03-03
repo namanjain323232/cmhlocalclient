@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import UserNav from "../navigation/UserNav";
 import ConnectNav from "../navigation/ConnectNav";
-import { getUserOrders } from "../../actions/user";
+import { getUserOrders, cancelOrder } from "../../actions/user";
 import ShowPaymentInfo from "../cards/ShowPaymentInfo";
 import { useSelector, useDispatch } from "react-redux";
 import { Modal } from "antd";
@@ -143,10 +143,9 @@ const UserHistory = () => {
               centered
               visible={cancelModal}
               onOk={() => {
-                // vendorReview(params.id, review, user.token).then(() => {
-                //   props.rerenderParentCallback();
-                // });
-
+                cancelOrder(order._id).then((res) => {
+                  loadUserOrders();
+                });
                 setCancelModal(false);
                 toast.success("Your Order has been successfully cancelled...");
               }}
@@ -162,12 +161,10 @@ const UserHistory = () => {
               centered
               visible={editModal}
               onOk={() => {
-                // vendorReview(params.id, review, user.token).then(() => {
-                //   props.rerenderParentCallback();
-                // });
-
+                cancelOrder(order._id).then((res) => {
+                  window.location.assign(`/bookvendor/${v.vendor._id}`);
+                });
                 setEditModal(false);
-                // toast.success("Your Order has been successfully cancelled...");
               }}
               onCancel={() => {
                 setEditModal(false);

@@ -23,6 +23,13 @@ export const contact = async (name, email, query) => {
   return contactVal;
 };
 
+export const cancelOrder = async (id) => {
+  const cancelVal = await axios.put(`${ROOT_URL}/user/order/cancel/${id}`);
+  console.log(cancelVal, "jnkdnaklsnalk");
+
+  return cancelVal;
+};
+
 export const fetchQueries = async () => {
   const querieslist = await axios.get(`${ROOT_URL}/user/querieslist`);
   console.log(querieslist);
