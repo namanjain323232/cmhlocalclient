@@ -6,7 +6,7 @@ import { Carousel } from "react-responsive-carousel";
 class DemoCarousel extends Component {
   render() {
     return (
-      <div style={{ width: "30%", marginLeft: "1rem" }}>
+      <div style={{ width: "20%", marginLeft: "1rem" }}>
         <Carousel
           //   showArrows={true}
           autoPlay={true}

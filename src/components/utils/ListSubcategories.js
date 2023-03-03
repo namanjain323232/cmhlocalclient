@@ -17,7 +17,7 @@ const ListSubcategories = (props) => {
   const renderSubcategories = () => {
     return subcat.map((subcategoryval, i) => {
       if (subcategoryval.category._id) {
-        if (subcategoryval.category._id === props.categoryValue && i < 2) {
+        if (subcategoryval.category._id === props.categoryValue && i < 3) {
           return (
             <div
               key={subcategoryval._id}

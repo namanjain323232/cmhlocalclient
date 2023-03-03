@@ -57,7 +57,7 @@ sidenavbar {
 /*category section */
 .content-section {
   font-weight: 200;
-  width: 70%;
+  width: 80%;
 }
 .content-header {
   padding-left: 0.5%;
@@ -640,4 +640,8 @@ sidenavbar {
 .thead-light th {
   background-color: #1890ff !important;
   color: white !important;
+}
+
+.typeWriterText {
+  font-size: 1.8rem;
 }

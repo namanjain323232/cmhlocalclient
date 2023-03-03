@@ -64,7 +64,7 @@ class PostcodeSearch extends Component {
   render() {
     return (
       <Row justify="center">
-        <Col span={5}>
+        <Col span={9}>
           {/* <PlacesAutocomplete
             value={this.state.address}
             onChange={this.handleChange}
@@ -130,11 +130,11 @@ class PostcodeSearch extends Component {
             className="ml-3 w-100 font-weight-bold h6"
           />
         </Col>
-        <Col span={5}>
+        <Col span={9}>
           <GetSubcategories handleChangeSub={this.handleChangeSub} />
         </Col>
 
-        <Col span={1} className="h3 mt-3" style={{ marginLeft: "50px" }}>
+        <Col span={2} className="h3 mt-3" style={{ marginLeft: "50px" }}>
           <SearchOutlined onClick={this.handleSearchSubmit} />
         </Col>
       </Row>

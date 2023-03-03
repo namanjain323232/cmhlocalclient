@@ -53,6 +53,9 @@ const MainBody = () => {
               span={8}
               key={categoryval._id}
               className="main-class font-weight-bold p-1 d-flex"
+              style={{
+                backgroundImage: `linear-gradient(90deg, #ead6cd 0%, #ead6cd 65%, transparent 50%), url(${categoryval.imgURL})`,
+              }}
             >
               <div
                 style={{
@@ -70,9 +73,18 @@ const MainBody = () => {
                 {/* <Col span={12} className="btn btn-raised font-weight-bold mt-2"> */}
                 <ListSubcategories categoryValue={categoryval._id} />
                 {/* </Col> */}
+                <div
+                  style={{
+                    marginLeft: "0.5rem",
+                    fontSize: "0.8rem",
+                    color: "#1890ff",
+                  }}
+                >
+                  View More ...
+                </div>
               </div>
               {/* <Col span={8} className="ml-4"> */}
-              <Avatar src={categoryval.imgURL} size={60} />
+              {/* <Avatar src={categoryval.imgURL} size={60} /> */}
               {/* </Col> */}
             </Col>
             //  </div>
@@ -84,19 +96,7 @@ const MainBody = () => {
 
   return (
     <>
-      <section className="feature-class" id="features">
-        <Col className="font-weight-bold mt-2">
-          <PostcodeSearch />
-        </Col>
-      </section>
-      <div style={{ display: "flex" }}>
-        <section className="content-section">
-          <Row>{renderFields()}</Row>
-        </section>
-        <DemoCarousel />
-        {/* <h1>hiiiiiiiiiiii</h1> */}
-      </div>
-      <section className="testimonial-section">
+      <section className="testimonial-section" style={{ padding: "0px" }}>
         <Row align="middle">
           <Col
             span={24}
@@ -112,6 +112,18 @@ const MainBody = () => {
           </Col>
         </Row>
       </section>
+      <section className="feature-class" id="features">
+        <Col className="font-weight-bold mt-1">
+          <PostcodeSearch />
+        </Col>
+      </section>
+      <div style={{ display: "flex" }}>
+        <section className="content-section">
+          <Row>{renderFields()}</Row>
+        </section>
+        <DemoCarousel />
+        {/* <h1>hiiiiiiiiiiii</h1> */}
+      </div>
     </>
   );
 };
