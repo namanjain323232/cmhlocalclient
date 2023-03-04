@@ -36,7 +36,10 @@ const VendorDetails = ({ match }) => {
     getVendorCategory(id)
       .then((res) => {
         setVendor(res.data);
-        getRelatedVendors(res.data._id).then((res) => setRelated(res.data));
+        getRelatedVendors(res.data._id, "London, UK").then((res) => {
+          setRelated(res.data);
+          console.log(res.data);
+        });
         setLoading(false);
       })
       .catch((err) => {
@@ -76,12 +79,16 @@ const VendorDetails = ({ match }) => {
           <hr />
           <div className="row pb-5 ">
             {related.length ? (
-              related.map((r) => (
-                <div className="col col-md-4" key={r._id}>
-                  {" "}
-                  <VendorCard vendor={r} />{" "}
-                </div>
-              ))
+              related.map((r) =>
+                r.areasCovered.find((a) => a.place_add == "London, UK") ? (
+                  <div className="col col-md-4" key={r._id}>
+                    {" "}
+                    <VendorCard vendor={r} />{" "}
+                  </div>
+                ) : (
+                  <></>
+                )
+              )
             ) : (
               <div className="text-"> </div>
             )}

@@ -68,8 +68,10 @@ export const vendorReview = async (id, review, authtoken) => {
   );
 };
 
-export const getRelatedVendors = async (id) => {
-  const vendor = await axios.get(`${ROOT_URL}/api/vendors/related/${id}`);
+export const getRelatedVendors = async (id, location) => {
+  const vendor = await axios.get(
+    `${ROOT_URL}/api/vendors/related/${id}/${location}`
+  );
   console.log(`vendors from getRelatedVendors`, vendor);
   return vendor;
 };

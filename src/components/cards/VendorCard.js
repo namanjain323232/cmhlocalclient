@@ -80,7 +80,7 @@ const VendorCard = ({ vendor }) => {
           />
         }
         actions={[
-          <Link to={`/vendordetails/${_id}`}>
+          <Link to={`/vendordetails/${_id}`} state={{ location: "" }}>
             <EyeOutlined className="text-warning" /> <br />
             View Vendor Details
           </Link>,
