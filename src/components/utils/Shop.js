@@ -216,7 +216,8 @@ const Shop = (props) => {
   const handleAreas = (area) => {
     console.log(formattedAreas);
     setSelectedArea(area);
-    console.log(area, "areaaaa");
+    localStorage.setItem("location_shop", `${area.formatted_address}`);
+    console.log(selectedArea, "areaaaa");
     setAreas([area]);
     console.log(areas, "handle");
     // setAreas(areas.filter(a => a.place_id != area.place_id));

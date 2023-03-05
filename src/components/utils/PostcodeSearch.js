@@ -28,7 +28,7 @@ class PostcodeSearch extends Component {
   handleAreas = (area) => {
     // console.log(formattedAreas);
     this.handlesetArea(area);
-
+    localStorage.setItem("location_shop", `${area.formatted_address}`);
     // setAreas((result) => [...result, area]);
 
     // setAreas(areas.filter(a => a.place_id != area.place_id));

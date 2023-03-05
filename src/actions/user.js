@@ -50,6 +50,15 @@ export const markAsComplete = async (id) => {
   return orderlist;
 };
 
+export const cancelOrderVendor = async (id, reason) => {
+  const orderlist = await axios.put(
+    `${ROOT_URL}/user/order/vendorcancel/${id}/${reason}`
+  );
+  console.log(orderlist);
+
+  return orderlist;
+};
+
 export const getuserCart = async (authtoken) => {
   const cart = await axios.get(`${ROOT_URL}/user/cart`, {
     headers: { authtoken },

@@ -7,8 +7,10 @@ import {
 } from "../../actions/vendor";
 import SingleVendor from "../cards/SingleVendor";
 import VendorCard from "../cards/VendorCard";
+import { useLocation } from "react-router-dom";
 
 const VendorDetails = ({ match }) => {
+  const location = useLocation();
   const { user } = useSelector((state) => ({ ...state }));
   const [vendor, setVendor] = useState("");
   const [loading, setLoading] = useState(false);
@@ -16,6 +18,7 @@ const VendorDetails = ({ match }) => {
   const [review, setReview] = useState("");
   const [related, setRelated] = useState([]);
   const { id } = match.params;
+  const related_varea = localStorage.getItem("location_shop") || "London, UK";
   console.log("vendor details rerender not come");
   useEffect(() => {
     loadVendorDetails();
@@ -36,7 +39,7 @@ const VendorDetails = ({ match }) => {
     getVendorCategory(id)
       .then((res) => {
         setVendor(res.data);
-        getRelatedVendors(res.data._id, "London, UK").then((res) => {
+        getRelatedVendors(res.data._id, related_varea).then((res) => {
           setRelated(res.data);
           console.log(res.data);
         });

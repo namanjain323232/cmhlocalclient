@@ -7,7 +7,7 @@ import { showAverageRating } from "../../actions/rating";
 import _ from "lodash";
 
 const { Meta } = Card;
-const VendorCard = ({ vendor }) => {
+const VendorCard = ({ vendor, location }) => {
   const { user, cart } = useSelector((state) => ({ ...state }));
 
   const [subcats, setSubcats] = useState([]);
@@ -22,7 +22,6 @@ const VendorCard = ({ vendor }) => {
     pricetype,
     areasCovered,
   } = vendor;
-  // console.log(vendor);
   // console.log(vendorInfoId);
   const dispatch = useDispatch();
 
@@ -80,7 +79,7 @@ const VendorCard = ({ vendor }) => {
           />
         }
         actions={[
-          <Link to={`/vendordetails/${_id}`} state={{ location: "" }}>
+          <Link to={`/vendordetails/${_id}`}>
             <EyeOutlined className="text-warning" /> <br />
             View Vendor Details
           </Link>,
