@@ -143,11 +143,21 @@ const UserHistory = () => {
               centered
               visible={cancelModal}
               onOk={() => {
-                cancelOrder(order._id).then((res) => {
-                  loadUserOrders();
-                });
+                var s = new Date(order.bookingDate);
+                if (s.getTime() - Date.now() > 172800000) {
+                  cancelOrder(order._id).then((res) => {
+                    loadUserOrders();
+                  });
+                  toast.success(
+                    "Your Order has been successfully cancelled..."
+                  );
+                } else {
+                  toast.error(
+                    "Sorry, you cannot cancel when less than 2 days are remaining for your booking ):"
+                  );
+                }
+
                 setCancelModal(false);
-                toast.success("Your Order has been successfully cancelled...");
               }}
               onCancel={() => {
                 setCancelModal(false);
@@ -161,9 +171,16 @@ const UserHistory = () => {
               centered
               visible={editModal}
               onOk={() => {
-                cancelOrder(order._id).then((res) => {
-                  window.location.assign(`/bookvendor/${v.vendor._id}`);
-                });
+                var s = new Date(order.bookingDate);
+                if (s.getTime() - Date.now() > 172800000) {
+                  cancelOrder(order._id).then((res) => {
+                    window.location.assign(`/bookvendor/${v.vendor._id}`);
+                  });
+                } else {
+                  toast.error(
+                    "Sorry, you cannot cancel when less than 2 days are remaining for your booking ):"
+                  );
+                }
                 setEditModal(false);
               }}
               onCancel={() => {
