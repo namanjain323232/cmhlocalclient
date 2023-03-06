@@ -16,6 +16,7 @@ const UserHistory = () => {
   const [orders, setOrders] = useState([]);
   const [cancelModal, setCancelModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
+  const [currOrder, setCurrOrder] = useState();
 
   useEffect(() => {
     loadUserOrders();
@@ -126,12 +127,14 @@ const UserHistory = () => {
                 >
                   <CloseOutlined
                     onClick={() => {
+                      setCurrOrder(order);
                       setCancelModal(true);
                     }}
                   />
 
                   <EditOutlined
                     onClick={() => {
+                      setCurrOrder(order);
                       setEditModal(true);
                     }}
                   />
@@ -143,9 +146,9 @@ const UserHistory = () => {
               centered
               visible={cancelModal}
               onOk={() => {
-                var s = new Date(order.bookingDate);
+                var s = new Date(currOrder.bookingDate);
                 if (s.getTime() - Date.now() > 172800000) {
-                  cancelOrder(order._id).then((res) => {
+                  cancelOrder(currOrder._id).then((res) => {
                     loadUserOrders();
                   });
                   toast.success(
@@ -171,14 +174,14 @@ const UserHistory = () => {
               centered
               visible={editModal}
               onOk={() => {
-                var s = new Date(order.bookingDate);
+                var s = new Date(currOrder.bookingDate);
                 if (s.getTime() - Date.now() > 172800000) {
-                  cancelOrder(order._id).then((res) => {
+                  cancelOrder(currOrder._id).then((res) => {
                     window.location.assign(`/bookvendor/${v.vendor._id}`);
                   });
                 } else {
                   toast.error(
-                    "Sorry, you cannot cancel when less than 2 days are remaining for your booking ):"
+                    "Sorry, you cannot rebook when less than 2 days are remaining for your booking ):"
                   );
                 }
                 setEditModal(false);
