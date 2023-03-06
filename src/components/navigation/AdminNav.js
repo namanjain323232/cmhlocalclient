@@ -22,12 +22,13 @@ const AdminNav = () => {
           </Link>
         </li>
         <li className="nav-item mb-3">
-          <Link to="/admin/vendoradmin/vendoradminlist">
-               VENDOR DETAILS
-          </Link>
+          <Link to="/admin/vendoradmin/vendoradminlist">VENDOR DETAILS</Link>
         </li>
         <li className="nav-item mb-3">
           <Link to="/admin/queries/querieslist">CUSTOMER QUERIES</Link>
+        </li>
+        <li className="nav-item mb-3">
+          <Link to="/admin/orders/openorders">OPEN ORDERS</Link>
         </li>
         <li className="nav-item mb-3">
           <Link to="/vendor/vendorcatlist">VENDOR CATEGORIES</Link>
