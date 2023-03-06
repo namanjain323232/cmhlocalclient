@@ -22,12 +22,15 @@ const OpenOrders = () => {
     setLoading(false);
   };
 
+  const getVendors = async () => {
+    setLoading(true);
+  }
   const addRoute = () => {
     return "/admin/categories/categoriescreate";
   };
 
-//   const searchValue = (keyword) => (res) =>
-//     res.OrderedBy.toLowerCase().includes(keyword);
+    const searchValue = (keyword) => (res) =>
+           res.OrderedBy.toLowerCase().includes(keyword);
 
   const renderList = () => {
     return (
@@ -37,17 +40,19 @@ const OpenOrders = () => {
           return (
             <div className="row" key={order._id}>
               <div className="col col-md-3 mb-2 category">
-                {order.vendors.length &&
-                  order.vendors.map((ven) => <p> {ven._id}</p>)}
-                {moment(order.bookingDate).format("DD/MM/YYYY")}
+                <p font-weight-bold> {order._id}</p>
+                Booking Date:{moment(order.bookingDate).format("DD/MM/YYYY")}
               </div>
-              <div className="col col-md-2 mb-2  category">
-                {order.orderedBy.email}
-              </div>
-              
-              <div className="col col-md-2 mb-2 category">
-                {order.vendors.length &&
-                  order.vendors.map((ven) => <p> {ven._id}</p>)}
+              <div className="col col-md-3 mb-2  category">
+                <p>{order.orderedBy.email}</p>
+                   {order.vendors.length && order.vendors.map((ven) => 
+                   <p> Order Total :£{ven.price * ven.count} </p>)}
+                 </div>
+              {/* {console.log (order.vendors[0].vendor.vendorInfoId, order.bookingDate)} */}
+              <div className="col col-md-2 mb-2 category" key={order.vendors._id}>
+                {order.vendors &&
+                  order.vendors.map((ven) =>           
+                    <p> {ven.vendor.vendorInfoId.name}</p>)}
               </div>
               <div className="col col-md-2 mb-2 category">
                 {order.timeslotsSE.length &&
@@ -56,16 +61,12 @@ const OpenOrders = () => {
                       {ts.start}-{ts.end}
                     </p>
                   ))}
-              </div>
-
+              </div>             
+              
               <div className="col col-md-1 mb-2 category">
                 {order.orderStatus}
               </div>
-              <div className="col col-md-2 mb-2 category">
-                {order.vendors.length &&
-                  order.vendors.map((ven) => <p> £{ven.price * ven.count} </p>)}
-              </div>
-              <div className="col-md-2 mb-1">
+              <div className="col-md-3 mb-1">
                 <Link
                   to={`/admin/categories/categoriesedit/${order._id}`}
                   className="btn btn-primary  mr-1 "
@@ -109,18 +110,15 @@ const OpenOrders = () => {
             <div className=" col col-md-3">
               <h5 className="float-center font-weight-bold"> Order No/Date</h5>
             </div>
-            <div className=" col col-md-2">
+            <div className=" col col-md-3">
               <h5 className="float-center font-weight-bold"> Ordered By</h5>
             </div>
-            
+
             <div className="col col-md-2">
               <h5 className="float-center font-weight-bold"> Vendor</h5>
             </div>
             <div className="col col-md-2">
               <h5 className="float-center font-weight-bold"> Booking Slots</h5>
-            </div>
-            <div className="col col-md-1">
-              <h5 className="float-center font-weight-bold"> Total</h5>
             </div>
             <div className="col col-md-1">
               <h5 className="float-center font-weight-bold"> Status</h5>

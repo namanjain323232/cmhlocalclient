@@ -66,7 +66,7 @@ const VendorAdminList = () => {
               <div className="col col-md-2 text-align-right category">
                 {regvendor.userId.stripe_account_id}
               </div>
-              <div className="col-md-6 justify-content-center mb-1">
+              <div className="col-md-12 justify-content-center mb-1">
                 <Link
                   to={`/admin/vendoradmin/vendoradminedit/${regvendor.slug}`}
                   className="btn btn-primary  mr-1 "
@@ -90,7 +90,6 @@ const VendorAdminList = () => {
                     Activate
                   </Link>
                 )}
-
                 <Link
                   to={`/admin/vendoradmin/vendoradmincatlist/${regvendor.slug}`}
                   className="btn btn-primary float-right "
