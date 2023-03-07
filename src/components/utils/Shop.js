@@ -531,7 +531,7 @@ const Shop = (props) => {
                   key={v._id}
                   style={{ cursor: "pointer" }}
                 >
-                  <VendorCard vendor={v} />
+                   <VendorCard vendor={v} /> 
                 </div>
               ))}
             </div>

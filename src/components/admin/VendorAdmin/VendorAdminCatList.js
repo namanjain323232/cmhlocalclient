@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from "react";
-import AdminNav from "../navigation/AdminNav";
-import {getAllVendorCategories} from "../../actions/vendor";
-import AdminVendorCard from "../cards/AdminVendorCard";
+import AdminNav from "../../navigation/AdminNav";
+import {getVendorCatSlug} from "../../../actions/vendor";
+import AdminVendorCard from "../../cards/AdminVendorCard";
+import {EditOutlined, DeleteOutlined} from "@ant-design/icons";
 
-
-const AdminDashboard = () => {
-
+const VendorAdminCatList = ({match}) => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -15,7 +14,7 @@ const AdminDashboard = () => {
 
   const loadVendorCategories= () => {
     setLoading(true);
-    getAllVendorCategories()
+    getVendorCatSlug(match.params.slug)
     .then ( res => {
         setCategories(res.data);
         setLoading(false);
@@ -34,12 +33,12 @@ const AdminDashboard = () => {
            </div>  
            <div className= "col col-md-10">
             { loading ? <h4>Loading....</h4>
-                      :  <h4 className= "font-weight-bold">All Vendor Categories</h4>
+                      :  <h4 className= "font-weight-bold"> Vendor Categories </h4>
             }
-            <div className= "row">
+           {/* {JSON.stringify(categories[0].vendorInfoId.name)} */}
+            <div className= "row pb-3">
             { categories.map( (cat) => {
              return (
-              
               <div className= "col col-md-4"  key= {cat._id}>                              
                <AdminVendorCard  cat= {cat}                                
                />
@@ -55,4 +54,5 @@ const AdminDashboard = () => {
    )
 }
 
-export default AdminDashboard;
+
+export default VendorAdminCatList;

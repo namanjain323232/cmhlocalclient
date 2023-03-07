@@ -13,7 +13,7 @@ const timeslotReducer = ( state= initialState, action) => {
          let unique=_.uniqWith(temp,_.isEqual); 
          let index = unique.findIndex(x => x.tstimeslot[0]._id === action.payload.tstimeslot[0]._id);
          unique.push(action.payload);
-         let a= unique.filter(timeslot => timeslot.tsday == action.payload.tsday) 
+         let a= unique.filter(timeslot => timeslot.tsday === action.payload.tsday) 
      if(index > -1){
           var uniquevar=_.uniqWith(a,_.isEqual); 
           uniquevar.splice(index,1)

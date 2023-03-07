@@ -4,7 +4,7 @@ import { CREATE_QUESTION,
          FETCH_QUESTIONS_NAME,
          EDIT_QUESTION,
          DELETE_QUESTION } from "../actions/types";
-import categoryReducer from "./categoryReducer";
+// import categoryReducer from "./categoryReducer";
 
  const questionReducer= (state= [], action) => {
     console.log("Action values from question reducer :",action);

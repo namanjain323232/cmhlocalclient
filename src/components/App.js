@@ -31,6 +31,14 @@ import SubcategoryQuestionsEdit from "./admin/SubcategoryQuestions/SubcategoryQu
 import SubcategoryQuestionsDelete from "./admin/SubcategoryQuestions/SubcategoryQuestionsDelete";
 import SubcategoryQuestionsList from "./admin/SubcategoryQuestions/SubcategoryQuestionsList";
 import VendorAdminList from "./admin/VendorAdmin/VendorAdminList";
+import VendorAdminCreate from "./admin/VendorAdmin/VendorAdminCreate";
+import VendorAdminEdit from "./admin/VendorAdmin/VendorAdminEdit";
+import VendorAdminDel from "./admin/VendorAdmin/VendorAdminDel";
+import VendorAdminCatList from "./admin/VendorAdmin/VendorAdminCatList";
+import VendorAdminCatAdd from "./admin/VendorAdmin/VendorAdminCatAdd";
+import VendorAdminCatEdit from "./admin/VendorAdmin/VendorAdminCatEdit";
+import VendorAdminCatDel from "./admin/VendorAdmin/VendorAdminCatDel";
+import OpenOrders from "./admin/Orders/OpenOrders";
 import TimeslotCreate from "./admin/Timeslot/TimeslotCreate";
 import TimeslotList from "./admin/Timeslot/TimeSlotList";
 import TimeslotEdit from "./admin/Timeslot/TimeslotEdit";
@@ -292,8 +300,41 @@ const App = () => {
                 component={VendorAdminList}
               />
               <AdminRoute
+                path="/admin/vendoradmin/vendoradmincreate"
+                component={VendorAdminCreate}
+              />
+              <AdminRoute
+                path="/admin/vendoradmin/vendoradminedit/:slug"
+                component={VendorAdminEdit}
+              />
+              <AdminRoute
+                path="/admin/vendoradmin/vendoradmindel/:slug"
+                component={VendorAdminDel}
+              />
+              <AdminRoute
+                path="/admin/vendoradmin/vendoradmincatadd/:id"
+                component={VendorAdminCatAdd}
+              />
+              <AdminRoute
+                path="/admin/vendoradmin/vendoradmincatList/:slug"
+                component={VendorAdminCatList}
+              />
+              <AdminRoute
+                path="/admin/vendoradmin/vendoradmincatedit/:id"
+                component={VendorAdminCatEdit}
+              />
+              <AdminRoute
+                path= "/admin/vendoradmin/vendoradmincatdel/:id"
+                component= {VendorAdminCatDel}
+              />
+              <AdminRoute
                 path="/admin/queries/querieslist"
                 component={QueriesList}
+              />
+
+              <AdminRoute
+                path="/admin/orders/openorders"
+                component={OpenOrders}
               />
               <AdminRoute
                 path="/vendor/vendorcatlist"
@@ -383,7 +424,7 @@ const App = () => {
                 component={VendorPassword}
               />
               <UserRoute
-                path="/vendor/vendordetails"
+                path="/vendor/vendordetails/:id"
                 exact
                 component={VendorNew}
               />

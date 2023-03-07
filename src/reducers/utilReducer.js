@@ -1,5 +1,5 @@
-import _ from "lodash";
-import { FETCH_CATEGORIES_NAME, FETCH_SUBCATEGORIES_NAME, FETCH_QUESTIONS_NAME } from "../actions/types";
+// import _ from "lodash";
+import { FETCH_SUBCATEGORIES_NAME, FETCH_QUESTIONS_NAME } from "../actions/types";
 
 const utilReducer = (state = {}, action ) => {
     console.log("Action:",action.type);

@@ -79,3 +79,17 @@ export const getRelatedVendors = async (id, location) => {
 export const getVendorsByFilter = async (arg) => {
   return await axios.post(`${ROOT_URL}/api/search/filters`, arg);
 };
+
+export const getVendorCatSlug = async (slug, page) => {
+  console.log(`slug from actions`, slug);
+  return await axios.get(`${ROOT_URL}/api/vendors/admincat/${slug}`, { page });
+};
+
+export const updateVendorAdmin = async (id, formvalues, authtoken) => {
+  const res = await axios.put(`${ROOT_URL}/api/vendor/admincat/${id}`, formvalues, {
+    headers: { authtoken },
+  });
+  history.push(`/admin/admincatlist`);
+};
+
+

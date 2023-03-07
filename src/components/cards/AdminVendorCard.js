@@ -1,31 +1,58 @@
 import React from "react";
-import {Card} from "antd";
-import {Link} from "react-router-dom";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { Card } from "antd";
+import { Link } from "react-router-dom";
+import {
+  AreaChartOutlined,
+  PlusCircleOutlined,
+  DeleteOutlined,
+  EditOutlined,
+} from "@ant-design/icons";
 
-const {Meta} = Card;
+const { Meta } = Card;
 
-const AdminVendorCard = ({cat}) => {
-    const {vendorInfoId, description, category, subcategories,images,_id} = cat;
+const AdminVendorCard = ({ cat }) => {
+  const {
+    vendorInfoId,
+    description,
+    category,
+    subcategories,
+    images,
+    _id,
+    areasCovered,
+  } = cat;
   return (
-      <Card  cover= {
-          <img src= { images && images.length ? images[0].url : ""} 
-               style= {{ height: "150px", objectFit: "cover"}}
-          />
+    <Card
+      cover={
+        <img
+          src={images && images.length ? images[0].url : ""}
+          style={{ height: "150px", objectFit: "cover" }}
+        />
       }
-         actions= {[ <Link to= {`/vendor/vendoredit/${_id}`}>
-                      <EditOutlined  className= "text-warning" />
-                      </Link>,
-                     <Link to= {`/vendor/vendorcatdelete/${_id}`}>
-                      <DeleteOutlined  className= "text-danger" />
-                      </Link>
-                 ]}
-      >
+      actions={[
+        <Link to={`/admin/vendoradmin/vendoradmincatadd/${_id}`}>
+        <PlusCircleOutlined className="text-warning" />
+        </Link>,
+        <Link to={`/admin/vendoradmin/vendoradmincatedit/${_id}`}>
+          <EditOutlined className="text-warning" />
+        </Link>,
+        <Link to={`/admin/vendoradmin/vendoradmincatdel/${_id}`}>
+          <DeleteOutlined className="text-danger" />
+        </Link>,
+      ]}
+    >
+      <p className="font-weight-bold">{vendorInfoId.name}</p>
+      {subcategories.length && subcategories.map((sc) => <p>{sc.name}</p>)}
 
-        <Meta title= {vendorInfoId.name} description= {`${description && description.substring(0,50)}....`} />
-      </Card>
-  )
-}
+      <p>{description && description.substring(0, 50)}....</p>
+      <div>
+        
+        {areasCovered.length && areasCovered.map((ac) => 
+          <p>{ac.place_add}</p>)
+         
+          }
+      </div>
+    </Card>
+  );
+};
 
 export default AdminVendorCard;
-

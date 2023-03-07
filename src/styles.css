@@ -288,7 +288,7 @@ sidenavbar {
   width: auto;
 }
 .admin-class {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
 }
 
@@ -644,4 +644,8 @@ sidenavbar {
 
 .typeWriterText {
   font-size: 1.8rem;
+}
+
+ul {
+  list-style-type: none;
 }

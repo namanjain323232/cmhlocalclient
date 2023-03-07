@@ -55,8 +55,8 @@ const VendorDetails = ({ match }) => {
     console.log("rating VALUE before update", star, name, user.token);
     vendorRating(name, newRating, user.token).then((res) => {
       console.log("Rating after Update", res);
-      //   setStar(newRating);
-      // loadVendorDetails();
+      setStar(newRating);
+      loadVendorDetails();
     });
   };
 
