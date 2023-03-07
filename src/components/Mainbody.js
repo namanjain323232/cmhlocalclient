@@ -61,7 +61,7 @@ const MainBody = () => {
                 style={{
                   display: "flex",
                   flexDirection: "column",
-                  width: "80%",
+                  width: "80%"                 
                 }}
               >
                 <Link
@@ -77,7 +77,7 @@ const MainBody = () => {
                   style={{
                     marginLeft: "0.5rem",
                     fontSize: "0.8rem",
-                    color: "#1890ff",
+                    color: "#00008B",
                   }}
                 >
                   View More ...

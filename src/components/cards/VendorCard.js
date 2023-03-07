@@ -97,9 +97,9 @@ const VendorCard = ({ vendor, location }) => {
           description={subcats}
         />
         <Meta
-          title={`Areas Covered : ${areasCovered.map((area) => {
-            return " " + area.place_add?.split(",")[0];
-          })}`}
+          // title={`Areas Covered : ${areasCovered.map((area) => {
+          //   // return " " + area.place_add?.split(",")[0];
+          // })}`}
         />
       </Card>
     </div>
