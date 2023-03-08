@@ -77,7 +77,7 @@ const MainBody = () => {
                   style={{
                     marginLeft: "0.5rem",
                     fontSize: "0.8rem",
-                    color: "#00008B",
+                    color: "#00008B"                   
                   }}
                 >
                   View More ...
@@ -113,7 +113,7 @@ const MainBody = () => {
         </Row>
       </section>
       <section className="feature-class" id="features">
-        <Col className="font-weight-bold mt-1">
+        <Col className="font-weight-bold mt-1 ">
           <PostcodeSearch />
         </Col>
       </section>
@@ -122,7 +122,7 @@ const MainBody = () => {
           <Row>{renderFields()}</Row>
         </section>
         <DemoCarousel />
-        {/* <h1>hiiiiiiiiiiii</h1> */}
+      
       </div>
     </>
   );

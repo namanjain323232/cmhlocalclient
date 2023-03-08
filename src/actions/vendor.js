@@ -92,4 +92,9 @@ export const updateVendorAdmin = async (id, formvalues, authtoken) => {
   history.push(`/admin/admincatlist`);
 };
 
-
+export const changeVendorStatus = async (id, formvalues, authtoken) => {
+  const res = await axios.put(`${ROOT_URL}/api/vendor/admincat/${id}`, formvalues, {
+    headers: { authtoken },
+  });
+  history.push(`/admin/dashboard`);
+};

@@ -12,7 +12,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 const VendorAdminCatAdd = ({ match }) => {
   const { user } = useSelector((state) => ({ ...state }));
   {
-    console.log("MATCH FROM CAT ADD", match.params.id);
+    // console.log("MATCH FROM CAT ADD", match.params.id);
   }
   const initialState = {
     userId: user._id,
@@ -30,11 +30,9 @@ const VendorAdminCatAdd = ({ match }) => {
   const [values, setValues] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [subOptions, setSubOptions] = useState([]);
-  const [arrOfAreas, setArrOfAreas] = useState([]);
-  const [arrOfSubIds, setArrOfSubIds] = useState([]);
   const [showSubs, setShowSubs] = useState(false);
   const [vendor, setvendor] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
+ 
 
   useEffect(() => {
     getCategories();
@@ -60,7 +58,7 @@ const VendorAdminCatAdd = ({ match }) => {
         toast.error(`Vendor info not found for user: ${match.params.id}`);
       });
   };
-  console.log("VENDOR INFO BY ID OUTPUT",vendor._id);
+  // console.log("VENDOR INFO BY ID OUTPUT",vendor._id);
   const handleChange = (e) => {
     setValues({
       ...values,
@@ -69,7 +67,7 @@ const VendorAdminCatAdd = ({ match }) => {
     });
   };
 
-  console.log("Values from handlechange in CAT ADD", values,vendor._id);
+  // console.log("Values from handlechange in CAT ADD", values,vendor._id);
 
   const handleCategoryChange= (e) => {
     e.preventDefault();   
@@ -83,15 +81,8 @@ const VendorAdminCatAdd = ({ match }) => {
     })
     setShowSubs(true);
   }
-  {console.log(subOptions)}
-  //   const loadAreas = () => {
-  //     let arrArea = [];
-  //     values.areasCovered.map((a) => {
-  //       arrArea.push(a.place_id);
-  //     });
-  //     setArrOfAreas((prev) => arrArea);
-  //   };
-  //   {console.log("Areas Covered:",arrOfAreas)}
+  // {console.log(subOptions)}
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
@@ -102,7 +93,7 @@ const VendorAdminCatAdd = ({ match }) => {
     addVendor(values, user.token)
       .then((res) => {
         setLoading(false);
-        window.alert(`Vendor is created successfully !!!!`);
+        window.alert(`Vendor Catgory is created successfully !!!!`);
         window.location.reload();
       })
       .catch((err) => {

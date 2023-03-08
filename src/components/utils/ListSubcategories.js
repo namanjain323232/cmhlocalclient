@@ -24,7 +24,7 @@ const ListSubcategories = (props) => {
               className="mb-1"
               style={{
                 marginLeft: "0.5rem",
-                fontSize: "0.8rem"              
+                fontSize: "0.8rem"                           
               }}
             >
               <Link to={`/vendorcat/${subcategoryval.slug}`}>

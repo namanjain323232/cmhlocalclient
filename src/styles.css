@@ -70,10 +70,11 @@ sidenavbar {
 .main-class {
   background-color: #ead6cd;
   min-height: 30px;
-  border: 3px solid;
-  color: #00008B;
+  border: 2px solid;
+  color: #00008b;
   font-size: 10px;
-  padding-bottom: 2px;
+  padding-bottom: 3px;
+  /* margin-right: 0.1rem;  */
 }
 
 .footer-area {
@@ -100,7 +101,7 @@ sidenavbar {
   text-align: center;
 }
 .icon-class {
-  color: #00008B;
+  color: #00008b;
   margin-bottom: 1rem;
   font-size: 1em;
 }

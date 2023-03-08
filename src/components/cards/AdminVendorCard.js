@@ -19,8 +19,11 @@ const AdminVendorCard = ({ cat }) => {
     images,
     _id,
     areasCovered,
+    active
   } = cat;
+  console.log("VENDOR AREAS COVERED",cat);
   return (
+   
     <Card
       cover={
         <img
@@ -30,14 +33,29 @@ const AdminVendorCard = ({ cat }) => {
       }
       actions={[
         <Link to={`/admin/vendoradmin/vendoradmincatadd/${_id}`}>
-        <PlusCircleOutlined className="text-warning" />
+          <PlusCircleOutlined className="text-warning" />
         </Link>,
         <Link to={`/admin/vendoradmin/vendoradmincatedit/${_id}`}>
-          <EditOutlined className="text-warning" />
-        </Link>,
-        <Link to={`/admin/vendoradmin/vendoradmincatdel/${_id}`}>
-          <DeleteOutlined className="text-danger" />
-        </Link>,
+        <EditOutlined className="text-warning" />
+      </Link>,
+         active == true ? (
+          <Link
+            to={`/admin/vendoradmin/vendoradmindel/${_id}`}
+            className="btn btn-danger mr-1"
+          >
+            {" "}
+            Deactivate
+          </Link>
+        ) : (
+          <Link
+            to={`/admin/vendoradmin/vendoradmindel/${_id}`}
+            className="btn btn-danger mr-1"
+          >
+            {" "}
+            Activate
+          </Link>
+        )
+       
       ]}
     >
       <p className="font-weight-bold">{vendorInfoId.name}</p>
@@ -45,12 +63,13 @@ const AdminVendorCard = ({ cat }) => {
 
       <p>{description && description.substring(0, 50)}....</p>
       <div>
-        
-        {areasCovered.length && areasCovered.map((ac) => 
-          <p>{ac.place_add}</p>)
-         
-          }
+      {areasCovered.map((area, index) => {
+              if (areasCovered.length !== index + 1)
+                return area.place_add.split(",")[0] + ", ";
+              else return area.place_add.split(",")[0];
+            })}
       </div>
+      
     </Card>
   );
 };
