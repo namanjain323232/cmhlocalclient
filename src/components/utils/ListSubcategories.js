@@ -22,10 +22,14 @@ const ListSubcategories = (props) => {
             <div
               key={subcategoryval._id}
               className="mb-1"
-              style={{ marginLeft: "0.5rem", fontSize: "0.8rem" }}
+              style={{
+                marginLeft: "0.5rem",
+                fontSize: "0.8rem"                           
+              }}
             >
               <Link to={`/vendorcat/${subcategoryval.slug}`}>
-                {subcategoryval.name}{" "}
+                <p style={{ color: "#00008B",
+                            marginBottom: "0.3rem"}}>{subcategoryval.name} </p>
               </Link>
             </div>
           );

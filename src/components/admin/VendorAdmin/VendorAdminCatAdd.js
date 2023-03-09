@@ -5,14 +5,14 @@ import AdminNav from "../../navigation/AdminNav";
 import { addVendor } from "../../../actions/vendor";
 import VendorAdminCatAddForm from "./VendorAdminCatAddForm";
 import { fetchCategories, fetchCategorySubs } from "../../../actions/category";
-import { fetchVendorInfoById } from "../../../actions/vendorInfo";
+import { fetchVendorInfoByVen } from "../../../actions/vendorInfo";
 import FileUpload from "../../utils/FileUpload";
 import { LoadingOutlined } from "@ant-design/icons";
 
 const VendorAdminCatAdd = ({ match }) => {
   const { user } = useSelector((state) => ({ ...state }));
   {
-    console.log("MATCH FROM CAT ADD", match.params.id);
+    // console.log("MATCH FROM CAT ADD", match.params.id);
   }
   const initialState = {
     userId: user._id,
@@ -30,11 +30,9 @@ const VendorAdminCatAdd = ({ match }) => {
   const [values, setValues] = useState(initialState);
   const [loading, setLoading] = useState(false);
   const [subOptions, setSubOptions] = useState([]);
-  const [arrOfAreas, setArrOfAreas] = useState([]);
-  const [arrOfSubIds, setArrOfSubIds] = useState([]);
   const [showSubs, setShowSubs] = useState(false);
   const [vendor, setvendor] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
+ 
 
   useEffect(() => {
     getCategories();
@@ -49,7 +47,7 @@ const VendorAdminCatAdd = ({ match }) => {
 
   const getVendorInfo = () => {
     setLoading(true);
-    fetchVendorInfoById(match.params.id)
+    fetchVendorInfoByVen(match.params.id)
       .then((v) => {
         setLoading(false);
         setvendor(v.data);
@@ -60,7 +58,7 @@ const VendorAdminCatAdd = ({ match }) => {
         toast.error(`Vendor info not found for user: ${match.params.id}`);
       });
   };
-  console.log("VENDOR INFO BY ID OUTPUT",vendor);
+  // console.log("VENDOR INFO BY ID OUTPUT",vendor._id);
   const handleChange = (e) => {
     setValues({
       ...values,
@@ -69,29 +67,22 @@ const VendorAdminCatAdd = ({ match }) => {
     });
   };
 
-  console.log("Values from handlechange in CAT ADD", values);
+  // console.log("Values from handlechange in CAT ADD", values,vendor._id);
 
-  const handleCategoryChange = (e) => {
-    e.preventDefault();
-    setValues({ ...values, subcategories: [], category: e.target.value });
+  const handleCategoryChange= (e) => {
+    e.preventDefault();   
+    setValues({ ...values,subcategories: [], category: e.target.value});
     fetchCategorySubs(e.target.value)
-      .then((res) => {
-        setArrOfSubIds(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    .then ( (res) => {      
+      setSubOptions(res.data)
+    })
+    .catch ( (err) => {
+       console.log(err);
+    })
     setShowSubs(true);
-  };
-
-  //   const loadAreas = () => {
-  //     let arrArea = [];
-  //     values.areasCovered.map((a) => {
-  //       arrArea.push(a.place_id);
-  //     });
-  //     setArrOfAreas((prev) => arrArea);
-  //   };
-  //   {console.log("Areas Covered:",arrOfAreas)}
+  }
+  // {console.log(subOptions)}
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
@@ -102,7 +93,7 @@ const VendorAdminCatAdd = ({ match }) => {
     addVendor(values, user.token)
       .then((res) => {
         setLoading(false);
-        window.alert(`Vendor is created successfully !!!!`);
+        window.alert(`Vendor Catgory is created successfully !!!!`);
         window.location.reload();
       })
       .catch((err) => {
@@ -136,18 +127,18 @@ const VendorAdminCatAdd = ({ match }) => {
                   setLoading={setLoading}
                 />
               </div>
-
-              <VendorAdminCatAddForm
+              {console.log("Values being passed to Admin Card:",vendor._id,vendor.name)}
+              <VendorAdminCatAddForm              
                 handleSubmit={handleSubmit}
                 handleChange={handleChange}
-                //  vendorInfoId={vendor._id}
-                //  vendorName= {vendor.name}
-                //  userId={user._id}
+                vendorInfoId={vendor._id}
+                vendorName= {vendor.name}
+                userId={user._id}
                 values={values}
                 setValues={setValues}
                 handleCategoryChange={handleCategoryChange}
-                //  subOptions= {subOptions}
-                //  showSubs= {showSubs}
+                subOptions= {subOptions}
+                showSubs= {showSubs}
               />
             </div>
           </div>

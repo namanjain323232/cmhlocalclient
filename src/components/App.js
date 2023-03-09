@@ -39,6 +39,7 @@ import VendorAdminCatAdd from "./admin/VendorAdmin/VendorAdminCatAdd";
 import VendorAdminCatEdit from "./admin/VendorAdmin/VendorAdminCatEdit";
 import VendorAdminCatDel from "./admin/VendorAdmin/VendorAdminCatDel";
 import OpenOrders from "./admin/Orders/OpenOrders";
+import CancelledOrders from "./admin/Orders/CancelledOrders";
 import TimeslotCreate from "./admin/Timeslot/TimeslotCreate";
 import TimeslotList from "./admin/Timeslot/TimeSlotList";
 import TimeslotEdit from "./admin/Timeslot/TimeslotEdit";
@@ -335,6 +336,10 @@ const App = () => {
               <AdminRoute
                 path="/admin/orders/openorders"
                 component={OpenOrders}
+              />
+              <AdminRoute
+                path="/admin/orders/cancelledorders"
+                component={CancelledOrders}
               />
               <AdminRoute
                 path="/vendor/vendorcatlist"

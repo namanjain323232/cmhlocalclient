@@ -39,6 +39,11 @@ export const fetchVendorInfoById = async (id) => {
   return await axios.get(`${ROOT_URL}/api/vendorinfo/${id}`);
 };
 
+export const fetchVendorInfoByVen = async (venid) => {
+  console.log(`Response from InfoId`, venid);
+  return await axios.get(`${ROOT_URL}/api/vendorinfo/vendor/${venid}`);
+};
+
 export const fetchRegVendors = async () => {
   console.log("IN VENDOR LIST EXPORT");
   const vendorlist = await axios.get(`${ROOT_URL}/api/regvendors`);
@@ -60,9 +65,12 @@ export const editRegVendor = async (slug, formvalues, authtoken) => {
 };
 
 export const removeRegVendor = async (slug, formvalues, authtoken) => {
-  const res = await axios.put(`${ROOT_URL}/api/regvendordel/${slug}`, formvalues, {
-    headers: { authtoken },
-  });
+  const res = await axios.put(
+    `${ROOT_URL}/api/regvendordel/${slug}`,
+    formvalues,
+    {
+      headers: { authtoken },
+    }
+  );
   history.push(`/admin/dashboard`);
 };
-

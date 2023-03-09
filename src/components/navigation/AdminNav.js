@@ -31,6 +31,9 @@ const AdminNav = () => {
           <Link to="/admin/orders/openorders">OPEN ORDERS</Link>
         </li>
         <li className="nav-item mb-3">
+          <Link to="/admin/orders/cancelledorders">CANCELLED ORDERS</Link>
+        </li>
+        <li className="nav-item mb-3">
           <Link to="/vendor/vendorcatlist">VENDOR CATEGORIES</Link>
         </li>
         <li className="nav-item mb-3">
