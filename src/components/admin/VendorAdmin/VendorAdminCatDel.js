@@ -19,26 +19,28 @@ const VendorAdminCatDel = (props) => {
   const id = props.match.params.id;
 
   useEffect(() => {
+    setLoading(true);
     loadVendorCategories();
     loadAllVendorCategories();
+    setLoading(false);
   }, []);
 
-  {console.log("PARAM FROM DEL", id)}
+  {console.log("PARAM FROM DEL", props.match)}
 
   const loadAllVendorCategories = () => {
     getAllVendorCategories().then((res) => setVendors(res.data));
   };
 
   const loadVendorCategories = () => {
-    getVendorCategory(id)
-      .then((v) => setVendor(v.data))
-      .catch((err) => {
-        console.log(err);
-        toast.error("No vendor category was found");
-      });
+     getVendorCategory(id)
+      .then((v) => {      
+      console.log("Vendor details", JSON.stringify(v.data.vendorInfoId.slug, null, 4));
+      setVendor(v.data)
+      }     
+    )
   };
 
-  // const slug= vendor.vendorInfoId.slug;
+  
   const addRoute = () => {
     return "/admin/vendoradmin/vendoradmincatlist";
   };
@@ -69,18 +71,24 @@ const VendorAdminCatDel = (props) => {
         >
           Yes
         </button>
+        { (!vendor.vendorinfoId === undefined) }
+        
         <Link
+          // to={`/admin/vendoradmin/vendoradmincatlist/${vendor.vendorInfoId.slug}`}
           to={`/admin/vendoradmin/vendoradmincatlist/${id}`}
           type="button"
           className="btn btn-secondary primary-button"
         >
           No
-        </Link>
+        </Link>   
+      
+      
       </React.Fragment>
     );
   };
 
   const renderContent = () => {
+    
     if (!id) {
       return "Are you sure you want to deactivate this vendor category?";
     }
@@ -89,14 +97,15 @@ const VendorAdminCatDel = (props) => {
 
   return (
     <div>
-      <AdminMenu addRoute={addRoute()} />
-
-      <Modal
+     
+      <AdminMenu addRoute={addRoute()} />         
+      <Modal         
         title="Change status of Vendor Categories"
         content={renderContent()}
         actions={renderActions()}
-        onDismiss={() => history.push("/admin/vendoradmin/vendoradmincatlist/id")}
+        onDismiss={() => history.push(`/admin/vendoradmin/vendoradmincatlist/${vendor.vendorInfoId.slug}`)}
       />
+     
     </div>
   );
 };

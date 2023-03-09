@@ -40,7 +40,7 @@ const AdminVendorCard = ({ cat }) => {
       </Link>,
          active == true ? (
           <Link
-            to={`/admin/vendoradmin/vendoradmindel/${_id}`}
+            to={`/admin/vendoradmin/vendoradmincatdel/${_id}`}
             className="btn btn-danger mr-1"
           >
             {" "}
@@ -48,7 +48,7 @@ const AdminVendorCard = ({ cat }) => {
           </Link>
         ) : (
           <Link
-            to={`/admin/vendoradmin/vendoradmindel/${_id}`}
+            to={`/admin/vendoradmin/vendoradmincatdel/${_id}`}
             className="btn btn-danger mr-1"
           >
             {" "}

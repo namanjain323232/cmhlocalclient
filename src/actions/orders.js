@@ -1,19 +1,23 @@
 import axios from "axios";
 import history from "../history";
 import {
-//   CREATE_CATEGORY,
-    FETCH_ORDERS,
-//   FETCH_CATEGORY,
-//   FETCH_CATEGORIES_NAME,
-//   EDIT_CATEGORY,
-//   DELETE_CATEGORY,
+  //   CREATE_CATEGORY,
+  FETCH_ORDERS,
+  //   FETCH_CATEGORY,
+  //   FETCH_CATEGORIES_NAME,
+  //   EDIT_CATEGORY,
+  //   DELETE_CATEGORY,
 } from "../actions/types";
 
 const ROOT_URL = "http://localhost:5000";
-//action creators for Categories master
+//action creators for Orders
 
 export const fetchOrders = async () => {
   return await axios.get(`${ROOT_URL}/api/orders`);
+};
+
+export const fetchCancelledOrders = async () => {
+  return await axios.get(`${ROOT_URL}/api/orders/cancelled`);
 };
 
 // export const fetchCategory = async (slug) => {
