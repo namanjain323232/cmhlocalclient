@@ -24,23 +24,26 @@ const VendorAdminCatDel = (props) => {
     loadAllVendorCategories();
     setLoading(false);
   }, []);
-
-  {console.log("PARAM FROM DEL", props.match)}
+  // console.log("hiiiiiiiiiiiiiiii");
+  {
+    console.log("PARAM FROM DEL", props.match);
+  }
 
   const loadAllVendorCategories = () => {
     getAllVendorCategories().then((res) => setVendors(res.data));
   };
 
   const loadVendorCategories = () => {
-     getVendorCategory(id)
-      .then((v) => {      
-      console.log("Vendor details", JSON.stringify(v.data.vendorInfoId.slug, null, 4));
-      setVendor(v.data)
-      }     
-    )
+    getVendorCategory(id).then((v) => {
+      console.log(
+        "Vendor details",
+        JSON.stringify(v.data.vendorInfoId.slug, null, 4)
+      );
+      setVendor(v.data);
+      console.log(v.data);
+    });
   };
 
-  
   const addRoute = () => {
     return "/admin/vendoradmin/vendoradmincatlist";
   };
@@ -71,24 +74,21 @@ const VendorAdminCatDel = (props) => {
         >
           Yes
         </button>
-        { (!vendor.vendorinfoId === undefined) }
-        
+        {!vendor.vendorinfoId === undefined}
+
         <Link
-          // to={`/admin/vendoradmin/vendoradmincatlist/${vendor.vendorInfoId.slug}`}
-          to={`/admin/vendoradmin/vendoradmincatlist/${id}`}
+          to={`/admin/vendoradmin/vendoradmincatlist/${vendor.vendorInfoId?.slug}`}
+          // to={`/admin/vendoradmin/vendoradmincatlist/${id}`}
           type="button"
           className="btn btn-secondary primary-button"
         >
           No
-        </Link>   
-      
-      
+        </Link>
       </React.Fragment>
     );
   };
 
   const renderContent = () => {
-    
     if (!id) {
       return "Are you sure you want to deactivate this vendor category?";
     }
@@ -97,15 +97,17 @@ const VendorAdminCatDel = (props) => {
 
   return (
     <div>
-     
-      <AdminMenu addRoute={addRoute()} />         
-      <Modal         
+      <AdminMenu addRoute={addRoute()} />
+      <Modal
         title="Change status of Vendor Categories"
         content={renderContent()}
         actions={renderActions()}
-        onDismiss={() => history.push(`/admin/vendoradmin/vendoradmincatlist/${vendor.vendorInfoId.slug}`)}
+        onDismiss={() =>
+          history.push(
+            `/admin/vendoradmin/vendoradmincatlist/${vendor.vendorInfoId.slug}`
+          )
+        }
       />
-     
     </div>
   );
 };
